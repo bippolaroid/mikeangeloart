@@ -49,7 +49,7 @@ export default function Home() {
         playsinline
       ></video>
       <section class="h-screen lg:pb-36 w-full flex justify-center items-center lg:items-end lg:px-6 max-w-7xl mx-auto">
-        <article class="h-screen md:h-fit w-full lg:max-w-5xl lg:rounded-full p-6 pt-28 md:pt-6 md:border-t-2 md:border-t-white/80 flex flex-col md:flex-row gap-12 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)] backdrop-blur-3xl backdrop-brightness-200 dark:backdrop-brightness-75">
+        <article class="h-screen md:h-fit w-full lg:max-w-5xl lg:rounded-full p-6 md:pt-6 md:border-t-3 md:border-r-3 md:border-white/50 flex flex-col justify-center md:flex-row gap-12 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)] backdrop-blur-3xl backdrop-brightness-200 dark:backdrop-brightness-75">
           <img
             class="rounded-full hover:scale-98 def__animate mx-auto max-w-60 max-h-60"
             src={githubAvatar}
@@ -59,7 +59,7 @@ export default function Home() {
             <h1 class="text-4xl md:text-5xl text-black dark:text-white font-bold tracking-tighter">
               Hey! My name's Mike.
             </h1>
-            <h1 class="text-4xl md:text-5xl text-black dark:text-white tracking-tighter">
+            <h1 class="pb-6 text-4xl md:text-5xl text-black dark:text-white tracking-tighter">
               I'm a{" "}
               <span
                 id="role-changer"
@@ -69,19 +69,16 @@ export default function Home() {
               </span>
               .
             </h1>
-            <A href="/about" class="def__button">
-              More about me
-            </A>
           </div>
         </article>
       </section>
       <Panel3d
         data="/MA_3DLogo.glb"
-        headline="Test"
-        paragraph="Test2"
+        headline="Check out some of my work."
+        paragraph="I currently take on projects independently, but I'm always interested in new opportunities. Whether it's design, development, or blending both, I'm looking to team up with people who want to create meaningful work."
         reverse={false}
       />
-      <Collection data={collectionData} />
+      <Collection data={collectionData} enableSearch={true} />
     </main>
   );
 }

@@ -249,16 +249,16 @@ export default function Panel3d(props: {
   });
 
   return (
-    <section class="py-12 w-full backdrop-blur-3xl bg-white/80 dark:bg-transparent backdrop-brightness-200 dark:backdrop-brightness-10">
+    <section class="lg:py-12 w-full backdrop-blur-3xl bg-white/80 dark:bg-transparent backdrop-brightness-200 dark:backdrop-brightness-10">
       <div class="w-full max-w-7xl lg:px-6 mx-auto grid lg:flex items-center">
-        <div class="h-fit w-full flex flex-col lg:flex-row gap-3 items-center">
+        <div class="h-fit w-full flex flex-col-reverse lg:flex-row gap-3 items-center">
           <div class="w-full p-12 lg:rounded-3xl grid gap-3 dark:border-t dark:border-t-white lg:border dark:border-white/10 border-black/10 bg-white dark:bg-neutral-900/80 backdrop-blur-3xl dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
-            <h2>{props.headline}</h2>
+            <h2 class="font-bold text-2xl">{props.headline}</h2>
             <p>{props.paragraph}</p>
           </div>
           <div
             id="wrapper3d"
-            class="hover:scale-95 my-36 lg:my-0 min-h-72 mx-auto row-start-1 w-full def__animate cursor-grab"
+            class="hover:scale-95 my-36 lg:my-0 min-h-72 mx-auto w-full def__animate cursor-grab"
           ></div>
         </div>
       </div>
