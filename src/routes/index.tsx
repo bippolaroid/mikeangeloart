@@ -1,7 +1,11 @@
 import { A } from "@solidjs/router";
 import { onMount } from "solid-js";
+import { PortfolioCollection } from "~/components/Collection";
 import Panel3d from "~/components/Panel3d";
+import data from "../db.json";
+import Collection from "~/components/Collection";
 
+const collectionData: PortfolioCollection[] = data;
 const githubAvatar = await fetchGithubAvatar();
 
 export default function Home() {
@@ -49,6 +53,7 @@ export default function Home() {
           <img
             class="rounded-full hover:scale-98 def__animate mx-auto max-w-60 max-h-60"
             src={githubAvatar}
+            loading="eager"
           />
           <div class="flex flex-col gap-2 justify-center text-center md:text-left w-full">
             <h1 class="text-4xl md:text-5xl text-black dark:text-white font-bold tracking-tighter">
@@ -70,14 +75,13 @@ export default function Home() {
           </div>
         </article>
       </section>
-      <section class="border-t border-t-white/50 w-full lg:pb-36 backdrop-blur-3xl bg-white/80 dark:bg-transparent backdrop-brightness-200 dark:backdrop-brightness-5">
-        <Panel3d
-          data="/MA_3DLogo.glb"
-          headline="Test"
-          paragraph="Test2"
-          reverse={false}
-        />
-      </section>
+      <Panel3d
+        data="/MA_3DLogo.glb"
+        headline="Test"
+        paragraph="Test2"
+        reverse={false}
+      />
+      <Collection data={collectionData} />
     </main>
   );
 }
