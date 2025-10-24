@@ -2,8 +2,9 @@ import * as three from "three";
 import { GLTFLoader, HDRLoader } from "three/examples/jsm/Addons.js";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { onCleanup, onMount } from "solid-js";
+import { H2 } from "~/layout/Headings";
 
-class SceneManager {
+export class SceneManager {
   private renderer: three.WebGLRenderer | null = null;
   private scene: three.Scene | null = null;
   private camera: three.PerspectiveCamera | null = null;
@@ -264,12 +265,12 @@ export default function Panel3d({
           } gap-3 items-center`}
         >
           <div class="w-full p-12 lg:rounded-3xl grid gap-3 dark:border-t dark:border-t-white lg:border dark:border-white/10 border-black/10 bg-white dark:bg-neutral-900/80 backdrop-blur-3xl dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
-            <h2 class="font-bold text-2xl">{headline}</h2>
+            <H2>{headline}</H2>
             <p>{paragraph}</p>
           </div>
           <div
             ref={wrapper3d}
-            class="hover:scale-95 my-36 lg:my-0 min-h-72 mx-auto w-full def__animate cursor-grab"
+            class="hover:scale-95 mt-12 lg:mt-0 min-h-72 mx-auto w-full def__animate cursor-grab"
           ></div>
         </div>
       </div>
