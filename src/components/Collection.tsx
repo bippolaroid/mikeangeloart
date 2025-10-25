@@ -141,9 +141,11 @@ function CollectionCell({ data }: { data: PortfolioCollection }) {
 export default function Collection({
   data,
   enableSearch = false,
+  enablePanel = false,
 }: {
   data: PortfolioCollection[];
   enableSearch?: boolean;
+  enablePanel?: boolean;
 }) {
   let wrapper3d!: HTMLDivElement;
 
@@ -157,6 +159,7 @@ export default function Collection({
     }
   }
   onMount(() => {
+    if (enablePanel) {
       const sceneManager = new SceneManager();
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
@@ -179,9 +182,10 @@ export default function Collection({
         sceneManager.dispose();
         observer.disconnect();
       });
-    });
+    }
+  });
   return (
-    <section class="z-1 py-12 mx-auto relative border-t border-b border-black/20 dark:border-white/10 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
+    <section class="z-1 py-12 mx-auto relative border-t border-b bg-neutral-50 border-black/20 dark:border-white/10 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
       <Show when={enableSearch}>
         <div class="max-w-7xl mx-6 mb-12 lg:mx-auto px-3 py-3 rounded-xl border border-black/5 dark:border-white/10 flex items-center justify-between">
           <div class="flex gap-3 items-center justify-start">
@@ -195,20 +199,22 @@ export default function Collection({
           <div class="flex gap-3 items-center justify-start"></div>
         </div>
       </Show>
-      <div class="flex mx-auto flex-col lg:flex-row lg:max-w-7xl">
-        <article class="p-12 lg:max-w-md flex flex-col justify-start">
-          <div
-            ref={wrapper3d}
-            class="hover:scale-95 mb-12 min-h-72 mx-auto w-full def__animate cursor-grab"
-          ></div>
-          <H2>Check out my work.</H2>
-          <p class="mt-2">
-            I currently take on projects independently, but I'm always
-            interested in new opportunities. Whether it's design, development,
-            or blending both, I'm looking to team up with people who want to
-            create meaningful work.
-          </p>
-        </article>
+      <div class={`flex mx-auto flex-col lg:flex-row ${enablePanel ? 'lg:max-w-7xl' : 'w-full'}`}>
+        <Show when={enablePanel}>
+          <article class="p-12 lg:max-w-md flex flex-col justify-start">
+            <div
+              ref={wrapper3d}
+              class="hover:scale-95 mb-12 min-h-72 mx-auto w-full def__animate cursor-grab"
+            ></div>
+            <H2>Check out my work.</H2>
+            <p class="mt-2">
+              I currently take on projects independently, but I'm always
+              interested in new opportunities. Whether it's design, development,
+              or blending both, I'm looking to team up with people who want to
+              create meaningful work.
+            </p>
+          </article>
+        </Show>
         <div
           id="collection-wrapper"
           class="px-6 lg:px-12 gap-y-1 w-full grid overflow-x-auto scroll-smooth"

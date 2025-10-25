@@ -3,7 +3,7 @@ import { For, onMount } from "solid-js";
 
 let links = [
   {
-    label: "Work",
+    label: "Portfolio",
     url: "/projects",
   },
   {
@@ -53,7 +53,7 @@ export default function Navbar() {
             Angelo
           </span>
         </A>
-        {/*<div class="flex gap-12 items-center">
+        {<div class="flex gap-12 items-center">
           <ul class="hidden sm:flex gap-6 items-center">
             <For each={links}>
               {(link) => {
@@ -65,7 +65,7 @@ export default function Navbar() {
               }}
             </For>
           </ul>
-        </div>*/}
+        </div>}
       </div>
     </nav>
   );
