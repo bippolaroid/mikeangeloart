@@ -1,6 +1,6 @@
-import { onMount } from "solid-js";
+import { onCleanup, onMount } from "solid-js";
 import { PortfolioCollection } from "~/components/Collection";
-import Panel3d from "~/components/Panel3d";
+import Panel3d, { SceneManager } from "~/components/Panel3d";
 import data from "../db.json";
 import Collection from "~/components/Collection";
 import { H1 } from "~/layout/Headings";
@@ -11,6 +11,8 @@ const githubAvatar = await fetchGithubAvatar();
 export default function Home() {
   let introPanel!: HTMLDivElement;
   let roleChanger!: HTMLSpanElement;
+  let wrapper3d!: HTMLDivElement;
+
   onMount(() => {
     const subheads = [
       "web developer",
@@ -44,6 +46,29 @@ export default function Home() {
         introPanel.style.transform = `translateZ(${factor * -1}px)`;
         introPanel.style.opacity = `clamp(0%, ${100 - factor / 5}%, 100%)`;
       });
+    });
+
+    const sceneManager = new SceneManager();
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          requestAnimationFrame(() => {
+            sceneManager.init(wrapper3d, "/MA_3DLogo.glb");
+            const resizeHandler = () => {
+              if (sceneManager) {
+                sceneManager.handleResize(wrapper3d);
+              }
+            };
+            window.addEventListener("resize", resizeHandler);
+          });
+          observer.unobserve(wrapper3d);
+        }
+      });
+    });
+    observer.observe(wrapper3d);
+    onCleanup(() => {
+      sceneManager.dispose();
+      observer.disconnect();
     });
   });
   return (
@@ -83,18 +108,24 @@ export default function Home() {
         </article>
       </section>
       <div class="backdrop-blur-3xl bg-white/80 dark:bg-transparent backdrop-brightness-200 dark:backdrop-brightness-10">
-        <section class="w-full max-w-7xl mx-auto flex px-6 py-12 justify-center lg:justify-start">
-          I currently take on projects independently, but I'm always interested
-          in new opportunities. Whether it's design, development, or blending
-          both, I'm looking to team up with people who want to create meaningful
-          work.
+        <section class="w-full max-w-7xl mx-auto flex flex-col lg:flex-row px-6 py-12 justify-center items-center">
+          <div
+            ref={wrapper3d}
+            class="hover:scale-95 mt-12 lg:mt-0 min-h-72 mx-auto w-full def__animate cursor-grab"
+          ></div>
+          <p>
+            I currently take on projects independently, but I'm always
+            interested in new opportunities. Whether it's design, development,
+            or blending both, I'm looking to team up with people who want to
+            create meaningful work.
+          </p>
         </section>
         <Collection data={collectionData} enableSearch={false} />
         <Panel3d
           data="/MA_3DLogo.glb"
           headline="Check out some of my work."
           paragraph="I currently take on projects independently, but I'm always interested in new opportunities. Whether it's design, development, or blending both, I'm looking to team up with people who want to create meaningful work."
-          reverse={true}
+          reverse={false}
         />
         <section class="flex lg:px-6 lg:pb-24 mx-auto lg:max-w-3xl w-full">
           <form

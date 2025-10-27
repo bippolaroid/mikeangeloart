@@ -8,6 +8,7 @@ interface Collection {
   uuid: string;
   id: number;
   author: string;
+  slug: string;
   title: string;
   cover: string;
   tags: string[];
@@ -74,7 +75,7 @@ function CollectionCell({ data }: { data: PortfolioCollection }) {
       }}
       class="group/card cell-container w-72 h-96 xl:h-108 md:w-100 xl:w-xl relative overflow-hidden hover:brightness-115 hover:saturate-125 def__animate"
     >
-      <A href="" class="h-full w-full">
+      <A href={`/projects/${data.slug}`} class="h-full w-full">
         <img
           src={data.cover}
           class="h-full w-full object-cover"
@@ -82,7 +83,7 @@ function CollectionCell({ data }: { data: PortfolioCollection }) {
         />
       </A>
       <A
-        href=""
+        href={data.slug}
         class="group-hover/card:opacity-100 opacity-0 z-1 p-1 top-0 rounded-xl def__animate w-12 h-12 flex justify-center items-center m-6 absolute backdrop-blur backdrop-brightness-150 dark:backdrop-brightness-25 hover:opacity-50"
       >
         <img
@@ -90,15 +91,20 @@ function CollectionCell({ data }: { data: PortfolioCollection }) {
           class="invert dark:invert-0 aspect-auto max-h-6"
         />
       </A>
-      <div class="lg:rounded-3xl w-full lg:w-auto lg:inset-x-3 flex flex-col gap-2 def__animate group/tag group-hover/card:opacity-100 px-3 py-6 lg:p-6 lg:opacity-0 absolute bottom-0 lg:bottom-3 z-1 mx-auto backdrop-blur-xl backdrop-brightness-140 dark:backdrop-brightness-25">
-        <header class="">
-          <h6 class="text-xs text-black/50 dark:text-white/50">
+      <div class="lg:rounded-3xl w-full lg:w-auto lg:inset-x-3 flex flex-col gap-2 def__animate group/tag group-hover/card:opacity-100 p-6 lg:opacity-0 absolute bottom-0 lg:bottom-3 z-1 mx-auto backdrop-blur-xl backdrop-brightness-140 dark:backdrop-brightness-25">
+        <header class="flex flex-col">
+          <A
+            href={`/projects?client=${data.clientName}`}
+            class="w-fit text-xs text-black/50 dark:text-white/50 hover:underline"
+          >
             {data.clientName}
-          </h6>
-          <h3 class="text-lg font-bold">{data.title}</h3>
+          </A>
+          <A href={data.slug} class="w-fit text-lg font-bold hover:underline">
+            {data.title}
+          </A>
         </header>
         <div
-          class="-mt-12 group-hover/tag:mt-0 flex gap-1 justify-start items-center group-hover/tag:opacity-100 opacity-0 w-full py-2 overflow-x-auto scroll-smooth def__animate"
+          class="-mt-9 group-hover/tag:mt-0 flex gap-1 justify-start items-center group-hover/tag:opacity-100 opacity-0 w-full overflow-x-auto scroll-smooth def__animate"
           style="scrollbar-width: none;"
           onWheel={(event) => {
             const wrapper = event.currentTarget as HTMLElement;
@@ -199,7 +205,11 @@ export default function Collection({
           <div class="flex gap-3 items-center justify-start"></div>
         </div>
       </Show>
-      <div class={`flex mx-auto flex-col lg:flex-row ${enablePanel ? 'lg:max-w-7xl' : 'w-full'}`}>
+      <div
+        class={`flex mx-auto flex-col lg:flex-row ${
+          enablePanel ? "lg:max-w-7xl" : "w-full"
+        }`}
+      >
         <Show when={enablePanel}>
           <article class="p-12 lg:max-w-md flex flex-col justify-start">
             <div
