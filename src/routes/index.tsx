@@ -82,10 +82,10 @@ export default function Home() {
         loop
         playsinline
       ></video>
-      <section class="overflow-hidden perspective-normal mix-blend-difference h-screen relative lg:pb-36 w-full flex justify-center items-center lg:items-end lg:px-6 mx-auto">
+      <section class="mx-auto max-w-7xl overflow-hidden perspective-normal mix-blend-difference h-screen relative lg:pb-36 w-full flex justify-center lg:justify-start items-center lg:items-end">
         <article
           ref={introPanel}
-          class="fixed h-screen lg:h-fit px-36 py-6 w-fit flex flex-col justify-center items-center lg:flex-row gap-12 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]"
+          class="px-6 fixed h-screen lg:h-fit w-fit flex flex-col justify-center items-center lg:flex-row gap-6"
         >
           <img
             class="border-3 border-white/20 rounded-3xl hover:scale-98 def__animate mx-auto max-w-36 max-h-60"
