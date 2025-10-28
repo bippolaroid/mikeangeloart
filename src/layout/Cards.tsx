@@ -13,7 +13,7 @@ export const Tag = ({ children, href }: { children: string; href: string }) => {
 
 export const ContainerLabel = ({ children }: { children: string }) => {
   return (
-    <span class="font-bold text-xs tracking-widest uppercase">
+    <span class="font-bold flex items-center text-xs tracking-widest uppercase">
       {children}
     </span>
   );

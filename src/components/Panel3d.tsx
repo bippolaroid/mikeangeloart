@@ -264,13 +264,13 @@ export default function Panel3d({
             reverse ? `lg:flex-row-reverse` : `lg:flex-row`
           } gap-3 items-center`}
         >
-          <div class="w-full p-12 lg:rounded-3xl grid gap-3 dark:border-t dark:border-t-white lg:border dark:border-white/10 border-black/10 bg-white dark:bg-neutral-900/80 backdrop-blur-3xl dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
+          <div class="w-full p-12 lg:rounded-3xl grid gap-3 border-t lg:border dark:border-t-white dark:border-white/10 border-black/10 bg-white dark:bg-neutral-900/80 backdrop-blur-3xl dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
             <H2>{headline}</H2>
             <p>{paragraph}</p>
           </div>
           <div
             ref={wrapper3d}
-            class="hover:scale-95 mt-12 lg:mt-0 min-h-72 mx-auto w-full def__animate cursor-grab"
+            class="hover:scale-95 my-12 lg:my-0 min-h-72 mx-auto w-full def__animate cursor-grab"
           ></div>
         </div>
       </div>

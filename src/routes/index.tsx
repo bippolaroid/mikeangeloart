@@ -5,6 +5,7 @@ import data from "../db.json";
 import Collection from "~/components/Collection";
 import { H1 } from "~/layout/Headings";
 import { ContainerLabel } from "~/layout/Cards";
+import { MainKeypoint } from "./projects/[slug]";
 
 const collectionData: PortfolioCollection[] = data;
 const githubAvatar = await fetchGithubAvatar();
@@ -45,7 +46,6 @@ export default function Home() {
       const factor = window.scrollY;
       requestAnimationFrame(() => {
         introPanel.style.filter = `blur(${factor / 50}px)`;
-        videoPanel.style.filter = `blur(${factor / 100}px)`;
         introPanel.style.transform = `translateZ(${factor * -1}px)`;
         introPanel.style.opacity = `clamp(0%, ${100 - factor / 5}%, 100%)`;
       });
@@ -79,7 +79,7 @@ export default function Home() {
       <video
         ref={videoPanel}
         src="/Comp 3.mp4"
-        class="-z-1 w-full object-cover h-full fixed top-0"
+        class="dark:-hue-rotate-90 not-dark:hue-rotate-45 not-dark:invert not-dark:brightness-200 -z-1 w-full object-cover h-full fixed top-0"
         preload="metadata"
         muted
         autoplay
@@ -91,7 +91,7 @@ export default function Home() {
           ref={introPanel}
           class="px-6 fixed w-fit flex flex-col justify-center items-start md:flex-row gap-6"
         >
-          <div class="text-white/20 h-fit md:mt-12 not-md:border-b md:border-r md:pr-2 pb-1">
+          <div class="text-white/20 h-fit md:mt-15 not-md:border-b md:border-r md:pr-2 pb-1">
             <ContainerLabel>Intro</ContainerLabel>
           </div>
           <img
@@ -111,36 +111,75 @@ export default function Home() {
               </span>
               .
             </p>
-
           </div>
         </article>
       </section>
-      <div class="backdrop-blur-xl bg-black/80 dark:bg-transparent backdrop-brightness-200 dark:backdrop-brightness-10">
-        <section class="w-full max-w-7xl mx-auto flex flex-col px-6 py-24 justify-center items-center">
-          <div class="text-white/20 h-fit md:mt-12 border-b pb-1 mb-3">
+      <section class="border-t lg:border border-black/10 dark:border-white/10 dark:border-t-white mb-72 backdrop-blur-3xl bg-white/80 dark:bg-black/80 lg:rounded-3xl backdrop-brightness-150 backdrop-saturate-200 w-full pb-6 px-6 lg:px-12 lg:pt-3 lg:max-w-5xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center">
+        <article class="lg:pl-12 pb-12 lg:pb-0 flex flex-col justify-center items-center lg:items-start">
+          <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1 mb-3">
             <ContainerLabel>Who I Am</ContainerLabel>
           </div>
-          <p class="text-2xl text-white max-w-3xl">
+          <p class="text-2xl dark:text-white text-black max-w-3xl lg:max-w-full">
             I currently take on projects independently, but I'm always
             interested in new opportunities. Whether it's design, development,
             or blending both, I'm looking to team up with people who want to
             create meaningful work.
           </p>
-          <div
-            ref={wrapper3d}
-            class="hover:scale-95 mt-6 min-h-72 mx-auto w-full def__animate cursor-grab"
-          ></div>
+        </article>
+        <div
+          ref={wrapper3d}
+          class="hover:scale-95 mt-6 min-h-72 mx-auto w-full def__animate cursor-grab"
+        ></div>
+      </section>
+      <div class="bg-white dark:bg-black flex flex-col items-center gap-36 py-36 border-t border-b border-black/10 dark:border-white/10 dark:shadow-[0px_0px_72px_0px_rgba(255,255,255,0.1)]">
+        <div class="flex flex-col gap-3 px-6 max-w-3xl text-black/20"><H1>Have a look at some of my work.</H1><p class="pl-0.5 text-black">
+              I currently take on projects independently, but I'm always
+              interested in new opportunities. Whether it's design, development,
+              or blending both, I'm looking to team up with people who want to
+              create meaningful work.
+            </p></div>
+        <MainKeypoint
+          videoUrl="https://player.vimeo.com/video/1127338760"
+          metricOne="test"
+          metricTwo="test"
+          title="testt"
+          description="test"
+          standalone={true}
+          projectUrl="/projects/sa"
+        />
+        <MainKeypoint
+          videoUrl="https://player.vimeo.com/video/1127338760"
+          metricOne="test"
+          metricTwo="test"
+          description="test"
+          title="testst"
+          standalone={true}
+          reverse={true}
+          projectUrl="/projects/sa"
+        />
+        <MainKeypoint
+          videoUrl="https://player.vimeo.com/video/1127338760"
+          metricOne="test"
+          metricTwo="test"
+          title="testt"
+          description="test"
+          standalone={true}
+          projectUrl="/projects/sa"
+        />
+        <section class="flex justify-center">
+          <button class="def__button">See More Work</button>
         </section>
-        <Collection data={collectionData} enableSearch={false} />
+      </div>
+      <div class="bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
         <Panel3d
           data="/MA_3DLogo.glb"
           headline="Check out some of my work."
           paragraph="I currently take on projects independently, but I'm always interested in new opportunities. Whether it's design, development, or blending both, I'm looking to team up with people who want to create meaningful work."
-          reverse={false}
+          reverse={true}
         />
         <section class="flex lg:px-6 lg:pb-24 mx-auto lg:max-w-3xl w-full">
           <form
-            class="w-full flex flex-col gap-3 p-12 bg-white dark:bg-neutral-900 lg:rounded-3xl border-t border-t-black/20 dark:lg:border-t-white lg:border lg:border-black/10 dark:border-white/10 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]"
+            class="w-full flex flex-col gap-3 p-12 bg-white dark:bg-neutral-900 lg:rounded-3xl border-t border-t-black/10 dark:lg:border-t-white lg:border lg:border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
             action="https://api.web3forms.com/submit"
             method="post"
           >

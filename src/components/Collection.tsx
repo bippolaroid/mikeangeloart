@@ -191,7 +191,7 @@ export default function Collection({
     }
   });
   return (
-    <section class="z-1 py-24 mx-auto relative border-t border-b bg-neutral-950/80 border-black/20 dark:border-white/10 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
+    <section class="z-1 py-24 mx-auto relative bg-white dark:bg-neutral-950/80 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
       <Show when={enableSearch}>
         <div class="max-w-7xl mx-6 mb-12 lg:mx-auto px-3 py-3 rounded-xl border border-black/5 dark:border-white/10 flex items-center justify-between">
           <div class="flex gap-3 items-center justify-start">
