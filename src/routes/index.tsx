@@ -4,6 +4,7 @@ import Panel3d, { SceneManager } from "~/components/Panel3d";
 import data from "../db.json";
 import Collection from "~/components/Collection";
 import { H1 } from "~/layout/Headings";
+import { ContainerLabel } from "~/layout/Cards";
 
 const collectionData: PortfolioCollection[] = data;
 const githubAvatar = await fetchGithubAvatar();
@@ -12,6 +13,7 @@ export default function Home() {
   let introPanel!: HTMLDivElement;
   let roleChanger!: HTMLSpanElement;
   let wrapper3d!: HTMLDivElement;
+  let videoPanel!: HTMLVideoElement;
 
   onMount(() => {
     const subheads = [
@@ -43,6 +45,7 @@ export default function Home() {
       const factor = window.scrollY;
       requestAnimationFrame(() => {
         introPanel.style.filter = `blur(${factor / 50}px)`;
+        videoPanel.style.filter = `blur(${factor / 100}px)`;
         introPanel.style.transform = `translateZ(${factor * -1}px)`;
         introPanel.style.opacity = `clamp(0%, ${100 - factor / 5}%, 100%)`;
       });
@@ -74,7 +77,8 @@ export default function Home() {
   return (
     <main class="w-full">
       <video
-        src="/MA_26Site_HomeVideo.mp4"
+        ref={videoPanel}
+        src="/Comp 3.mp4"
         class="-z-1 w-full object-cover h-full fixed top-0"
         preload="metadata"
         muted
@@ -82,17 +86,20 @@ export default function Home() {
         loop
         playsinline
       ></video>
-      <section class="mx-auto max-w-7xl overflow-hidden perspective-normal mix-blend-difference h-screen relative lg:pb-36 w-full flex justify-center lg:justify-start items-center lg:items-end">
+      <section class="mx-auto max-w-7xl overflow-hidden perspective-normal mix-blend-difference h-screen relative lg:pb-36 w-full flex justify-start items-center lg:items-end">
         <article
           ref={introPanel}
-          class="px-6 fixed h-screen lg:h-fit w-fit flex flex-col justify-center items-center lg:flex-row gap-6"
+          class="px-6 fixed w-fit flex flex-col justify-center items-start md:flex-row gap-6"
         >
+          <div class="text-white/20 h-fit md:mt-12 not-md:border-b md:border-r md:pr-2 pb-1">
+            <ContainerLabel>Intro</ContainerLabel>
+          </div>
           <img
-            class="border-3 border-white/20 rounded-3xl hover:scale-98 def__animate mx-auto max-w-36 max-h-60"
+            class="border-3 border-white/20 rounded-3xl hover:scale-98 def__animate max-w-36 max-h-60"
             src={githubAvatar}
             loading="eager"
           />
-          <div class="flex flex-col gap-2 justify-center text-white text-center lg:text-left w-full">
+          <div class="flex flex-col gap-2 py-4 justify-center text-white text-left w-full max-w-xl">
             <H1>Hey! My name's Mike.</H1>
             <p class="lg:pb-3 text-4xl md:text-5xl tracking-tighter">
               I'm a{" "}
@@ -104,21 +111,25 @@ export default function Home() {
               </span>
               .
             </p>
+
           </div>
         </article>
       </section>
-      <div class="backdrop-blur-3xl bg-white/80 dark:bg-transparent backdrop-brightness-200 dark:backdrop-brightness-10">
-        <section class="w-full max-w-7xl mx-auto flex flex-col lg:flex-row px-6 py-12 justify-center items-center">
-          <div
-            ref={wrapper3d}
-            class="hover:scale-95 mt-12 lg:mt-0 min-h-72 mx-auto w-full def__animate cursor-grab"
-          ></div>
-          <p>
+      <div class="backdrop-blur-xl bg-black/80 dark:bg-transparent backdrop-brightness-200 dark:backdrop-brightness-10">
+        <section class="w-full max-w-7xl mx-auto flex flex-col px-6 py-24 justify-center items-center">
+          <div class="text-white/20 h-fit md:mt-12 border-b pb-1 mb-3">
+            <ContainerLabel>Who I Am</ContainerLabel>
+          </div>
+          <p class="text-2xl text-white max-w-3xl">
             I currently take on projects independently, but I'm always
             interested in new opportunities. Whether it's design, development,
             or blending both, I'm looking to team up with people who want to
             create meaningful work.
           </p>
+          <div
+            ref={wrapper3d}
+            class="hover:scale-95 mt-6 min-h-72 mx-auto w-full def__animate cursor-grab"
+          ></div>
         </section>
         <Collection data={collectionData} enableSearch={false} />
         <Panel3d
