@@ -225,7 +225,16 @@ export default function Collection({
         observer.disconnect();
       });
     }
+
+    document.body.addEventListener("click", (e) => {
+      if(showTagMenu() && e.target !== tagsFilter) {
+        setShowTagMenu(false);
+        tagsMenu.classList.add("hidden");
+      }
+    })
   });
+
+
   return (
     <section class="z-1 py-24 mx-auto relative bg-white dark:bg-neutral-950/80 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
       <Show when={enableSearch}>
@@ -235,14 +244,15 @@ export default function Collection({
               <button
                 ref={tagsFilter}
                 class="cursor-pointer font-semibold text-xs text-neutral-400 bg-black/5 hover:bg-black/10 dark:bg-white/15 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 px-2 py-1 rounded-md"
-                onclick={() => {
+                onClick={(e) => {
                   setShowTagMenu(!showTagMenu());
                   if (showTagMenu()) tagsMenu.classList.remove("hidden");
                   else tagsMenu.classList.add("hidden");
+                  
                 }}
               >
                 Tags:
-                <span class="text-neutral-700"> {tagSort() || "All Tags"}</span>
+                <span class="text-neutral-700 pointer-events-none"> {tagSort() || "All Tags"}</span>
               </button>
               <div
                 ref={tagsMenu}
