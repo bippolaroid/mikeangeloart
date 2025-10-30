@@ -152,7 +152,7 @@ export class SceneManager {
             case "Cube002":
             case "Cube003":
               child.material = new three.MeshPhysicalMaterial({
-                color: 0x0066ff,
+                color: 0x00DC88,
                 metalness: 0,
                 roughness: 0,
                 envMap,
@@ -162,7 +162,7 @@ export class SceneManager {
             default:
               const gradientTexture = createVerticalGradientTexture(
                 "#ffffff",
-                "#0066ff"
+                "#00F2FF"
               );
               child.material = new three.MeshPhysicalMaterial({
                 map: gradientTexture,

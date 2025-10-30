@@ -1,5 +1,13 @@
-import { A } from "@solidjs/router";
-import { For, JSXElement, onCleanup, onMount, Show } from "solid-js";
+import { A, useSearchParams } from "@solidjs/router";
+import {
+  createEffect,
+  createSignal,
+  For,
+  JSXElement,
+  onCleanup,
+  onMount,
+  Show,
+} from "solid-js";
 import { Tag } from "~/layout/Cards";
 import { H1, H2 } from "~/layout/Headings";
 import { SceneManager } from "./Panel3d";
@@ -30,7 +38,13 @@ function CollectionRow({ children }: { children: JSXElement }) {
   return <div class="gap-x-1 flex justify-start w-full">{children}</div>;
 }
 
-function CollectionCell({ data }: { data: PortfolioCollection }) {
+function CollectionCell({
+  data,
+  enableFull,
+}: {
+  data: PortfolioCollection;
+  enableFull?: boolean;
+}) {
   return (
     <article
       onwheel={(event) => {
@@ -78,7 +92,9 @@ function CollectionCell({ data }: { data: PortfolioCollection }) {
           cell.classList.remove("saturate-0");
         }
       }}
-      class="group/card cell-container w-72 h-96 xl:h-108 md:w-100 xl:w-xl relative overflow-hidden hover:brightness-115 hover:saturate-125 def__animate"
+      class={`group/card cell-container relative overflow-hidden hover:brightness-115 hover:saturate-125 def__animate ${
+        !enableFull ? `w-72 h-96 xl:h-108 md:w-100 xl:w-xl` : `w-full`
+      }`}
     >
       <A href={`/projects/${data.slug}`} class="h-full w-full">
         <img
@@ -151,24 +167,39 @@ function CollectionCell({ data }: { data: PortfolioCollection }) {
 
 export default function Collection({
   data,
+  tagSort: sortByTag,
   enableSearch = false,
+  enableFull = false,
   enablePanel = false,
 }: {
   data: PortfolioCollection[];
+  tagSort?: string;
   enableSearch?: boolean;
+  enableFull?: boolean;
   enablePanel?: boolean;
 }) {
   let wrapper3d!: HTMLDivElement;
+  let tagsFilter!: HTMLButtonElement;
+  let tagsMenu!: HTMLDivElement;
+  const allTags = ["Art Direction", "Experiential Marketing"];
 
-  let dataA = [],
-    dataB = [];
-  for (const item of data) {
-    if (item.id % 2) {
-      dataA.push(item);
-    } else {
-      dataB.push(item);
-    }
+  const [showTagMenu, setShowTagMenu] = createSignal(false);
+  const [tagSort, setTagSort] = createSignal(sortByTag || "");
+  const [sortedData, setSortedData] = createSignal(data);
+
+  function sortDataByTag(tag: string) {
+    const array = data.filter((project) => project.tags.includes(tag));
+    return array;
   }
+
+  createEffect(() => {
+    if (tagSort()) {
+      setSortedData(sortDataByTag(tagSort()));
+    } else {
+      setSortedData(data);
+    }
+  });
+
   onMount(() => {
     if (enablePanel) {
       const sceneManager = new SceneManager();
@@ -200,12 +231,39 @@ export default function Collection({
       <Show when={enableSearch}>
         <div class="max-w-7xl mx-6 mb-12 lg:mx-auto px-3 py-3 rounded-xl border border-black/5 dark:border-white/10 flex items-center justify-between">
           <div class="flex gap-3 items-center justify-start">
-            <button class="cursor-pointer font-semibold text-xs text-neutral-400 bg-black/5 hover:bg-black/10 dark:bg-white/15 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 px-2 py-1 rounded-md">
-              Clients:
-            </button>
-            <button class="cursor-pointer font-semibold text-xs text-neutral-400 bg-black/5 hover:bg-black/10 dark:bg-white/15 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 px-2 py-1 rounded-md">
-              Tags:
-            </button>
+            <div class="flex flex-col relative">
+              <button
+                ref={tagsFilter}
+                class="cursor-pointer font-semibold text-xs text-neutral-400 bg-black/5 hover:bg-black/10 dark:bg-white/15 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 px-2 py-1 rounded-md"
+                onclick={() => {
+                  setShowTagMenu(!showTagMenu());
+                  if (showTagMenu()) tagsMenu.classList.remove("hidden");
+                  else tagsMenu.classList.add("hidden");
+                }}
+              >
+                Tags:
+                <span class="text-neutral-700"> {tagSort() || "All Tags"}</span>
+              </button>
+              <div
+                ref={tagsMenu}
+                class="z-1 hidden rounded-xl backdrop-blur-xl backdrop-brightness-125 absolute mt-12 border border-black/10 p-3 text-sm"
+              >
+                <div class="flex flex-col gap-3">
+                  <For each={allTags}>
+                    {(tag) => {
+                      return (
+                        <span
+                          class="w-fit cursor-pointer hover:opacity-20"
+                          onclick={() => setTagSort(tag)}
+                        >
+                          {tag}
+                        </span>
+                      );
+                    }}
+                  </For>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="flex gap-3 items-center justify-start"></div>
         </div>
@@ -230,18 +288,36 @@ export default function Collection({
             </p>
           </article>
         </Show>
-        <div
-          id="collection-wrapper"
-          class="px-6 lg:px-12 gap-y-1 w-full grid overflow-x-auto scroll-smooth"
-          style="scrollbar-width: none;"
+        <Show
+          when={!enableFull}
+          fallback={
+            <div class="grid grid-cols-2 gap-1 w-full px-12">
+              <For each={sortedData()}>
+                {(item) => <CollectionCell enableFull={true} data={item} />}
+              </For>
+            </div>
+          }
         >
-          <CollectionRow>
-            <For each={dataA}>{(itemA) => <CollectionCell data={itemA} />}</For>
-          </CollectionRow>
-          <CollectionRow>
-            <For each={dataB}>{(itemB) => <CollectionCell data={itemB} />}</For>
-          </CollectionRow>
-        </div>
+          <div
+            class="px-12 gap-y-1 w-full grid overflow-x-auto scroll-smooth"
+            style="scrollbar-width: none;"
+          >
+            <CollectionRow>
+              <For each={sortedData()}>
+                {(item, idx) =>
+                  idx() % 2 === 0 ? <CollectionCell data={item} /> : null
+                }
+              </For>
+            </CollectionRow>
+            <CollectionRow>
+              <For each={sortedData()}>
+                {(item, idx) =>
+                  idx() % 2 ? <CollectionCell data={item} /> : null
+                }
+              </For>
+            </CollectionRow>
+          </div>
+        </Show>
       </div>
     </section>
   );
