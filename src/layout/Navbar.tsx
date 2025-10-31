@@ -14,8 +14,6 @@ let links = [
 
 export default function Navbar() {
   onMount(() => {
-    const { pathname } = window.location;
-
     const nav = document.querySelector("nav") as HTMLElement;
 
     const classNamesOnScroll = [
@@ -25,7 +23,7 @@ export default function Navbar() {
       "lg:mt-3",
       "lg:px-6",
       "lg:hover:translate-y-2",
-      "lg:border-white/10"
+      "lg:border-white/10",
     ];
     window.addEventListener("scroll", () => {
       const { scrollY } = window;
@@ -50,7 +48,7 @@ export default function Navbar() {
             Angelo
           </span>
         </A>
-        <div class="flex gap-12 items-center">
+        <div class="flex gap-6 items-center">
           <ul class="hidden sm:flex gap-6 items-center">
             <For each={links}>
               {(link) => {
@@ -62,6 +60,20 @@ export default function Navbar() {
               }}
             </For>
           </ul>
+          <span
+            class="cursor-pointer select-none invert"
+            onClick={(e) => {
+              if (e.target.innerHTML === "🌙") {
+                e.target.innerHTML = "☀️";
+                document.documentElement.classList.remove("dark");
+              } else {
+                e.target.innerHTML = "🌙";
+                document.documentElement.classList.add("dark");
+              }
+            }}
+          >
+            🌙
+          </span>
         </div>
       </div>
     </nav>

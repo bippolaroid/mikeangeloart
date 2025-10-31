@@ -1,20 +1,13 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background-rgb: 255, 255, 255;
-  --foreground-rgb: 0, 0, 0;
+  background-color: white;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-rgb: 0, 0, 0;
-    --foreground-rgb: 255, 255, 255;
-  }
-}
-
-body {
-  background: rgb(var(--background-rgb));
-  color: rgb(var(--foreground-rgb));
+.dark {
+  background-color: black;
 }
 
 .def__animate {

@@ -120,7 +120,7 @@ function CollectionCell({
           >
             {data.clientName}
           </A>
-          <A href={data.slug} class="w-fit text-lg font-bold hover:underline">
+          <A href={data.slug} class="w-fit font-bold text-black dark:text-white hover:underline">
             {data.title}
           </A>
         </header>

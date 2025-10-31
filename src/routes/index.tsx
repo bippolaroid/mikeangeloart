@@ -4,7 +4,7 @@ import Panel3d, { SceneManager } from "~/components/Panel3d";
 import data from "../db.json";
 import Collection from "~/components/Collection";
 import { H1 } from "~/layout/Headings";
-import { ContainerLabel } from "~/layout/Cards";
+import { Button, ContainerLabel } from "~/layout/Cards";
 import { MainKeypoint } from "./projects/[slug]";
 
 const collectionData: PortfolioCollection[] = data;
@@ -149,7 +149,7 @@ export default function Home() {
         ></div>
       </section>
       <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/10 dark:border-t-white bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
-        <section class="max-w-3xl mx-auto flex flex-col gap-3 px-6 lg:px-12 py-24">
+        <section class="max-w-3xl mx-auto flex text-black dark:text-white flex-col gap-3 px-6 lg:px-12 py-24">
           <H1>Have a look at some of my work.</H1>
           <p class="pl-0.5 text-base text-black dark:text-white/50">
             I currently take on projects independently, but I'm always
@@ -210,9 +210,7 @@ export default function Home() {
               class="min-h-36 placeholder-black/25 resize-none dark:placeholder-white/25 bg-white dark:bg-white/5 text-black/25 focus:text-black dark:text-white/25 dark:focus:text-white rounded-md px-3 py-1 outline outline-transparent border border-black/10 dark:border-white/10 focus:outline-black/50 dark:focus:outline-white/50 hover:outline-black/25 dark:hover:outline-white/25 def__animate"
               placeholder="Enter your message"
             ></textarea>
-            <button class="def__button" type="submit">
-              Send Me a Message
-            </button>
+            <Button type="submit">Send Me a Message</Button>
           </form>
         </section>
       </div>

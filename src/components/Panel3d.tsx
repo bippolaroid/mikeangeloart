@@ -264,9 +264,9 @@ export default function Panel3d({
             reverse ? `lg:flex-row-reverse` : `lg:flex-row`
           } gap-3 items-center`}
         >
-          <div class="w-full px-6 py-12 md:px-12 lg:rounded-3xl grid gap-3 border-t lg:border dark:border-t-white dark:border-white/10 border-black/10 bg-white dark:bg-neutral-950 backdrop-blur-3xl dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
+          <div class="w-full px-6 py-12 md:px-12 lg:rounded-3xl grid gap-3 border-t lg:border dark:border-t-white dark:border-white/10 border-black/10 text-black dark:text-white bg-white dark:bg-neutral-950 backdrop-blur-3xl dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
             <H2>{headline}</H2>
-            <p>{paragraph}</p>
+            <p class="text-black/50 dark:text-white/50">{paragraph}</p>
           </div>
           <div
             ref={wrapper3d}
