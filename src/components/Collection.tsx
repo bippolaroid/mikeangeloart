@@ -167,37 +167,31 @@ function CollectionCell({
 
 export default function Collection({
   data,
-  tagSort: sortByTag,
+  sortByTags,
   enableSearch = false,
   enableFull = false,
   enablePanel = false,
 }: {
   data: PortfolioCollection[];
-  tagSort?: string;
+  sortByTags?: string[];
   enableSearch?: boolean;
   enableFull?: boolean;
   enablePanel?: boolean;
 }) {
   let wrapper3d!: HTMLDivElement;
+  let clearFilter!: HTMLButtonElement;
   let tagsFilter!: HTMLButtonElement;
   let tagsMenu!: HTMLDivElement;
   const allTags = ["Art Direction", "Experiential Marketing"];
 
-  const [showTagMenu, setShowTagMenu] = createSignal(false);
-  const [tagSort, setTagSort] = createSignal(sortByTag || "");
-  const [sortedData, setSortedData] = createSignal(data);
+  const [showTagMenu, setShowTagMenu] = createSignal<boolean>(false);
+  const [tagSort, setTagSort] = createSignal<string[]>(sortByTags || []);
+  const [sortedData, setSortedData] = createSignal<PortfolioCollection[]>();
 
-  function sortDataByTag(tag: string) {
-    const array = data.filter((project) => project.tags.includes(tag));
-    return array;
-  }
+  checkSortedData();
 
   createEffect(() => {
-    if (tagSort()) {
-      setSortedData(sortDataByTag(tagSort()));
-    } else {
-      setSortedData(data);
-    }
+    if (tagSort()) checkSortedData();
   });
 
   onMount(() => {
@@ -227,20 +221,41 @@ export default function Collection({
     }
 
     document.body.addEventListener("click", (e) => {
-      if(showTagMenu() && e.target !== tagsFilter) {
+      if (showTagMenu() && e.target !== tagsFilter) {
         setShowTagMenu(false);
         tagsMenu.classList.add("hidden");
       }
-    })
+    });
   });
 
+  function checkSortedData() {
+    if (tagSort().length > 0) {
+      const tempData = sortDataByTag(tagSort());
+      setSortedData(tempData);
+    } else {
+      setSortedData(data);
+    }
+  }
+
+  function sortDataByTag(tags: string[]) {
+    const array: PortfolioCollection[] = [];
+    for (const project of data) {
+      for (const tag of project.tags) {
+        if (tags.includes(tag)) {
+          if (!array.includes(project)) array.push(project);
+        }
+      }
+    }
+    console.log(array);
+    return array;
+  }
 
   return (
-    <section class="z-1 py-24 mx-auto relative bg-white dark:bg-neutral-950/80 dark:shadow-[0px_-16px_18px_-18px_rgba(255,255,255,0.8)]">
+    <section class="z-1 py-24 mx-auto bg-white dark:bg-neutral-950/80">
       <Show when={enableSearch}>
-        <div class="max-w-7xl mx-6 mb-12 lg:mx-auto px-3 py-3 rounded-xl border border-black/5 dark:border-white/10 flex items-center justify-between">
-          <div class="flex gap-3 items-center justify-start">
-            <div class="flex flex-col relative">
+        <div class="mx-6 mb-12 px-3 py-3 rounded-xl border border-black/5 dark:border-white/10 flex items-center justify-between">
+          <div class="flex gap-3 items-center justify-between w-full">
+            <div class="flex relative pr-3 border-r border-r-black/10 dark:border-r-white/10">
               <button
                 ref={tagsFilter}
                 class="cursor-pointer font-semibold text-xs text-neutral-400 bg-black/5 hover:bg-black/10 dark:bg-white/15 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 px-2 py-1 rounded-md"
@@ -248,25 +263,31 @@ export default function Collection({
                   setShowTagMenu(!showTagMenu());
                   if (showTagMenu()) tagsMenu.classList.remove("hidden");
                   else tagsMenu.classList.add("hidden");
-                  
                 }}
               >
-                Tags:
-                <span class="text-neutral-700 pointer-events-none"> {tagSort() || "All Tags"}</span>
+                Tags
               </button>
               <div
                 ref={tagsMenu}
-                class="z-1 hidden rounded-xl backdrop-blur-xl backdrop-brightness-125 absolute mt-12 border border-black/10 p-3 text-sm"
+                class="z-1 hidden min-w-xs rounded-xl backdrop-blur-xl text-black dark:text-white bg-white/80 dark:bg-black/80 absolute mt-12 border border-black/10 text-sm"
               >
-                <div class="flex flex-col gap-3">
+                <div class="flex flex-col py-3">
                   <For each={allTags}>
                     {(tag) => {
                       return (
                         <span
-                          class="w-fit cursor-pointer hover:opacity-20"
-                          onclick={() => setTagSort(tag)}
+                          class="mx-3 px-3 rounded-lg py-1.5 hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer"
+                          onclick={() => {
+                            if (!tagSort().includes(tag)) {
+                              setTagSort([...tagSort(), tag]);
+                            } else {
+                              setTagSort(
+                                tagSort().filter((val) => val !== tag)
+                              );
+                            }
+                          }}
                         >
-                          {tag}
+                          {tagSort().includes(tag) ? `× ${tag}` : tag}
                         </span>
                       );
                     }}
@@ -274,8 +295,32 @@ export default function Collection({
                 </div>
               </div>
             </div>
+            <div class="w-full items-center justify-start flex gap-3">
+              <For each={tagSort()}>
+                {(tag) => (
+                  <Tag
+                    href=""
+                    onClick={() => {
+                      setTagSort(tagSort().filter((val) => val !== tag));
+                    }}
+                  >
+                    {`× ${tag}`}
+                  </Tag>
+                )}
+              </For>
+            </div>
+            <Show when={tagSort().length > 0}>
+              <button
+                ref={clearFilter}
+                class="text-nowrap cursor-pointer font-semibold text-xs text-neutral-400 bg-black/5 hover:bg-black/10 dark:bg-white/15 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 px-2 py-1 rounded-md"
+                onClick={() => {
+                  setTagSort([]);
+                }}
+              >
+                Clear Filters
+              </button>
+            </Show>
           </div>
-          <div class="flex gap-3 items-center justify-start"></div>
         </div>
       </Show>
       <div
@@ -301,7 +346,7 @@ export default function Collection({
         <Show
           when={!enableFull}
           fallback={
-            <div class="grid grid-cols-2 gap-1 w-full px-12">
+            <div class="flex flex-col gap-3 lg:grid lg:grid-cols-2 lg:gap-1 w-full px-6">
               <For each={sortedData()}>
                 {(item) => <CollectionCell enableFull={true} data={item} />}
               </For>
@@ -309,7 +354,7 @@ export default function Collection({
           }
         >
           <div
-            class="px-12 gap-y-1 w-full grid overflow-x-auto scroll-smooth"
+            class="md:px-12 gap-y-1 w-full grid overflow-x-auto scroll-smooth"
             style="scrollbar-width: none;"
           >
             <CollectionRow>

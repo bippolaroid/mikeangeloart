@@ -15,6 +15,7 @@ export default function Home() {
   let roleChanger!: HTMLSpanElement;
   let wrapper3d!: HTMLDivElement;
   let videoPanel!: HTMLVideoElement;
+  let whoIAm!: HTMLDivElement;
 
   onMount(() => {
     const subheads = [
@@ -42,12 +43,23 @@ export default function Home() {
       }, 3000);
     }, 3000);
 
+    let flag = false;
     window.addEventListener("scroll", () => {
       const factor = window.scrollY;
+      const factorTwo = factor - 900;
+
       requestAnimationFrame(() => {
         introPanel.style.filter = `blur(${factor / 50}px)`;
         introPanel.style.transform = `translateZ(${factor * -1}px)`;
         introPanel.style.opacity = `clamp(0%, ${100 - factor / 5}%, 100%)`;
+        videoPanel.style.opacity = `clamp(50%, ${100 - factor / 20}%, 100%)`;
+
+        if (factor > 900 || flag) {
+          flag = true;
+          whoIAm.style.transform = `translateZ(${factorTwo * -1}px)`;
+          whoIAm.style.filter = `blur(${factorTwo / 50}px)`;
+          whoIAm.style.opacity = `clamp(0%, ${100 - factorTwo / 5}%, 100%)`;
+        }
       });
     });
 
@@ -75,18 +87,18 @@ export default function Home() {
     });
   });
   return (
-    <main class="w-full">
+    <main class="w-full relative flex flex-col justify-center items-center px-3 lg:px-6">
       <video
         ref={videoPanel}
         src="/Comp 3.mp4"
-        class="dark:-hue-rotate-90 not-dark:hue-rotate-45 not-dark:invert not-dark:brightness-200 -z-1 w-full object-cover h-screen fixed top-0"
+        class="w-full dark:-hue-rotate-90 not-dark:hue-rotate-45 not-dark:invert not-dark:brightness-200 -z-1 aspect-video object-cover h-screen mx-auto fixed top-0"
         preload="metadata"
         muted
         autoplay
         loop
         playsinline
       ></video>
-      <section class="mx-auto max-w-7xl overflow-hidden perspective-normal mix-blend-difference h-screen relative lg:pb-36 w-full flex justify-start items-center lg:items-end">
+      <section class="mx-auto max-w-7xl overflow-hidden perspective-normal mix-blend-difference h-screen relative lg:pb-36 w-full flex justify-center items-center lg:items-end">
         <article
           ref={introPanel}
           class="px-6 fixed w-fit flex flex-col justify-center items-start md:flex-row gap-6"
@@ -114,16 +126,21 @@ export default function Home() {
           </div>
         </article>
       </section>
-      <section class="border-t lg:border border-black/10 dark:border-white/10 dark:border-t-white lg:mb-72 backdrop-blur-3xl bg-white dark:bg-black/80 lg:rounded-3xl backdrop-brightness-150 backdrop-saturate-200 w-full pb-6 px-12 lg:pt-3 lg:max-w-5xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center">
-        <article class="lg:pl-12 pb-12 lg:pb-0 flex flex-col justify-center items-center lg:items-start">
+      <section
+        ref={whoIAm}
+        class="mb-[50vh] border-t lg:border border-black/10 dark:border-white/10 dark:border-t-white lg:mb-72 backdrop-blur-3xl bg-white dark:bg-black/80 rounded-3xl backdrop-brightness-150 backdrop-saturate-200 w-full pb-6 px-6 md:px-12 lg:pt-3 lg:max-w-5xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center"
+      >
+        <article class="lg:pl-12 pb-12 lg:pb-0 flex flex-col justify-center items-center lg:items-start px-6">
           <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1 mb-3">
-            <ContainerLabel>Who I Am</ContainerLabel>
+            <ContainerLabel>What I Do</ContainerLabel>
           </div>
           <p class="text-xl dark:text-white text-black max-w-3xl lg:max-w-full">
             I currently take on projects independently, but I'm always
-            interested in new opportunities.<br /><br />Whether it's design, development,
-            or blending both, I'm looking to team up with people who want to
-            create meaningful work.
+            interested in new opportunities.
+            <br />
+            <br />
+            Whether it's design, development, or blending both, I'm looking to
+            team up with people who want to create meaningful work.
           </p>
         </article>
         <div
@@ -131,32 +148,32 @@ export default function Home() {
           class="hover:scale-95 mt-6 min-h-72 mx-auto w-full def__animate cursor-grab"
         ></div>
       </section>
-      <div class="flex flex-col items-center border-t border-b border-black/10 dark:border-white/10 dark:shadow-[0px_0px_72px_0px_rgba(255,255,255,0.1)] bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
-        <section class="max-w-3xl mx-auto flex flex-col gap-3 py-36 ">
+      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/10 dark:border-t-white bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
+        <section class="max-w-3xl mx-auto flex flex-col gap-3 px-6 lg:px-12 py-24">
           <H1>Have a look at some of my work.</H1>
-          <p class="pl-0.5 text-base text-black">
+          <p class="pl-0.5 text-base text-black dark:text-white/50">
             I currently take on projects independently, but I'm always
             interested in new opportunities. Whether it's design, development,
             or blending both, I'm looking to team up with people who want to
             create meaningful work.
           </p>
         </section>
-        <section class="bg-neutral-50 py-18 w-full">
-          <div class="w-full py-18 bg-neutral-50">
+        <section class="bg-white dark:bg-black/80 py-6 w-full">
+          <div class="w-full py-6 md:py-18 bg-white dark:bg-transparent">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
               reverse={true}
             />
           </div>
-          <div class="w-full py-18 bg-neutral-50">
+          <div class="w-full py-6 md:py-18 bg-white dark:bg-transparent">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
               reverse={true}
             />
           </div>
-          <div class="w-full py-18 bg-neutral-50">
+          <div class="w-full py-6 md:py-18 bg-white dark:bg-transparent">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
@@ -165,10 +182,10 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <div class="border-b border-b-black/10 dark:border-b-white/10">
+      <div class="w-full border-l border-r border-black/10 dark:border-white/10">
         <Collection data={collectionData} />
       </div>
-      <div class="bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
+      <div class="lg:border border-black/10 dark:border-white/10 mb-24 bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200 w-full rounded-bl-3xl rounded-br-3xl">
         <Panel3d
           data="/MA_3DLogo.glb"
           headline="Check out some of my work."
@@ -177,7 +194,7 @@ export default function Home() {
         />
         <section class="flex lg:px-6 lg:pb-24 mx-auto lg:max-w-3xl w-full">
           <form
-            class="w-full flex flex-col gap-3 p-12 bg-white dark:bg-neutral-900 lg:rounded-3xl border-t border-t-black/10 dark:lg:border-t-white lg:border lg:border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
+            class="w-full flex flex-col gap-3 px-6 py-12 md:px-12 bg-white dark:bg-neutral-950 lg:rounded-3xl border-t border-t-black/10 dark:lg:border-t-white lg:border lg:border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
             action="https://api.web3forms.com/submit"
             method="post"
           >

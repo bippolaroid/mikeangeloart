@@ -29,31 +29,36 @@ export function MainKeypoint({
   reverse?: boolean;
 }) {
   return (
-    <section class="w-full relative flex flex-col gap-12">
-      <Show when={standalone}>
-        <div class="w-full h-full absolute">
-      <img
-        src={data.cover}
-        class="aspect-video blur-3xl brightness-150"
-        loading={standalone ? "lazy" : "eager"}
-      />
-      </div>
-      </Show>
-      <header class="z-1 flex flex-col gap-3 px-12">
-        <div class={`text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1${standalone ? " mb-3" : ""}`}>
+    <section class="z-1 w-full relative flex flex-col gap-12">
+      <header class="z-1 flex flex-col gap-3 px-6 md:px-12 xl:px-24">
+        <div
+          class={`text-black/20 w-full dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1${
+            standalone ? " mb-6" : ""
+          }`}
+        >
           <ContainerLabel>Project Highlight</ContainerLabel>
         </div>
         <Show when={standalone}>
-          <A href={`/projects?client=${slugify(data.clientName)}`} class="w-fit hover:opacity-50 def__animate"><img
-            src={data.clientLogo}
-            class="not-dark:invert opacity-20 max-h-24 max-w-24"
-            loading="lazy"
-          /></A>
-          <A href={`/projects/${data.slug}`} class="w-fit hover:opacity-50 def__animate"><H1>{data.title}</H1></A>
+          <A
+            href={`/projects?client=${slugify(data.clientName)}`}
+            class="w-fit hover:opacity-50 def__animate"
+          >
+            <img
+              src={data.clientLogo}
+              class="not-dark:invert opacity-20 max-h-24 max-w-24"
+              loading="lazy"
+            />
+          </A>
+          <A
+            href={`/projects/${data.slug}`}
+            class="w-fit hover:opacity-50 def__animate"
+          >
+            <H1>{data.title}</H1>
+          </A>
         </Show>
       </header>
       <div
-        class={`px-12 z-1 w-full mx-auto flex flex-col ${
+        class={`px-3 md:px-12 z-1 w-full mx-auto flex flex-col ${
           !reverse ? "lg:flex-row" : "lg:flex-row-reverse"
         } gap-12 justify-center items-center`}
       >
@@ -108,9 +113,10 @@ export default function ProjectPage() {
       <Show when={project()} fallback={<div>Loading</div>}>
         <img
           src={project()?.cover}
-          class="-z-1 w-full brightness-150 saturation-125 blur-3xl object-cover h-full fixed top-0"
-          loading="lazy"
+          class="-z-1 w-full object-cover h-full fixed top-0"
+          loading="eager"
         />
+        <div class="-z-1 w-full fixed h-screen backdrop-blur-3xl backdrop-brightness-125 backdrop-saturate-200 dark:bg-black/80"></div>
         <section class="h-144 flex items-center">
           <article class="flex flex-col items-center gap-6 w-full px-6 max-w-3xl mx-auto">
             <A
@@ -124,16 +130,16 @@ export default function ProjectPage() {
               />
             </A>
             <H1>{project()?.title as string}</H1>
-            <div class="flex justify-center gap-1 w-full dark:invert">
+            <div class="flex justify-center gap-1 w-full">
               <For each={project()?.tags}>
                 {(tag) => <Tag href="">{tag}</Tag>}
               </For>
             </div>
             <div class="flex gap-3">
-              <div class="text-black/20 border-r border-r-black/10 w-fit pr-2 py-1 h-fit">
+              <div class="text-black/10 dark:text-white/10 border-r border-r-black/10 dark:border-r-white/10 w-fit pr-2 py-1 h-fit">
                 <ContainerLabel>Objective</ContainerLabel>
               </div>
-              <p class="text-black">{project()?.projectObjective}</p>
+              <p class="text-black dark:text-white">{project()?.projectObjective}</p>
             </div>
           </article>
         </section>
