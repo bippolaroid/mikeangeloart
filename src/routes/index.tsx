@@ -52,7 +52,7 @@ export default function Home() {
         introPanel.style.filter = `blur(${factor / 50}px)`;
         introPanel.style.transform = `translateZ(${factor * -1}px)`;
         introPanel.style.opacity = `clamp(0%, ${100 - factor / 5}%, 100%)`;
-        videoPanel.style.opacity = `clamp(50%, ${100 - factor / 20}%, 100%)`;
+        videoPanel.style.opacity = `clamp(25%, ${100 - factor / 20}%, 100%)`;
 
         if (factor > 900 || flag) {
           flag = true;
@@ -128,13 +128,13 @@ export default function Home() {
       </section>
       <section
         ref={whoIAm}
-        class="mb-[50vh] border-t lg:border border-black/10 dark:border-white/10 dark:border-t-white lg:mb-72 backdrop-blur-3xl bg-white dark:bg-black/80 rounded-3xl backdrop-brightness-150 backdrop-saturate-200 w-full pb-6 px-6 md:px-12 lg:pt-3 lg:max-w-5xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center"
+        class="mb-[50vh] border-t lg:border border-black/10 dark:border-white/10 dark:border-t-white/50 lg:mb-72 backdrop-blur-3xl bg-white dark:bg-black/80 rounded-3xl backdrop-brightness-150 backdrop-saturate-200 w-full pb-6 px-6 md:px-12 lg:pt-3 lg:max-w-5xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center"
       >
         <article class="lg:pl-12 pb-12 lg:pb-0 flex flex-col justify-center items-center lg:items-start px-6">
           <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1 mb-3">
             <ContainerLabel>What I Do</ContainerLabel>
           </div>
-          <p class="text-xl dark:text-white text-black max-w-3xl lg:max-w-full">
+          <p class="text-xl dark:text-white/80 text-black max-w-3xl lg:max-w-full">
             I currently take on projects independently, but I'm always
             interested in new opportunities.
             <br />
@@ -148,7 +148,7 @@ export default function Home() {
           class="hover:scale-95 mt-6 min-h-72 mx-auto w-full def__animate cursor-grab"
         ></div>
       </section>
-      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/10 dark:border-t-white bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
+      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/10 dark:border-t-white/50 bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
         <section class="max-w-3xl mx-auto flex text-black dark:text-white flex-col gap-3 px-6 lg:px-12 py-24">
           <H1>Have a look at some of my work.</H1>
           <p class="pl-0.5 text-base text-black dark:text-white/50">

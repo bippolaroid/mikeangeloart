@@ -59,9 +59,18 @@ export default function About() {
         playsinline
       ></video>
       <div class="h-screen relative dark:backdrop-brightness-50 backdrop-blur">
-        <div class="max-h-[88%] h-full pt-24 pb-3 xl:px-72">
-          <div class="border-t border-b h-full border-black/10 dark:border-white/10 p-6">
-            <Moveable label="About Me">
+        <div class="max-h-[88vh] h-full pt-24 pb-3 xl:px-72">
+          <div class="border-t border-b h-full overflow-auto grid gap-24 border-black/10 dark:border-white/10 p-6">
+            <Moveable label="Logo" mobileOnly={true} options={{ x: 400, y: 360 }}>
+              <div ref={wrapper3D} class="w-72 h-72 pointer-events-none"></div>
+            </Moveable>
+            <Moveable label="Identification" options={{ x: 654, y: 20 }}>
+              <img
+                src={githubAvatar}
+                class="lg:w-36 lg:h-36 rounded-3xl pointer-events-none object-cover"
+              />
+            </Moveable>
+            <Moveable label="Profile Summary" options={{x:24}}>
               <Box>
                 <div class="flex flex-col gap-3 pointer-events-none">
                   <H1>Test</H1>
@@ -74,18 +83,9 @@ export default function About() {
                 </div>
               </Box>
             </Moveable>
-            <Moveable label="Logo" mobileOnly={true} options={{ y: 300 }}>
-              <div ref={wrapper3D} class="w-72 h-72 pointer-events-none"></div>
-            </Moveable>
-            <Moveable label="Me" options={{ x: 596, y: 200 }}>
-              <img
-                src={githubAvatar}
-                class="w-72 h-72 rounded-xl pointer-events-none object-cover"
-              />
-            </Moveable>
           </div>
         </div>
-        <div class="h-[10%] px-3">
+        <div class="h-[10vh] px-3">
           <div
             class="p-6 max-w-7xl mx-auto w-full md:w-fit h-fit border border-black/20 dark:border-white/10 rounded-3xl bg-white/80 dark:bg-black/80 flex flex-row justify-start sm:justify-center items-center overflow-x-auto"
             style="scrollbar-width: none;"
@@ -99,7 +99,8 @@ export default function About() {
                     <img
                       src={icon.icon}
                       alt={icon.name}
-                      class={`p-3 h-12 w-12 bg-[${icon.color}] rounded-lg`}
+                      class={`p-3 h-12 w-12 rounded-lg`}
+                      style={`background-color: ${icon.color}`}
                     />
                   </div>
                 );
@@ -115,7 +116,10 @@ export default function About() {
 const Moveable = ({
   children,
   label,
-  options,
+  options = {
+    x: 0,
+    y: 0
+  },
   mobileOnly = false,
 }: {
   children: JSXElement;
@@ -130,11 +134,17 @@ const Moveable = ({
 
   onMount(() => {
     function setTiles() {
+      const {innerWidth} = window;
       const { x, y } = (
         container.parentElement as Element
       ).getBoundingClientRect();
-      container.style.left = `${(options?.x as number) + x}px`;
-      container.style.top = `${(options?.y as number) + y}px`;
+      let left = options?.x as number + x;
+      let right = options?.y as number + y;
+      if(innerWidth >= 960) {
+        left += 200;
+      }
+      container.style.left = `${left}px`;
+      container.style.top = `${right}px`;
     }
     setTiles();
     window.addEventListener("resize", () => {
@@ -145,8 +155,8 @@ const Moveable = ({
   return (
     <div
       ref={container}
-      class={`hover:scale-102 def__animate md:absolute md:cursor-grab md:select-none
-        ${mobileOnly ? ` hidden md:block` : ``}`}
+      class={`flex flex-col justify-center lg:items-start items-center lg:hover:scale-102 lg:absolute lg:cursor-grab lg:select-none
+        ${mobileOnly ? ` hidden lg:block` : ``}`}
       onMouseDown={(e) => {
         const target = e.target as Element;
         target.classList.add("z-1");
@@ -164,7 +174,7 @@ const Moveable = ({
       }}
     >
       <Show when={label}>
-        <div class="mb-3 pb-1 w-fit text-black/20 dark:text-white/20 border-b dark:border-b-white/20">
+        <div class="mb-3 pb-1 w-fit text-black/20 dark:text-white/10 border-b dark:border-b-white/10">
           <ContainerLabel>{label || ""}</ContainerLabel>
         </div>
       </Show>
@@ -192,7 +202,7 @@ function moveRect(e: MouseEvent) {
 
 const Box = ({ children }: { children: JSXElement }) => {
   return (
-    <div class="backdrop-blur-3xl pointer-events-none gap-6 md:max-w-md border border-black/10 bg-white/80 dark:border-white/10 dark:border-t dark:bg-black/80 dark:border-t-white h-fit w-full md:w-fit p-6 rounded-xl mx-auto md:min-w-md text-black dark:text-white">
+    <div class="backdrop-blur-3xl pointer-events-none gap-6 lg:max-w-md border border-black/10 bg-white dark:border-white/10 dark:border-t dark:bg-black dark:border-t-white h-fit w-full lg:w-fit p-6 rounded-xl mx-auto lg:min-w-md text-black dark:text-white">
       {children}
     </div>
   );
