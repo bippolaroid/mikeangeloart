@@ -64,12 +64,12 @@ export function MainKeypoint({
         <div class="w-full max-w-5xl">
           <iframe
             src={data.mainKeypointMedia}
-            class="aspect-video w-full rounded-3xl"
+            class="aspect-video w-full border-t border-b px-6 border-black/5 dark:border-white/5"
             allow="fullscreen"
           ></iframe>
         </div>
         <article class="w-full lg:max-w-1/3 flex flex-col items-start justify-center gap-12">
-          <div class="text-black dark:text-white w-full dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] mx-auto rounded-3xl p-6 flex flex-col gap-3 bg-white/80 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+          <div class="text-black dark:text-white w-full dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] mx-auto rounded-3xl p-6 flex flex-col gap-3 bg-neutral-50 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
             <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1 mb-3">
               <ContainerLabel>Strategy</ContainerLabel>
             </div>
@@ -144,7 +144,7 @@ export default function ProjectPage() {
             </div>
           </article>
         </section>
-        <section class="dark:bg-black">
+        <section class="bg-white dark:bg-black">
           <section class="py-12 border-t border-black/10">
             <MainKeypoint data={collectionData[0]} />
           </section>
@@ -154,7 +154,7 @@ export default function ProjectPage() {
                 return (
                   <div class="w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row gap-12 px-6">
                     <div class="w-full md:w-2/3 flex items-center">
-                      <div class="w-full md:w-2/3 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] rounded-3xl p-6 flex flex-col gap-3 bg-white/80 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+                      <div class="w-full md:w-2/3 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] rounded-3xl p-6 flex flex-col gap-3 bg-neutral-50 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
                         <H2>{keypoint.title}</H2>
                         <p class="dark:text-white">{keypoint.description}</p>
                       </div>
@@ -165,7 +165,7 @@ export default function ProjectPage() {
                           return (
                             <>
                               <img
-                                class="w-full"
+                                class="w-full hover:scale-102 def__animate cursor-pointer"
                                 onClick={() => {
                                   setLighboxImg(media);
                                 }}
@@ -183,7 +183,7 @@ export default function ProjectPage() {
           </section>
         </section>
       </Show>
-      <section class="dark:bg-black">
+      <section class="bg-white dark:bg-black">
         <Collection data={collectionData} />
       </section>
     </main>
@@ -200,7 +200,7 @@ const Metric = ({ children, icon }: { children: string; icon: string }) => {
   return (
     <article class="flex items-center gap-3">
       <div class="border border-black/50 dark:border-white/50 p-2 rounded-lg opacity-20">
-        <img src={icon} loading="eager" class="w-6 h-6" />
+        <img src={icon} loading="eager" class="w-6 h-6 not-dark:invert" />
       </div>
       <span class="uppercase text-sm font-bold tracking-widest text-black/20 dark:text-white/20">
         {children}
@@ -214,16 +214,24 @@ const Lightbox = ({
 }: {
   src: { get: Accessor<string | undefined>; set: Setter<string | undefined> };
 }) => {
+  let imgRef!: HTMLImageElement;
+  function clearLightbox(e: PointerEvent) {
+    if (e.target !== imgRef) {
+      src.set();
+    }
+  }
   onMount(() => {
     document.body.classList.add("overflow-hidden");
+    document.body.addEventListener("click", clearLightbox);
     onCleanup(() => {
       document.body.classList.remove("overflow-hidden");
+      document.body.removeEventListener("click", clearLightbox);
     });
   });
   return (
     <div class="z-10 fixed w-screen h-screen flex justify-center items-center dark:bg-black/98">
       <div class="w-full max-w-3xl mx-auto pt-[5vh] flex flex-col items-center gap-3">
-        <img class="w-full" src={src.get()} />
+        <img ref={imgRef} class="w-full" src={src.get()} />
         <Button
           type="button"
           onClick={() => {
