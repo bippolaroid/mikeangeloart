@@ -6,18 +6,29 @@ export const Tag = ({
   onClick,
 }: {
   children: string;
-  href: string;
+  href?: string;
   onClick?: () => void;
 }) => {
-  return (
-    <A
-      href={href}
-      onClick={onClick}
-      class="def__animate w-fit text-xs px-3 py-1 rounded-full text-nowrap bg-white/50 dark:bg-white/5 border dark:border-white/20 border-black/25 dark:text-white/20 text-black/50 hover:opacity-50 text-center"
-    >
-      {children}
-    </A>
-  );
+  if (href) {
+    return (
+      <A
+        href={href}
+        onClick={onClick}
+        class="def__animate w-fit text-xs px-3 py-1 rounded-full text-nowrap bg-white/50 dark:bg-white/5 border dark:border-white/20 border-black/25 dark:text-white/20 text-black/50 hover:opacity-50 text-center"
+      >
+        {children}
+      </A>
+    );
+  } else {
+    return (
+      <span
+        onClick={onClick}
+        class="cursor-pointer def__animate w-fit text-xs px-3 py-1 rounded-full text-nowrap bg-white/50 dark:bg-white/5 border dark:border-white/20 border-black/25 dark:text-white/20 text-black/50 hover:opacity-50 text-center"
+      >
+        {children}
+      </span>
+    );
+  }
 };
 
 export const ContainerLabel = ({ children }: { children: string }) => {
@@ -48,13 +59,16 @@ export const LinkButton = ({
 export const Button = ({
   children,
   type,
+  onClick,
 }: {
   children: string;
   type: "submit" | "reset" | "button" | "menu" | undefined;
+  onClick: () => void;
 }) => {
   return (
     <button
       type={type}
+      onClick={onClick}
       class="w-fit cursor-pointer text-xs uppercase tracking-wider font-bold border border-black/10 hover:border-black/5 dark:border-white/10 dark:hover:border-white/5 def__animate text-black hover:text-black/50 dark:text-white dark:hover:text-white/50 px-6 py-3 rounded-lg bg-linear-to-tr from-neutral-100 to-white hover:to-neutral-50 dark:from-neutral-950 from-50% dark:to-neutral-800 dark:hover:to-neutral-900"
     >
       {children}

@@ -1,25 +1,22 @@
 import { A, useNavigate, useParams } from "@solidjs/router";
-import { createResource, For, onMount, Show } from "solid-js";
+import {
+  Accessor,
+  createEffect,
+  createResource,
+  createSignal,
+  For,
+  onCleanup,
+  onMount,
+  Setter,
+  Show,
+} from "solid-js";
 import { Button, ContainerLabel, LinkButton, Tag } from "~/layout/Cards";
 import { H1, H2 } from "~/layout/Headings";
 import data from "../../db.json";
-import { PortfolioCollection } from "~/components/Collection";
+import Collection, { PortfolioCollection } from "~/components/Collection";
 import { slugify } from "~/hooks";
 
 const collectionData: PortfolioCollection[] = data;
-
-const Metric = ({ children, icon }: { children: string; icon: string }) => {
-  return (
-    <article class="flex items-center gap-3">
-      <div class="border border-black/50 dark:border-white/50 p-2 rounded-lg opacity-20">
-        <img src={icon} loading="eager" class="w-6 h-6" />
-      </div>
-      <span class="uppercase text-sm font-bold tracking-widest text-black/20 dark:text-white/20">
-        {children}
-      </span>
-    </article>
-  );
-};
 
 export function MainKeypoint({
   data,
@@ -32,7 +29,7 @@ export function MainKeypoint({
 }) {
   return (
     <section class="z-1 w-full relative flex flex-col gap-12">
-      <header class="z-1 flex flex-col gap-3 px-6 md:px-12 xl:px-24 text-black dark:text-white">
+      <header class="z-1 flex flex-col gap-3 px-6 md:px-12 2xl:px-24 text-black dark:text-white">
         <div
           class={`text-black/20 w-full dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1${
             standalone ? " mb-6" : ""
@@ -91,18 +88,13 @@ export function MainKeypoint({
   );
 }
 
-async function findCollection(slug: string) {
-  for (const collection of collectionData) {
-    if (collection.slug === slug) return collection;
-  }
-}
-
 export default function ProjectPage() {
   const params = useParams();
   const navigate = useNavigate();
   const { slug } = params;
 
   const [project] = createResource(() => slug, findCollection);
+  const [lightboxImg, setLighboxImg] = createSignal<string>();
 
   onMount(() => {
     if (!project()) navigate("/projects", { replace: true });
@@ -111,6 +103,9 @@ export default function ProjectPage() {
   return (
     <main class="w-full">
       <Show when={project()} fallback={<div>Loading</div>}>
+        <Show when={lightboxImg()}>
+          <Lightbox src={{ get: lightboxImg, set: setLighboxImg }} />
+        </Show>
         <img
           src={project()?.cover}
           class="-z-1 w-full object-cover h-full fixed top-0"
@@ -132,7 +127,11 @@ export default function ProjectPage() {
             <H1>{project()?.title as string}</H1>
             <div class="flex justify-center gap-1 w-full">
               <For each={project()?.tags}>
-                {(tag) => <Tag href="">{tag}</Tag>}
+                {(tag) => (
+                  <Tag href={`/projects?tags=${tag.replace(" ", "+")}`}>
+                    {tag}
+                  </Tag>
+                )}
               </For>
             </div>
             <div class="flex gap-3">
@@ -145,10 +144,95 @@ export default function ProjectPage() {
             </div>
           </article>
         </section>
-        <div class="bg-white dark:bg-black py-12 border-t border-black/10">
-          <MainKeypoint data={collectionData[0]} />
-        </div>
+        <section class="dark:bg-black">
+          <section class="py-12 border-t border-black/10">
+            <MainKeypoint data={collectionData[0]} />
+          </section>
+          <section class="flex flex-col gap-3">
+            <For each={project()?.projectKeypoints}>
+              {(keypoint) => {
+                return (
+                  <div class="w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row gap-12 px-6">
+                    <div class="w-full md:w-2/3 flex items-center">
+                      <div class="w-full md:w-2/3 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] rounded-3xl p-6 flex flex-col gap-3 bg-white/80 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+                        <H2>{keypoint.title}</H2>
+                        <p class="dark:text-white">{keypoint.description}</p>
+                      </div>
+                    </div>
+                    <div class="w-full md:w-1/3 flex flex-col items-center gap-3">
+                      <For each={keypoint.media}>
+                        {(media) => {
+                          return (
+                            <>
+                              <img
+                                class="w-full"
+                                onClick={() => {
+                                  setLighboxImg(media);
+                                }}
+                                src={media}
+                              />
+                            </>
+                          );
+                        }}
+                      </For>
+                    </div>
+                  </div>
+                );
+              }}
+            </For>
+          </section>
+        </section>
       </Show>
+      <section class="dark:bg-black">
+        <Collection data={collectionData} />
+      </section>
     </main>
   );
 }
+
+async function findCollection(slug: string) {
+  for (const collection of collectionData) {
+    if (collection.slug === slug) return collection;
+  }
+}
+
+const Metric = ({ children, icon }: { children: string; icon: string }) => {
+  return (
+    <article class="flex items-center gap-3">
+      <div class="border border-black/50 dark:border-white/50 p-2 rounded-lg opacity-20">
+        <img src={icon} loading="eager" class="w-6 h-6" />
+      </div>
+      <span class="uppercase text-sm font-bold tracking-widest text-black/20 dark:text-white/20">
+        {children}
+      </span>
+    </article>
+  );
+};
+
+const Lightbox = ({
+  src,
+}: {
+  src: { get: Accessor<string | undefined>; set: Setter<string | undefined> };
+}) => {
+  onMount(() => {
+    document.body.classList.add("overflow-hidden");
+    onCleanup(() => {
+      document.body.classList.remove("overflow-hidden");
+    });
+  });
+  return (
+    <div class="z-10 fixed w-screen h-screen flex justify-center items-center dark:bg-black/98">
+      <div class="w-full max-w-3xl mx-auto pt-[5vh] flex flex-col items-center gap-3">
+        <img class="w-full" src={src.get()} />
+        <Button
+          type="button"
+          onClick={() => {
+            src.set();
+          }}
+        >
+          Close
+        </Button>
+      </div>
+    </div>
+  );
+};

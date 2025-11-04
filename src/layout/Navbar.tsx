@@ -35,7 +35,7 @@ export default function Navbar() {
     });
   });
   return (
-    <nav class="mix-blend-difference border border-transparent lg:rounded-3xl z-10 top-0 max-w-7xl inset-x-0 lg:mx-6 xl:mx-auto fixed nav__animate">
+    <nav class="mix-blend-difference border border-transparent lg:rounded-3xl z-100 top-0 max-w-7xl inset-x-0 lg:mx-6 xl:mx-auto fixed nav__animate">
       <div class="flex justify-between items-center px-6 lg:px-0 py-6 w-full">
         <A
           href=""

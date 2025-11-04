@@ -1,11 +1,13 @@
 import { A, useSearchParams } from "@solidjs/router";
 import {
+  Accessor,
   createEffect,
   createSignal,
   For,
   JSXElement,
   onCleanup,
   onMount,
+  Setter,
   Show,
 } from "solid-js";
 import { Tag } from "~/layout/Cards";
@@ -32,6 +34,13 @@ export interface PortfolioCollection extends Collection {
   mainKeypointMetricOne: string;
   mainKeypointMetricTwo: string;
   mainKeypointDescription: string;
+  projectKeypoints: PortfolioKeypoint[];
+}
+
+interface PortfolioKeypoint {
+  title: string;
+  description: string;
+  media: string[];
 }
 
 function CollectionRow({ children }: { children: JSXElement }) {
@@ -159,7 +168,11 @@ function CollectionCell({
         >
           <For each={data.tags}>
             {(tag) => {
-              return <Tag href="">{tag}</Tag>;
+              return (
+                <Tag href={`/projects?tags=${tag.replace(" ", "+")}`}>
+                  {tag}
+                </Tag>
+              );
             }}
           </For>
         </div>
@@ -176,7 +189,7 @@ export default function Collection({
   enablePanel = false,
 }: {
   data: PortfolioCollection[];
-  sortByTags?: string[];
+  sortByTags?: { get: Accessor<string[]>; set: Setter<string[]> };
   enableSearch?: boolean;
   enableFull?: boolean;
   enablePanel?: boolean;
@@ -188,16 +201,25 @@ export default function Collection({
   const allTags = ["Art Direction", "Experiential Marketing"];
 
   const [showTagMenu, setShowTagMenu] = createSignal<boolean>(false);
-  const [tagSort, setTagSort] = createSignal<string[]>(sortByTags || []);
+  const [tagSort, setTagSort] = createSignal<string[]>(sortByTags?.get() || []);
   const [sortedData, setSortedData] = createSignal<PortfolioCollection[]>();
 
   checkSortedData();
 
-  createEffect(() => {
-    if (tagSort()) checkSortedData();
-  });
-
   onMount(() => {
+    createEffect(() => {
+      const [searchParams, setSearchParams] = useSearchParams();
+
+      if (tagSort().length > 0) {
+        sortByTags?.set(tagSort());
+        setSearchParams({ tags: tagSort().join() });
+      } else {
+        setSearchParams({ tags: "" });
+      }
+    });
+    if (sortByTags?.get() && sortByTags?.get().length > 0) {
+      setTagSort(sortByTags.get());
+    }
     if (enablePanel) {
       const sceneManager = new SceneManager();
       const observer = new IntersectionObserver((entries, observer) => {
@@ -253,7 +275,7 @@ export default function Collection({
   }
 
   return (
-    <section class="z-1 py-24 mx-auto bg-white dark:bg-neutral-950/80">
+    <section class="z-1 py-24 mx-auto">
       <Show when={enableSearch}>
         <div class="mx-6 mb-12 px-3 py-3 rounded-xl border border-black/5 dark:border-white/10 flex items-center justify-between">
           <div class="flex gap-3 items-center justify-between w-full">
@@ -301,7 +323,6 @@ export default function Collection({
               <For each={tagSort()}>
                 {(tag) => (
                   <Tag
-                    href=""
                     onClick={() => {
                       setTagSort(tagSort().filter((val) => val !== tag));
                     }}
@@ -316,6 +337,7 @@ export default function Collection({
                 ref={clearFilter}
                 class="text-nowrap cursor-pointer font-semibold text-xs text-neutral-400 bg-black/5 hover:bg-black/10 dark:bg-white/15 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 px-2 py-1 rounded-md"
                 onClick={() => {
+                  sortByTags?.set([]);
                   setTagSort([]);
                 }}
               >

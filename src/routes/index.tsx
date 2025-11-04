@@ -148,7 +148,7 @@ export default function Home() {
           class="hover:scale-95 mt-6 min-h-72 mx-auto w-full def__animate cursor-grab"
         ></div>
       </section>
-      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/10 dark:border-t-white/50 bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
+      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/10 dark:border-t-white/50 bg-white/80 dark:bg-black/50 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
         <section class="max-w-3xl mx-auto flex text-black dark:text-white flex-col gap-3 px-6 lg:px-12 py-24">
           <H1>Have a look at some of my work.</H1>
           <p class="pl-0.5 text-base text-black dark:text-white/50">
@@ -158,22 +158,22 @@ export default function Home() {
             create meaningful work.
           </p>
         </section>
-        <section class="bg-white dark:bg-black/80 py-6 w-full">
-          <div class="w-full py-6 md:py-18 bg-white dark:bg-transparent">
+        <section class="bg-white dark:bg-black/50 py-6 w-full">
+          <div class="w-full py-6 md:py-18">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
               reverse={true}
             />
           </div>
-          <div class="w-full py-6 md:py-18 bg-white dark:bg-transparent">
+          <div class="w-full py-6 md:py-18">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
               reverse={true}
             />
           </div>
-          <div class="w-full py-6 md:py-18 bg-white dark:bg-transparent">
+          <div class="w-full py-6 md:py-18">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
@@ -182,37 +182,39 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <div class="w-full border-l border-r border-black/10 dark:border-white/10">
-        <Collection data={collectionData} />
-      </div>
-      <div class="lg:border border-black/10 dark:border-white/10 mb-24 bg-white/80 dark:bg-black/80 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200 w-full rounded-bl-3xl rounded-br-3xl">
-        <Panel3d
-          data="/MA_3DLogo.glb"
-          headline="Check out some of my work."
-          paragraph="I currently take on projects independently, but I'm always interested in new opportunities. Whether it's design, development, or blending both, I'm looking to team up with people who want to create meaningful work."
-          reverse={true}
-        />
-        <section class="flex lg:px-6 lg:pb-24 mx-auto lg:max-w-3xl w-full">
-          <form
-            class="w-full flex flex-col gap-3 px-6 py-12 md:px-12 bg-white dark:bg-neutral-950 lg:rounded-3xl border-t border-t-black/10 dark:lg:border-t-white lg:border lg:border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
-            action="https://api.web3forms.com/submit"
-            method="post"
-          >
-            <input
-              type="hidden"
-              name="access_key"
-              value="4ead391c-7d7a-4e29-9e39-9a81fd36f09e"
-            />
-            <Label>Email</Label>
-            <Input type="text" placeholder="Enter your email" />
-            <Label>Message</Label>
-            <textarea
-              class="min-h-36 placeholder-black/25 resize-none dark:placeholder-white/25 bg-white dark:bg-white/5 text-black/25 focus:text-black dark:text-white/25 dark:focus:text-white rounded-md px-3 py-1 outline outline-transparent border border-black/10 dark:border-white/10 focus:outline-black/50 dark:focus:outline-white/50 hover:outline-black/25 dark:hover:outline-white/25 def__animate"
-              placeholder="Enter your message"
-            ></textarea>
-            <Button type="submit">Send Me a Message</Button>
-          </form>
-        </section>
+      <div class="bg-white/80 dark:bg-black/50 backdrop-blur-3xl w-full">
+        <div class="w-full border-l border-r border-black/10 dark:border-white/10">
+          <Collection data={collectionData} />
+        </div>
+        <div class="lg:border border-black/10 dark:border-white/10 mb-24 w-full rounded-bl-3xl rounded-br-3xl">
+          <Panel3d
+            data="/MA_3DLogo.glb"
+            headline="Check out some of my work."
+            paragraph="I currently take on projects independently, but I'm always interested in new opportunities. Whether it's design, development, or blending both, I'm looking to team up with people who want to create meaningful work."
+            reverse={true}
+          />
+          <section class="flex lg:px-6 lg:pb-24 mx-auto lg:max-w-3xl w-full">
+            <form
+              class="w-full flex flex-col gap-3 px-6 py-12 md:px-12 bg-white dark:bg-neutral-950 lg:rounded-3xl border-t border-t-black/10 dark:lg:border-t-white lg:border lg:border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
+              action="https://api.web3forms.com/submit"
+              method="post"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="4ead391c-7d7a-4e29-9e39-9a81fd36f09e"
+              />
+              <Label>Email</Label>
+              <Input type="text" placeholder="Enter your email" />
+              <Label>Message</Label>
+              <textarea
+                class="min-h-36 placeholder-black/25 resize-none dark:placeholder-white/25 bg-white dark:bg-white/5 text-black/25 focus:text-black dark:text-white/25 dark:focus:text-white rounded-md px-3 py-1 outline outline-transparent border border-black/10 dark:border-white/10 focus:outline-black/50 dark:focus:outline-white/50 hover:outline-black/25 dark:hover:outline-white/25 def__animate"
+                placeholder="Enter your message"
+              ></textarea>
+              <Button type="submit">Send Me a Message</Button>
+            </form>
+          </section>
+        </div>
       </div>
     </main>
   );
