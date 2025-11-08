@@ -101,9 +101,8 @@ function CollectionCell({
           cell.classList.remove("saturate-0");
         }
       }}
-      class={`group/card cell-container relative overflow-hidden hover:brightness-115 hover:saturate-125 def__animate ${
-        !enableFull ? `w-72 h-96 xl:h-108 md:w-100 xl:w-xl` : `w-full`
-      }`}
+      class={`group/card cell-container relative overflow-hidden hover:brightness-115 hover:saturate-125 def__animate ${!enableFull ? `w-72 h-96 xl:h-108 md:w-100 xl:w-xl` : `w-full`
+        }`}
     >
       <A href={`/projects/${data.slug}`} class="h-full w-full">
         <img
@@ -275,9 +274,9 @@ export default function Collection({
   }
 
   return (
-    <section class="z-1 py-24 mx-auto">
+    <section class="z-1 pb-24 mx-auto">
       <Show when={enableSearch}>
-        <div class="mx-6 mb-12 px-3 py-3 rounded-xl border border-black/5 dark:border-white/10 flex items-center justify-between">
+        <div class="bg-white/95 dark:bg-black/90 border border-black/5 dark:border-white/5 z-10 mt-24 lg:mt-4 mx-6 p-3 rounded-xl border border-black/5 dark:border-white/10 flex items-center justify-between fixed inset-x-6">
           <div class="flex gap-3 items-center justify-between w-full">
             <div class="flex relative pr-3 border-r border-r-black/10 dark:border-r-white/10">
               <button
@@ -348,29 +347,13 @@ export default function Collection({
         </div>
       </Show>
       <div
-        class={`flex mx-auto flex-col lg:flex-row ${
-          enablePanel ? "lg:max-w-7xl" : "w-full"
-        }`}
+        class={`flex mx-auto flex-col lg:flex-row ${enablePanel ? "lg:max-w-7xl" : "w-full"
+          }`}
       >
-        <Show when={enablePanel}>
-          <article class="p-12 lg:max-w-md flex flex-col justify-start">
-            <div
-              ref={wrapper3d}
-              class="hover:scale-95 mb-12 min-h-72 mx-auto w-full def__animate cursor-grab"
-            ></div>
-            <H2>Check out my work.</H2>
-            <p class="mt-2">
-              I currently take on projects independently, but I'm always
-              interested in new opportunities. Whether it's design, development,
-              or blending both, I'm looking to team up with people who want to
-              create meaningful work.
-            </p>
-          </article>
-        </Show>
         <Show
           when={!enableFull}
           fallback={
-            <div class="flex flex-col gap-3 lg:grid lg:grid-cols-2 lg:gap-1 w-full px-6">
+            <div class="flex flex-col gap-3 lg:grid lg:grid-cols-2 lg:gap-1 w-full px-6 pt-48 lg:pt-24">
               <For each={sortedData()}>
                 {(item) => <CollectionCell enableFull={true} data={item} />}
               </For>

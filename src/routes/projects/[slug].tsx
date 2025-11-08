@@ -31,9 +31,8 @@ export function MainKeypoint({
     <section class="z-1 w-full relative flex flex-col gap-12">
       <header class="z-1 flex flex-col gap-3 px-6 md:px-12 2xl:px-24 text-black dark:text-white">
         <div
-          class={`text-black/20 w-full dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1${
-            standalone ? " mb-6" : ""
-          }`}
+          class={`text-black/20 w-full dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1${standalone ? " mb-6" : ""
+            }`}
         >
           <ContainerLabel>Project Highlight</ContainerLabel>
         </div>
@@ -57,31 +56,46 @@ export function MainKeypoint({
         </Show>
       </header>
       <div
-        class={`px-3 md:px-12 z-1 w-full mx-auto flex flex-col ${
-          !reverse ? "lg:flex-row" : "lg:flex-row-reverse"
-        } gap-12 justify-center items-center`}
+        class={`px-3 md:px-12 z-1 w-full mx-auto flex flex-col ${!reverse ? "lg:flex-row" : "lg:flex-row-reverse"
+          } gap-12 justify-center items-center`}
       >
         <div class="w-full max-w-5xl">
           <iframe
             src={data.mainKeypointMedia}
-            class="aspect-video w-full border-t border-b px-6 border-black/5 dark:border-white/5"
+            class="aspect-video w-full border-t border-b border-black/5 dark:border-white/5"
             allow="fullscreen"
           ></iframe>
         </div>
-        <article class="w-full lg:max-w-1/3 flex flex-col items-start justify-center gap-12">
-          <div class="text-black dark:text-white w-full dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] mx-auto rounded-3xl p-6 flex flex-col gap-3 bg-neutral-50 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
-            <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1 mb-3">
-              <ContainerLabel>Strategy</ContainerLabel>
+        <article class="w-full lg:max-w-1/3 flex flex-col items-start justify-center">
+          <div class="text-black dark:text-white w-full dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] mx-auto rounded-3xl p-6 flex flex-col gap-6 bg-neutral-50 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+            <Show when={standalone}>
+              <div class="flex flex-col gap-1">
+                <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
+                  <ContainerLabel>Objective</ContainerLabel>
+                </div>
+                <p class="text-left text-black dark:text-white">
+                  {data.projectObjective}
+                </p>
+              </div>
+            </Show>
+            <div class="flex flex-col gap-1">
+              <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
+                <ContainerLabel>Strategy</ContainerLabel>
+              </div>
+              <p class="text-left text-black dark:text-white">
+                {data.mainKeypointDescription}
+              </p>
             </div>
-            <p class="text-left text-black dark:text-white mb-3">
-              {data.mainKeypointDescription}
-            </p>
-            <Metric icon="/MA_26Logo.svg">{data.mainKeypointMetricOne}</Metric>
-            <Metric icon="/MA_26Logo.svg">{data.mainKeypointMetricTwo}</Metric>
+            <div class="flex flex-col gap-1">
+              <Metric icon="/MA_26Logo.svg">{data.mainKeypointMetricOne}</Metric>
+              <Metric icon="/MA_26Logo.svg">{data.mainKeypointMetricTwo}</Metric>
+            </div>
+            <Show when={standalone}>
+              <div class="w-fit py-3">
+                <LinkButton href={`/projects/${data.slug}`}>See Project</LinkButton>
+              </div>
+            </Show>
           </div>
-          <Show when={standalone}>
-            <LinkButton href={`/projects/${data.slug}`}>See Project</LinkButton>
-          </Show>
         </article>
       </div>
     </section>
@@ -144,11 +158,11 @@ export default function ProjectPage() {
             </div>
           </article>
         </section>
-        <section class="bg-white dark:bg-black">
+        <section class="bg-white dark:bg-black py-24">
           <section class="py-12 border-t border-black/10">
             <MainKeypoint data={collectionData[0]} />
           </section>
-          <section class="flex flex-col gap-3">
+          <section class="flex flex-col gap-1">
             <For each={project()?.projectKeypoints}>
               {(keypoint) => {
                 return (
@@ -159,13 +173,13 @@ export default function ProjectPage() {
                         <p class="dark:text-white">{keypoint.description}</p>
                       </div>
                     </div>
-                    <div class="w-full md:w-1/3 flex flex-col items-center gap-3">
+                    <div class="w-full md:w-1/3 flex flex-col items-center gap-1">
                       <For each={keypoint.media}>
                         {(media) => {
                           return (
                             <>
                               <img
-                                class="w-full hover:scale-102 def__animate cursor-pointer"
+                                class="w-full hover:saturate-125 def__animate cursor-pointer"
                                 onClick={() => {
                                   setLighboxImg(media);
                                 }}

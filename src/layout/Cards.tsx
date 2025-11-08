@@ -63,7 +63,7 @@ export const Button = ({
 }: {
   children: string;
   type: "submit" | "reset" | "button" | "menu" | undefined;
-  onClick: () => void;
+  onClick?: () => void;
 }) => {
   return (
     <button

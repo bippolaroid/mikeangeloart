@@ -68,7 +68,7 @@ export default function Home() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           requestAnimationFrame(() => {
-            sceneManager.init(wrapper3d, "/MA_3DLogo.glb");
+            sceneManager.init(wrapper3d, "/New A_FINAL.glb");
             const resizeHandler = () => {
               if (sceneManager) {
                 sceneManager.handleResize(wrapper3d);
@@ -87,7 +87,7 @@ export default function Home() {
     });
   });
   return (
-    <main class="w-full relative flex flex-col justify-center items-center px-3 lg:px-6">
+    <main class="w-full relative flex flex-col justify-center items-center px-3 lg:px-6 pb-12 mb-12">
       <video
         ref={videoPanel}
         src="/Comp_3.mp4"
@@ -111,9 +111,11 @@ export default function Home() {
             src={githubAvatar}
             loading="eager"
           />
-          <div class="flex flex-col gap-2 py-4 justify-center text-white text-left w-full max-w-xl">
-            <H1>Hey! My name's Mike.</H1>
-            <p class="lg:pb-3 text-4xl md:text-5xl tracking-tighter">
+          <div class="flex flex-col gap-2 py-4 justify-center text-left w-full max-w-xl">
+            <span class="not-dark:invert">
+              <H1>Hey! My name's Mike.</H1>
+            </span>
+            <p class="lg:pb-3 invert text-4xl md:text-5xl tracking-tighter">
               I'm a{" "}
               <span
                 ref={roleChanger}
@@ -128,19 +130,18 @@ export default function Home() {
       </section>
       <section
         ref={whoIAm}
-        class="mb-[50vh] border-t lg:border border-black/10 dark:border-white/10 dark:border-t-white/50 lg:mb-72 backdrop-blur-3xl bg-white dark:bg-black/80 rounded-3xl backdrop-brightness-150 backdrop-saturate-200 w-full pb-6 px-6 md:px-12 lg:pt-3 lg:max-w-5xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center"
+        class="mb-[50vh] border border-t border-black/10 dark:border-white/5 dark:border-t-white lg:mb-72 backdrop-blur-3xl bg-white dark:bg-black/80 rounded-3xl backdrop-brightness-150 backdrop-saturate-200 w-full pb-6 px-6 md:px-12 lg:pt-3 lg:max-w-5xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center"
       >
         <article class="lg:pl-12 pb-12 lg:pb-0 flex flex-col justify-center items-center lg:items-start px-6">
           <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1 mb-3">
             <ContainerLabel>What I Do</ContainerLabel>
           </div>
           <p class="text-xl dark:text-white/80 text-black max-w-3xl lg:max-w-full">
-            I currently take on projects independently, but I'm always
-            interested in new opportunities.
-            <br />
-            <br />
-            Whether it's design, development, or blending both, I'm looking to
-            team up with people who want to create meaningful work.
+            <strong>I like to make things look good, work well, and leave lasting impressions.</strong>
+          </p>
+          <br />
+          <p class="text-xl dark:text-white/80 text-black max-w-3xl lg:max-w-full">
+            Currently, I work with clients to create high-quality creative assets, engaging videos and social media content, and captivating website experiences.
           </p>
         </article>
         <div
@@ -148,32 +149,29 @@ export default function Home() {
           class="hover:scale-95 mt-6 min-h-72 mx-auto w-full def__animate cursor-grab"
         ></div>
       </section>
-      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/10 dark:border-t-white/50 bg-white/80 dark:bg-black/50 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
+      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/5 dark:border-t-white bg-white/80 dark:bg-black/50 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
         <section class="max-w-3xl mx-auto flex text-black dark:text-white flex-col gap-3 px-6 lg:px-12 py-24">
-          <H1>Have a look at some of my work.</H1>
-          <p class="pl-0.5 text-base text-black dark:text-white/50">
-            I currently take on projects independently, but I'm always
-            interested in new opportunities. Whether it's design, development,
-            or blending both, I'm looking to team up with people who want to
-            create meaningful work.
+          <H1>Check out my work.</H1>
+          <p class="pl-0.5 text-lg text-black dark:text-white/50">
+            I've worked on a variety of campaigns and projects that span digital banners, paid social media content, editing and motion graphics, and web design and development.
           </p>
         </section>
-        <section class="bg-white dark:bg-black/50 py-6 w-full">
-          <div class="w-full py-6 md:py-18">
+        <section class="border-t border-t-black/10 dark:border-t-white/5 bg-white dark:bg-black/50 py-12 lg:py-36 w-full">
+          <div class="w-full py-12 lg:py-36">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
               reverse={true}
             />
           </div>
-          <div class="w-full py-6 md:py-18">
+          <div class="w-full py-12 lg:py-36">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
               reverse={true}
             />
           </div>
-          <div class="w-full py-6 md:py-18">
+          <div class="w-full py-12 lg:py-36">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
@@ -183,35 +181,42 @@ export default function Home() {
         </section>
       </div>
       <div class="bg-white/80 dark:bg-black/50 backdrop-blur-3xl w-full">
-        <div class="w-full border-l border-r border-black/10 dark:border-white/10">
+        <div class="w-full border-l border-r border-black/5 dark:border-white/5">
           <Collection data={collectionData} />
         </div>
-        <div class="lg:border border-black/10 dark:border-white/10 mb-24 w-full rounded-bl-3xl rounded-br-3xl">
-          <Panel3d
-            data="/MA_3DLogo.glb"
-            headline="Check out some of my work."
-            paragraph="I currently take on projects independently, but I'm always interested in new opportunities. Whether it's design, development, or blending both, I'm looking to team up with people who want to create meaningful work."
-            reverse={true}
-          />
-          <section class="flex lg:px-6 lg:pb-24 mx-auto lg:max-w-3xl w-full">
+        <div class="border-r border-l border-b lg:border border-black/5 dark:border-white/5 pb-3 lg:pb-0 w-full rounded-bl-3xl rounded-br-3xl">
+          <section class="flex flex-col lg:flex-row gap-24 items-center px-3 lg:py-24 mx-auto lg:max-w-5xl w-full">
+            <div class="flex flex-col gap-6 max-w-md">
+              <H1>Let's build something together.</H1>
+              <p class="text-black/50 dark:text-white/50">
+                I'm always looking for new opportunities and collaborations. Whether you're interested in working together or just want to say hi, feel free to drop me a message!
+              </p>
+            </div>
             <form
-              class="w-full flex flex-col gap-3 px-6 py-12 md:px-12 bg-white dark:bg-neutral-950 lg:rounded-3xl border-t border-t-black/10 dark:lg:border-t-white lg:border lg:border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
+              class="w-full flex flex-col gap-6 p-6 bg-white dark:bg-neutral-950 rounded-3xl border dark:border-t-white border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
               action="https://api.web3forms.com/submit"
               method="post"
             >
-              <input
-                type="hidden"
-                name="access_key"
-                value="4ead391c-7d7a-4e29-9e39-9a81fd36f09e"
-              />
-              <Label>Email</Label>
-              <Input type="text" placeholder="Enter your email" />
-              <Label>Message</Label>
-              <textarea
-                class="min-h-36 placeholder-black/25 resize-none dark:placeholder-white/25 bg-white dark:bg-white/5 text-black/25 focus:text-black dark:text-white/25 dark:focus:text-white rounded-md px-3 py-1 outline outline-transparent border border-black/10 dark:border-white/10 focus:outline-black/50 dark:focus:outline-white/50 hover:outline-black/25 dark:hover:outline-white/25 def__animate"
-                placeholder="Enter your message"
-              ></textarea>
-              <Button type="submit">Send Me a Message</Button>
+              <div class="flex flex-col gap-3">
+                <input
+                  type="hidden"
+                  name="access_key"
+                  value="4ead391c-7d7a-4e29-9e39-9a81fd36f09e"
+                />
+                <div class="flex flex-col gap-1">
+                  <Label>Email</Label>
+                  <Input type="text" placeholder="Enter your email" />
+                </div>
+                <div class="flex flex-col gap-1">
+                  <Label>Message</Label>
+                  <textarea
+                    class="min-h-36 placeholder-black/25 resize-none dark:placeholder-white/25 bg-white dark:bg-white/5 text-black/25 focus:text-black dark:text-white/25 dark:focus:text-white rounded-md px-3 py-1 outline outline-transparent border border-black/10 dark:border-white/10 focus:outline-black/50 dark:focus:outline-white/50 hover:outline-black/25 dark:hover:outline-white/25 def__animate"
+                    placeholder="Enter your message"
+                  ></textarea>
+                </div>
+              </div><div>
+                <Button type="submit">Send Me a Message</Button>
+              </div>
             </form>
           </section>
         </div>
