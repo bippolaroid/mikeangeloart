@@ -119,7 +119,7 @@ export default function Navbar() {
 
             class="flex items-center gap-3 hover:brightness-50 def__animate"
           >
-            <img src="/MA_26Logo.svg" loading="eager" width="36" height="auto" />
+            <img src="/MA_Logo_SharpMA_White.svg" loading="eager" width="36" height="auto" />
             <span class="leading-4 text-xs tracking-[3px] text-white uppercase">
               Mike
               <br />

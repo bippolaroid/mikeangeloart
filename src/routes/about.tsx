@@ -164,7 +164,7 @@ export default function About() {
 
   const Box = ({ children }: { children: JSXElement }) => {
     return (
-      <div class="p-6 rounded-xl backdrop-blur-3xl gap-6 w-full border border-black/10 bg-white/90 dark:border-white/10 dark:border-t dark:bg-black/90 dark:border-t-white text-black dark:text-white">
+      <div class="p-6 rounded-xl gap-6 w-full border border-black/10 bg-white/90 dark:border-white/10 dark:border-t dark:bg-black/90 dark:border-t-white text-black dark:text-white">
         {children}
       </div>
     );
@@ -289,7 +289,7 @@ export default function About() {
         loop
         playsinline
       ></video>
-      <div class="h-screen w-full fixed dark:backdrop-brightness-50 backdrop-blur">
+      <div class="h-screen w-full fixed backdrop-blur">
         <div class="h-[89vh] pt-22 xl:px-72">
           <div ref={desktop} class="border-t border-b h-full overflow-x-hidden flex flex-col gap-6 border-black/10 dark:border-white/10 p-6">
             <For each={windows()}>{(window) => window}</For>

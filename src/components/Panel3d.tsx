@@ -161,19 +161,20 @@ export class SceneManager {
               break;
             default:
               const gradientTexture = createVerticalGradientTexture(
-                "#ffffff",
-                "#00F2FF"
+                                "#cdc2ffff",
+
+                "#9fffe0ff"
               );
               child.material = new three.MeshPhysicalMaterial({
                 map: gradientTexture,
                 metalness: 0,
                 roughness: 0.4,
                 transmission: 1.25,
-                thickness: 0,
+                thickness: 1,
                 envMap,
                 envMapIntensity: 1,
                 ior: 1.45,
-                clearcoat: 1,
+                clearcoat: 0.5,
                 clearcoatRoughness: 0,
               });
               break;

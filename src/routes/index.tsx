@@ -63,7 +63,7 @@ export default function Home() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           requestAnimationFrame(() => {
-            sceneManager.init(wrapper3d, "/New A_FINAL.glb");
+            sceneManager.init(wrapper3d, "/MA_Logo_3D.glb");
             const resizeHandler = () => {
               if (sceneManager) {
                 sceneManager.handleResize(wrapper3d);
@@ -120,7 +120,7 @@ export default function Home() {
       </section>
       <section
         ref={whoIAm}
-        class="mb-[50vh] border border-t border-black/10 dark:border-white/5 dark:border-t-white lg:mb-72 backdrop-blur-3xl rounded-3xl bg-white/10 dark:bg-black/10 w-fit lg:w-full lg:max-w-3xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center"
+        class="mb-[50vh] border border-t border-black/10 dark:border-white/5 dark:border-t-white lg:mb-72 rounded-3xl bg-white/75 dark:bg-black/75 w-fit lg:w-full lg:max-w-3xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center"
       >
         <figure
           ref={wrapper3d}
@@ -140,7 +140,7 @@ export default function Home() {
         </article>
         
       </section>
-      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/5 dark:border-t-white bg-white/80 dark:bg-black/50 backdrop-blur-3xl backdrop-brightness-150 backdrop-saturate-200">
+      <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col items-center border border-black/10 dark:border-white/5 dark:border-t-white bg-white/80 dark:bg-black/50">
         <section class="max-w-3xl mx-auto flex text-black dark:text-white flex-col gap-3 px-12 py-24">
           <H1>Check out some of my work.</H1>
           <p class="pl-0.5 text-lg text-black/50 dark:text-white/50">
@@ -171,7 +171,7 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <div class="bg-white/80 dark:bg-black/50 backdrop-blur-3xl w-full">
+      <div class="bg-white/80 dark:bg-black/50 w-full">
         <div class="w-full border-l border-r border-black/5 dark:border-white/5">
           <Collection data={collectionData} />
         </div>
