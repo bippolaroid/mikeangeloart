@@ -3,46 +3,51 @@
     "uuid": "0",
     "id": 0,
     "author": "Mike Angelo",
-    "title": "Drone Drop Pop-up for Bahlsen",
-    "slug": "drone-drop-pop-up-for-bahlsen",
+    "title": "Drone Drop Pop-up",
+    "slug": "bahlsen-drone-drop-pop-up",
     "cover": "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg",
     "tags": [
       "Art Direction",
       "Experiential Marketing",
       "Rich Media",
       "Digital Marketing",
-      "Post-Production",
+      "Event Production",
       "Commercial Spot",
-      "Social Media",
-      "Editing",
-      "Paid Marketing",
-      "Filming",
-      "Staging"
+      "Organic Social Media",
+      "Video Editing",
+      "Paid Social Media",
+      "Advertising Campaign"
     ],
     "dateAdded": "2025-12-02",
     "lastModified": "2025-12-02",
     "clientName": "Bahlsen",
     "clientLogo": "https://cdn.mikeangelo.art/client-logos/MA_25-26-Website_ClientIcons_250x250_Bahlsen_white.png",
-    "projectObjective": "Bahlsen basically said, 'Hey, let's get our Choco Leibniz out there in a totally new way.' My thought? Street-level experiential marketing with a twist.",
+    "projectObjective": "Bahlsen asked us to execute an innovative marketing campaign to launch their new branding to promote brand recognition and drive consumers to stores.",
     "mainKeypointMedia": "https://player.vimeo.com/video/1081725997",
-    "mainKeypointMetricOne": "N/A",
-    "mainKeypointMetricTwo": "N/A",
-    "mainKeypointDescription": "So, the plan was this awesome drone-drop pop-up. As art director, I was basically the ringleader, handling everything from getting the shots for the event recap to cutting the actual commercial. Then, I took all that goodness and cranked out a full digital campaign: cool rich media, social posts, and some smart paid ads. My goal? Make a huge splash and get people hyped about Bahlsen's cookies.",
+    "mainKeypointMetricOne": "+150% In-Store Traffic",
+    "mainKeypointMetricTwo": "+20% Online Orders",
+    "mainKeypointDescription": "We took over a popular shopping district in Montclair, NJ and filmed a fleet of drones delivering boxes of Bahlsen's products to unsuspecting people walking by. This generated a huge buzz in the region and successfully increased sales.",
     "projectKeypoints": [
       {
-        "title": "Drone Drop Spectacle",
-        "description": "Pulled off a wild, first-ever drone delivery pop-up. We got Bahlsen's product right to people on the street, which created instant buzz.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "title": "A Once-in-a-Lifetime Event",
+        "description": "My team and I worked on numerous different pre-production tasks. We hired drone operators, sketched a rough storyboard, coordinated with a camera crew, and captured a once-in-a-lifetime event.",
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
-        "title": "Commercial Production Wizardry",
-        "description": "I was deep in the trenches, from art directing the shoots to personally editing the final commercial. It's about crafting that perfect story.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "title": "Supplemental Digital Marketing",
+        "description": "We developed a rich media marketing campaign to target and retarget potential and repeat shoppers. This included animated and interactive web banners and pre-roll video.",
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
-        "title": "Digital Domination (Technically Speaking)",
-        "description": "Flipped the event into killer digital content—think rich media, social campaigns, and smart paid ads. Maximizing reach is kinda my thing.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "title": "Social Media Content",
+        "description": "We filmed all preparation before and during the event. Then we delivered numerous video edits and behind-the-scenes bits and ran them on both paid and organic social media channels.",
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       }
     ],
     "projectVideos": [
@@ -67,47 +72,50 @@
     "uuid": "1",
     "id": 1,
     "author": "Mike Angelo",
-    "title": "Loopwell Brand & Marketing",
-    "slug": "loopwell-brand-marketing",
+    "title": "Loopwell - The Space for Well-being",
+    "slug": "loopwell-the-space-for-well-being",
     "cover": "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg",
     "tags": [
       "Art Direction",
       "Brand Development",
       "Website Development",
       "E-commerce",
-      "Stripe Integration",
-      "Marketing Materials",
-      "Event A/V",
+      "Digital Marketing",
+      "Event Production",
       "Editing",
-      "Newsletters",
-      "Social Media Content",
-      "Startup",
-      "Wellness"
+      "Organic Social Media",
+      "Startup"
     ],
     "dateAdded": "2025-12-02",
     "lastModified": "2025-12-02",
     "clientName": "Loopwell",
     "clientLogo": "https://cdn.mikeangelo.art/client-logos/MA_25-26-Website_ClientIcons_250x250_Bahlsen_white.png",
-    "projectObjective": "Loopwell, this awesome women's wellness startup, needed *everything*: a brand, a website that actually worked, and a steady stream of marketing to get their message out there.",
+    "projectObjective": "The founders of Loopwell set out to create a unique holistic well-being brand that operates as a wellness ecosystem as well as a production and event venue.",
     "mainKeypointMedia": "https://player.vimeo.com/video/1081725997",
     "mainKeypointMetricOne": "N/A",
     "mainKeypointMetricTwo": "N/A",
-    "mainKeypointDescription": "My plan for Loopwell was to literally build their whole brand from the ground up. As lead art director, I wore *all* the hats: brand identity, getting their Squarespace site and e-shop live (with Stripe, of course), and whipping up all their marketing. Event A/V, newsletters, social—you name it, I did it. It was about making sure every single touchpoint felt like Loopwell.",
+    "mainKeypointDescription": "I worked with the founders and a team to develop a memorable feel-good brand, a powerful website with an event and e-commerce system, and various marketing materials. We successfully entered the space, cultivated a following, and hosted countless seminars, luxury events, and high-quality productions.",
     "projectKeypoints": [
       {
-        "title": "Startup Brand Architect",
-        "description": "I basically built Loopwell's entire brand, from their look and feel to their core message, right from zero to launch.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "title": "Hit the Ground Running",
+        "description": "While the building was being renovated, we went through a ton of different ideas trying to find the right branding to really carve out a place for us in the space.",
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
-        "title": "Full-Stack Web Dev (Squarespace Edition)",
-        "description": "Designed, developed, and deployed their Squarespace site and e-commerce, including hooking up secure payments with Stripe. Pretty slick, if I do say so myself.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "title": "Building a Powerful Site",
+        "description": "We needed an intuitive website that managed events, attendees, memberships, and payments. I helped design and develop the website along with custom integrations and scripts that suited their needs.",
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
-        "title": "Always-On Marketing Machine",
-        "description": "Kept the content flowing—digital, print, even event A/V. It was about keeping Loopwell relevant and connected, year after year.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "title": "Event Promotion and A/V Production",
+        "description": "I worked with a team to film events, set up live streaming and other production necessities, and compile edits and marketing materials that could be used as promotion for both the event staff as well as the Loopwell brand.",
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       }
     ],
     "projectVideos": [
@@ -132,8 +140,8 @@
     "uuid": "2",
     "id": 2,
     "author": "Mike Angelo",
-    "title": "Benzel-Busch Marketing & WordPress Management",
-    "slug": "benzel-busch-marketing-wordpress-management",
+    "title": "Mercedes-Benz Marketing",
+    "slug": "benzel-busch-mercedes-benz-marketing",
     "cover": "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg",
     "tags": [
       "WordPress Management",
@@ -160,17 +168,23 @@
       {
         "title": "WordPress Whisperer",
         "description": "I kept their entire WordPress platform humming, ensuring their digital presence was always current and seamless. It's more than just updates; it's optimization.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
         "title": "Content Production Powerhouse",
         "description": "Seriously, I produced *a lot* of diverse content: slick rich media, engaging video, eye-catching static ads, and informative newsletters. Quality and quantity, nailed it.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
         "title": "Precision Digital Ad Campaigns",
         "description": "Crafted and fine-tuned social media and paid ads specifically designed to get those luxury car buyers through the door. Results are kind of my thing.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       }
     ],
     "projectVideos": [
@@ -224,17 +238,23 @@
       {
         "title": "New Website, Who Dis?",
         "description": "I got hands-on with developing a totally new, high-performance website that really captured Gym Source's fresh brand identity.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
         "title": "Commercials, Cut & Polished",
         "description": "I was the go-to person for editing their commercial spots, taking raw footage and turning it into something truly polished and on-brand.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
         "title": "Ad Assets Everywhere",
         "description": "Produced a massive range of ad creatives, from the fancy programmatic and rich media stuff to classic print, social, and paid ads. Total coverage.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       }
     ],
     "projectVideos": [
@@ -287,17 +307,23 @@
       {
         "title": "Seasonal Content Campaign Development",
         "description": "Orchestrated multi-seasonal 'Road Trip' campaigns, delivering engaging and relevant content to Benzel-Busch's audience.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
         "title": "Curated Digital Resources & Vehicle Integration",
         "description": "Created detailed digital PDF guides featuring travel destinations, seamlessly integrating Mercedes-Benz vehicles appropriate for each trip.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
         "title": "Integrated Multi-channel Promotion",
         "description": "Implemented comprehensive marketing strategies across newsletters, social media, paid advertising, and digital downloads to maximize campaign reach and impact.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       }
     ],
     "projectVideos": [
@@ -349,17 +375,23 @@
       {
         "title": "Contextual Campaign Development (COVID-19)",
         "description": "Designed and executed the 'Hide Them at Home' campaign for Bahlsen, strategically leveraging the early COVID-19 environment and consumer behavior of staying at home.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
         "title": "Commercial Production & Editorial Expertise",
         "description": "Contributed to commercial production and personally edited campaign spots, ensuring a relevant and impactful message for the target audience.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       },
       {
         "title": "Integrated Digital Marketing Assets",
         "description": "Developed a comprehensive suite of digital marketing materials, including rich media, social media content, and targeted paid advertisements, to drive engagement during a unique social climate.",
-        "media": ["https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"]
+        "media": [
+          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+        ]
       }
     ],
     "projectVideos": [

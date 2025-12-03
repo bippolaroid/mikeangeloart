@@ -169,21 +169,18 @@ export default function Home() {
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
-              reverse={true}
             />
           </div>
           <div class="w-full max-w-7xl mx-auto">
             <MainKeypoint
               data={collectionData[1]}
               standalone={true}
-              reverse={true}
             />
           </div>
           <div class="w-full max-w-7xl mx-auto">
             <MainKeypoint
               data={collectionData[2]}
               standalone={true}
-              reverse={true}
             />
           </div>
         </div>
