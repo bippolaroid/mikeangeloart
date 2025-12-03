@@ -159,7 +159,7 @@ const taskbarIcons = [
 
   const Box = ({ children }: { children: JSXElement }) => {
     return (
-      <div class="p-6 rounded-xl gap-6 w-full border border-black/10 bg-white/90 dark:border-white/10 dark:border-t dark:bg-black/90 dark:border-t-white text-black dark:text-white">
+      <div class="p-6 rounded-xl gap-6 w-full border border-black/10 bg-white dark:border-white/10 dark:border-t dark:bg-black/90 dark:border-t-white text-black dark:text-white">
         {children}
       </div>
     );

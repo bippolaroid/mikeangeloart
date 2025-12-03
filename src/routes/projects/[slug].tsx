@@ -37,11 +37,11 @@ export function MainKeypoint({
           <ContainerLabel>Project Highlight</ContainerLabel>
         </div>
         <Show when={standalone}>
-          <div class="flex flex-col gap-18 lg:flex-row justify-between items-center">
+          <div class="flex flex-col gap-18 py-18 lg:flex-row justify-center items-center w-full max-w-7xl mx-auto">
             <div class="flex flex-col gap-6 w-full">
               <A
                 href={`/projects?client=${slugify(data.clientName)}`}
-                class="w-fit hover:opacity-50 def__animate"
+                class="w-full hover:opacity-50 def__animate"
               >
                 <img
                   src={data.clientLogo}
@@ -51,12 +51,22 @@ export function MainKeypoint({
               </A>
               <A
                 href={`/projects/${data.slug}`}
-                class="w-fit hover:opacity-50 def__animate"
+                class="w-full hover:opacity-50 def__animate"
               >
                 <H1>{data.title}</H1>
               </A>
+            </div>
+            <div class="w-full flex flex-col gap-6 max-w-xl">
+              <div class="flex flex-col gap-1 text-black dark:text-white w-full border border-neutral-100 dark:border-neutral-900 p-6 rounded-3xl">
+                <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
+                  <ContainerLabel>Objective</ContainerLabel>
+                </div>
+                <p class="text-left text-black dark:text-white">
+                  {data.projectObjective}
+                </p>
+              </div>
               <div
-                class="flex gap-1 justify-start items-center w-full max-w-lg overflow-x-auto scroll-smooth def__animate"
+                class="flex gap-1 justify-start items-center w-full overflow-x-auto scroll-smooth def__animate"
                 style="scrollbar-width: none;"
               >
                 <For each={data.tags}>
@@ -70,29 +80,19 @@ export function MainKeypoint({
                 </For>
               </div>
             </div>
-            <div class="w-full">
-              <div class="flex flex-col gap-1 text-black dark:text-white w-full max-w-lg">
-                <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
-                  <ContainerLabel>Objective</ContainerLabel>
-                </div>
-                <p class="text-left text-black dark:text-white">
-                  {data.projectObjective}
-                </p>
-              </div>
-            </div>
           </div>
         </Show>
       </header>
       <div
-        class={`px-3 md:px-12 z-1 w-full mx-auto flex flex-col ${!reverse ? "lg:flex-row" : "lg:flex-row-reverse"
+        class={`z-1 w-full mx-auto flex flex-col ${!reverse ? "lg:flex-row" : "lg:flex-row-reverse"
           } gap-12 justify-center items-center`}
       >
-        <div class="w-full max-w-5xl">
+        <div class="w-full">
           <Featured url={data.mainKeypointMedia} />
         </div>
         <article class="w-full lg:max-w-1/3 flex flex-col items-start justify-center">
-          <div class="flex flex-col gap-6">
-            <div class="text-black dark:text-white w-full dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] mx-auto rounded-3xl p-6 flex flex-col gap-6 bg-neutral-100 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+          <div class="flex flex-col gap-6 px-6">
+            <div class="text-black dark:text-white w-full dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] mx-auto rounded-3xl p-6 flex flex-col gap-6 bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
               <div class="flex flex-col gap-1">
                 <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
                   <ContainerLabel>Strategy</ContainerLabel>
@@ -178,54 +178,52 @@ export default function ProjectPage() {
             </div>
           </article>
         </section>
-        <section class="bg-white dark:bg-black py-18 border-t border-b border-black/10 dark:border-white/10">
-          <div class="mx-auto max-w-7xl">
-            <div class="flex gap-3 max-w-3xl mx-auto py-18 px-6">
-              <div class="text-black/10 dark:text-white/10 border-r border-r-black/10 dark:border-r-white/10 w-fit pr-2 py-1 h-fit">
-                <ContainerLabel>Objective</ContainerLabel>
-              </div>
-              <p class="text-black dark:text-white">
-                {project()?.projectObjective}
-              </p>
+        <section class="bg-white dark:bg-black py-18 border-t border-b border-black/10 dark:border-white/10 px-6">
+          <div class="flex gap-3 max-w-3xl mx-auto my-18 p-6 border border-neutral-100 dark:border-neutral-900 rounded-3xl">
+            <div class="text-black/10 dark:text-white/10 border-r border-r-black/10 dark:border-r-white/10 w-fit pr-2 py-1 h-fit">
+              <ContainerLabel>Objective</ContainerLabel>
             </div>
-            <section class="py-18">
-              <MainKeypoint data={project()!} />
-            </section>
-            <section class="flex flex-col gap-1 border-t border-black/10 dark:border-white/10 py-36">
-              <For each={project()?.projectKeypoints}>
-                {(keypoint) => {
-                  return (
-                    <div class="w-full max-w-7xl mx-auto flex flex-col md:flex-row gap-6 px-8">
-                      <div class="w-full flex items-center justify-center md:justify-start py-24">
-                        <div class="max-w-lg dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] rounded-3xl p-6 flex flex-col gap-3 bg-neutral-100 dark:bg-neutral-950 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
-                          <H2>{keypoint.title}</H2>
-                          <p class="dark:text-white">{keypoint.description}</p>
-                        </div>
-                      </div>
-                      <div class="w-full mx-auto max-w-lg flex flex-col items-center gap-1">
-                        <For each={keypoint.media}>
-                          {(media) => {
-                            return (
-                              <>
-                                <img
-                                  class="w-full hover:saturate-125 def__animate cursor-pointer md:pl-2 border-l border-transparent hover:border-black/10 dark:hover:border-white/10"
-                                  onClick={() => {
-                                    setLighboxImg(media);
-                                  }}
-                                  src={media}
-                                />
-                              </>
-                            );
-                          }}
-                        </For>
+            <p class="text-black dark:text-white">
+              {project()?.projectObjective}
+            </p>
+          </div>
+          <section class="lg:p-18">
+            <MainKeypoint data={project()!} />
+          </section>
+          <section class="border-t border-black/10 dark:border-white/10 py-36">
+            <For each={project()?.projectKeypoints}>
+              {(keypoint) => {
+                return (
+                  <div class="w-full flex flex-col md:flex-row justify-between px-8 max-w-[1920px] mx-auto">
+                    <div class="w-full flex items-center justify-center md:justify-start py-24">
+                      <div class="max-w-lg dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] rounded-3xl p-6 flex flex-col gap-6 bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+                        <H2>{keypoint.title}</H2>
+                        <p class="dark:text-white">{keypoint.description}</p>
                       </div>
                     </div>
-                  );
-                }}
-              </For>
-            </section>
-            <VideoLib videos={project()!.projectVideos} />
-          </div>
+                    <div class="w-full flex justify-center md:justify-end">
+                      <For each={keypoint.media}>
+                        {(media) => {
+                          return (
+                            <>
+                              <img
+                                class="w-full max-w-xl hover:saturate-125 def__animate cursor-pointer md:pl-2 border-l border-transparent hover:border-black/10 dark:hover:border-white/10"
+                                onClick={() => {
+                                  setLighboxImg(media);
+                                }}
+                                src={media}
+                              />
+                            </>
+                          );
+                        }}
+                      </For>
+                    </div>
+                  </div>
+                );
+              }}
+            </For>
+          </section>
+          <VideoLib videos={project()!.projectVideos} />
         </section>
       </Show>
       <section class="bg-white dark:bg-black">

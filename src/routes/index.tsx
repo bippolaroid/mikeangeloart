@@ -122,7 +122,7 @@ export default function Home() {
             <span class="not-dark:invert">
               <H1>Hey! My name's Mike.</H1>
             </span>
-            <p class="opacity-30 lg:pb-3 invert text-4xl md:text-5xl tracking-tighter">
+            <p class="lg:pb-3 invert text-4xl md:text-5xl tracking-tighter">
               I'm{" "}
               <span
                 ref={roleChanger}
@@ -151,33 +151,33 @@ export default function Home() {
             I like to make things look great, work well, and deliver results.
           </H2>
           <br />
-          <p class="text-lg dark:text-white/50 text-black/50 max-w-3xl lg:max-w-full">
+          <p class="text-lg dark:text-white text-black max-w-3xl lg:max-w-full">
             Currently, I work with clients to create high-quality creative assets, engaging videos and social media content, and captivating website experiences.
           </p>
         </article>
 
       </section>
       <div class="rounded-tl-3xl rounded-tr-3xl w-full flex flex-col border border-black/10 dark:border-white/5 dark:border-t-white bg-white dark:bg-black/90">
-        <section class="max-w-3xl mx-auto flex items-start text-black dark:text-white flex-col gap-3 py-18 lg:py-36 px-12">
+        <section class="max-w-3xl mx-auto flex items-start text-black dark:text-white flex-col gap-3 py-18 lg:py-36 px-6">
           <H1>Check out some of my work.</H1>
-          <p class="text-lg text-black/50 dark:text-white/50">
+          <p class="text-lg text-black dark:text-white">
             I've worked on a variety of projects and campaigns that include digital display banners, paid social media advertising, social media content, editing and motion graphics work, and web design and development.
           </p>
         </section>
-        <div class="flex flex-col pb-18 gap-72">
-          <div class="w-full max-w-7xl mx-auto">
+        <div class="flex flex-col px-18 pb-18 gap-72">
+          <div class="w-full">
             <MainKeypoint
               data={collectionData[0]}
               standalone={true}
             />
           </div>
-          <div class="w-full max-w-7xl mx-auto">
+          <div class="w-full">
             <MainKeypoint
               data={collectionData[1]}
               standalone={true}
             />
           </div>
-          <div class="w-full max-w-7xl mx-auto">
+          <div class="w-full">
             <MainKeypoint
               data={collectionData[2]}
               standalone={true}
@@ -193,12 +193,12 @@ export default function Home() {
           <section class="flex flex-col lg:flex-row gap-36 lg:gap-12 items-center px-3 md:px-12 lg:py-18 mx-auto lg:max-w-7xl w-full">
             <div class="flex flex-col gap-6 lg:max-w-md px-9 md:px-6">
               <H1>Drop a line.</H1>
-              <p class="text-black/50 dark:text-white/50">
+              <p class="text-black dark:text-white">
                 I'm always looking for new opportunities and collaborations. Whether you're interested in working together or just want to say hi, feel free to send me a message!
               </p>
             </div>
             <form
-              class="w-full flex flex-col gap-6 p-6 bg-neutral-100 dark:bg-neutral-950 rounded-3xl border dark:border-t-white border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
+              class="w-full flex flex-col gap-6 p-6 bg-neutral-100 dark:bg-neutral-900 rounded-3xl border dark:border-t-white border-black/10 dark:border-white/10 dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)]"
               action="https://api.web3forms.com/submit"
               method="post"
             >
