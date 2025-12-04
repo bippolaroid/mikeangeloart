@@ -1,7 +1,9 @@
-export const H1 = ({ children }: { children: string }) => {
+import { JSX } from "solid-js";
+
+export const H1 = (props: { children: JSX.Element }) => {
   return (
     <h1 class="leading-tight text-4xl md:text-5xl text-black dark:text-white font-semibold tracking-tighter">
-      {children}
+      {props.children}
     </h1>
   );
 };

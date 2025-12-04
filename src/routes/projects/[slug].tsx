@@ -1,6 +1,7 @@
 import { A, useNavigate, useParams } from "@solidjs/router";
 import {
   Accessor,
+  createEffect,
   createResource,
   createSignal,
   For,
@@ -18,11 +19,7 @@ import VideoLib from "~/components/VideoLib";
 
 const collectionData: PortfolioCollection[] = data;
 
-export function MainKeypoint({
-  data,
-  standalone,
-  reverse = false,
-}: {
+export function MainKeypoint(props: {
   data: PortfolioCollection;
   standalone?: boolean;
   reverse?: boolean;
@@ -31,29 +28,30 @@ export function MainKeypoint({
     <section class="z-1 w-full relative flex flex-col gap-18">
       <header class="z-1 flex flex-col gap-6 px-6 lg:px-0 text-black dark:text-white">
         <div
-          class={`text-black/20 w-full dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1${standalone ? " mb-6" : ""
-            }`}
+          class={`text-black/20 w-full dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1${
+            props.standalone ? " mb-6" : ""
+          }`}
         >
           <ContainerLabel>Project Highlight</ContainerLabel>
         </div>
-        <Show when={standalone}>
+        <Show when={props.standalone}>
           <div class="flex flex-col gap-18 py-18 lg:flex-row justify-center items-center w-full max-w-7xl mx-auto">
             <div class="flex flex-col gap-6 w-full">
               <A
-                href={`/projects?client=${slugify(data.clientName)}`}
+                href={`/projects?client=${slugify(props.data.clientName)}`}
                 class="w-full hover:opacity-50 def__animate"
               >
                 <img
-                  src={data.clientLogo}
+                  src={props.data.clientLogo}
                   class="not-dark:invert opacity-20 max-h-24 max-w-24"
                   loading="lazy"
                 />
               </A>
               <A
-                href={`/projects/${data.slug}`}
+                href={`/projects/${props.data.slug}`}
                 class="w-full hover:opacity-50 def__animate"
               >
-                <H1>{data.title}</H1>
+                <H1>{props.data.title}</H1>
               </A>
             </div>
             <div class="w-full flex flex-col gap-6 max-w-xl">
@@ -62,14 +60,14 @@ export function MainKeypoint({
                   <ContainerLabel>Objective</ContainerLabel>
                 </div>
                 <p class="text-left text-black dark:text-white">
-                  {data.projectObjective}
+                  {props.data.projectObjective}
                 </p>
               </div>
               <div
                 class="flex gap-1 justify-start items-center w-full overflow-x-auto scroll-smooth def__animate"
                 style="scrollbar-width: none;"
               >
-                <For each={data.tags}>
+                <For each={props.data.tags}>
                   {(tag) => {
                     return (
                       <Tag href={`/projects?tags=${tag.replace(" ", "+")}`}>
@@ -84,11 +82,12 @@ export function MainKeypoint({
         </Show>
       </header>
       <div
-        class={`z-1 w-full mx-auto flex flex-col ${!reverse ? "lg:flex-row" : "lg:flex-row-reverse"
-          } gap-12 justify-center items-center`}
+        class={`z-1 w-full mx-auto flex flex-col ${
+          !(props.reverse ?? false) ? "lg:flex-row" : "lg:flex-row-reverse"
+        } gap-12 justify-center items-center`}
       >
         <div class="w-full">
-          <Featured url={data.mainKeypointMedia} />
+          <Featured url={props.data.mainKeypointMedia} />
         </div>
         <article class="w-full lg:max-w-1/3 flex flex-col items-start justify-center">
           <div class="flex flex-col gap-6 px-6">
@@ -98,16 +97,22 @@ export function MainKeypoint({
                   <ContainerLabel>Strategy</ContainerLabel>
                 </div>
                 <p class="text-left text-black dark:text-white">
-                  {data.mainKeypointDescription}
+                  {props.data.mainKeypointDescription}
                 </p>
               </div>
               <div class="flex flex-col gap-1">
-                <Metric icon="/MA_Icons25_Lightbulb.svg">{data.mainKeypointMetricOne}</Metric>
-                <Metric icon="/MA_Icons25_Lightbulb.svg">{data.mainKeypointMetricTwo}</Metric>
+                <Metric icon="/MA_Icons25_Lightbulb.svg">
+                  {props.data.mainKeypointMetricOne}
+                </Metric>
+                <Metric icon="/MA_Icons25_Lightbulb.svg">
+                  {props.data.mainKeypointMetricTwo}
+                </Metric>
               </div>
-              <Show when={standalone}>
+              <Show when={props.standalone}>
                 <div class="w-fit py-3">
-                  <LinkButton href={`/projects/${data.slug}`}>See Project</LinkButton>
+                  <LinkButton href={`/projects/${props.data.slug}`}>
+                    See Project
+                  </LinkButton>
                 </div>
               </Show>
             </div>
@@ -129,15 +134,16 @@ export default function ProjectPage() {
     }
   }
 
-  const [project] = createResource(() => params.slug, findCollection);
+  const [project, { refetch }] = createResource(() => params.slug, findCollection);
+
+
   const [lightboxImg, setLighboxImg] = createSignal<string>();
 
 
-  onMount(() => {
-    if (!project()) navigate("/projects", { replace: true });
-
-
-
+  createEffect(() => {
+    if (project.state === "ready" && !project()) {
+      navigate("/projects", { replace: true });
+    }
   });
 
   return (

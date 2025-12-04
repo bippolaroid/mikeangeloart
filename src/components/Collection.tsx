@@ -173,6 +173,11 @@ export default function Collection({
     checkSortedData();
   });
 
+  // This effect updates sortedData based on the data prop
+  createEffect(() => {
+    checkSortedData();
+  }, [data]);
+
   // Moved out of onMount: React to changes in tagSort to update URL search params and parent state
   createEffect(() => {
     // searchParams and setSearchParams must be retrieved reactively inside the effect

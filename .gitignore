@@ -30,5 +30,3 @@ Thumbs.db
 .dev.vars*
 !.dev.vars.example
 !.env.example
-
-*.md
