@@ -70,12 +70,32 @@
 
 
  .intro-panel,
- .who-i-am {
+ figure {
    transition: all 500ms ease-out;
  }
 
+ figure::before {
+   content: "";
+   width: 40dvw;
+   position: absolute;
+   top: 12rem;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   transition: all 500ms ease-out;
+ }
+
+ figure::after {
+   content: "";
+   width: 40dvw;
+   position: absolute;
+   top: 12rem;
+   right: 0;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   transition: all 500ms ease-out;
+ }
+
+
  .intro-panel.scrolled,
- .who-i-am.scrolled {
+ figure.scrolled {
    filter: blur(10px);
    opacity: 0;
  }

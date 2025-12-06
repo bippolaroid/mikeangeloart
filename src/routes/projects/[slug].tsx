@@ -26,7 +26,7 @@ export function MainKeypoint(props: {
 }) {
   return (
     <section class="z-1 w-full max-w-7xl mx-auto">
-      <header class="w-full z-1 px-6 lg:px-0 text-black dark:text-white">
+      <header class="w-full z-1 text-black dark:text-white">
         <div
           class={`text-black/20 w-full dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1${!props.standalone ? " mb-6" : ""
             }`}
@@ -53,7 +53,7 @@ export function MainKeypoint(props: {
                 <H1>{props.data.title}</H1>
               </A>
             </div>
-            <div class="group max-w-xl flex flex-col gap-3 text-black dark:text-white w-full border border-neutral-100 dark:border-neutral-900 p-6 rounded-3xl">
+            <div class="group max-w-xl flex flex-col gap-3 text-black dark:text-white w-full border p-6 rounded-3xl dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] bg-neutral-100 dark:bg-neutral-900 border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
               <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
                 <ContainerLabel>Objective</ContainerLabel>
               </div>
@@ -84,8 +84,8 @@ export function MainKeypoint(props: {
         <div class="w-full max-w-5xl rounded-xl overflow-hidden">
           <Featured url={props.data.mainKeypointMedia} />
         </div>
-        <article class="max-w-5xl text-black dark:text-white w-fit dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] mx-auto rounded-3xl p-6 items-center flex gap-6 flex-col-reverse lg:flex-row bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
-          <div class="flex flex-col w-full h-fit justify-center gap-3 border border-neutral-200 dark:border-neutral-800 p-3 rounded-xl">
+        <article class="max-w-5xl text-black dark:text-white w-fit dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] mx-auto rounded-3xl p-6 items-center flex gap-6 flex-col-reverse lg:flex-row bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5">
+          <div class="flex flex-col w-full lg:w-fit min-w-72 justify-center gap-3 border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700 p-3 rounded-xl dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)]">
             <Metric icon="/MA_Icons25_Lightbulb.svg">
               {props.data.mainKeypointMetricOne}
             </Metric>
@@ -148,8 +148,8 @@ export default function ProjectPage() {
           class="-z-1 w-full object-cover scale-120 h-full fixed top-0 blur-xl"
           loading="eager"
         />
-        <div class="-z-1 w-full fixed h-screen dark:backdrop-saturate-100 backdrop-saturate-200 dark:bg-black mix-blend-overlay"></div>
-        <section class="h-full flex items-center bg-white/50 dark:bg-black/90">
+        <div class="-z-1 w-full fixed h-screen dark:backdrop-saturate-100 backdrop-saturate-200 dark:bg-neutral-950 mix-blend-overlay"></div>
+        <section class="h-full flex items-center bg-white/50 dark:bg-neutral-950/90">
           <article class="flex flex-col items-center w-full px-6">
             <div class="flex flex-col gap-6 items-center w-full py-36 max-w-3xl">
               <A
@@ -175,7 +175,7 @@ export default function ProjectPage() {
             </div>
           </article>
         </section>
-        <section class="bg-white dark:bg-black pb-18 lg:py-18 border-t border-b border-black/10 dark:border-white/10 px-6">
+        <section class="bg-white dark:bg-neutral-950 pb-18 lg:pb-36 lg:pt-18 border-t border-b border-black/10 dark:border-white/10 px-6">
           <div class="flex flex-col lg:flex-row gap-3 max-w-3xl mx-auto my-18 p-6 border border-neutral-100 dark:border-neutral-900 rounded-3xl">
             <div class="text-black/10 dark:text-white/10 not-lg:border-b lg:border-r border-black/10 dark:border-white/10 w-fit pr-2 py-1 h-fit">
               <ContainerLabel>Objective</ContainerLabel>
@@ -193,7 +193,7 @@ export default function ProjectPage() {
                 return (
                   <div class="w-full flex flex-col lg:flex-row gap-6 justify-between max-w-[1440px] mx-auto">
                     <div class="w-full flex items-center justify-center md:justify-start">
-                      <div class="max-w-lg dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] rounded-3xl p-6 flex flex-col gap-6 bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+                      <div class="max-w-lg dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] rounded-3xl p-6 flex flex-col gap-6 bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
                         <H2>{keypoint.title}</H2>
                         <p class="dark:text-white">{keypoint.description}</p>
                       </div>
@@ -238,7 +238,7 @@ const Metric = ({ children, icon }: { children: string; icon: string }) => {
       <div class="border border-black/50 dark:border-white/50 p-1 rounded-lg opacity-20">
         <img src={icon} loading="eager" class="w-8 h-8 dark:invert" />
       </div>
-      <span class="uppercase text-sm font-bold tracking-widest text-black/20 dark:text-white/20">
+      <span class="uppercase text-xs font-bold tracking-widest text-black/20 dark:text-white/20">
         {children}
       </span>
     </article>

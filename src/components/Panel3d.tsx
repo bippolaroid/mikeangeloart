@@ -5,7 +5,8 @@ import { onCleanup, onMount } from "solid-js";
 import { H2 } from "~/layout/Headings";
 
 export class SceneManager {
-  private renderer: three.WebGLRenderer | null = null;
+
+  #renderer: three.WebGLRenderer | null = null;
   private scene: three.Scene | null = null;
   private camera: three.PerspectiveCamera | null = null;
   private controls: OrbitControls | null = null;
@@ -15,6 +16,15 @@ export class SceneManager {
   private resizeHandler: (() => void) | null = null;
   private placeholder: HTMLElement | null = null;
   private container: HTMLElement | null = null;
+  _zoom: number;
+
+  constructor(zoom: number = 16) {
+    this._zoom = zoom;
+  }
+
+  get zoom() {
+    return this._zoom;
+  }
 
   dispose() {
     if (this.placeholder) {
@@ -37,10 +47,10 @@ export class SceneManager {
       this.controls.dispose();
       this.controls = null;
     }
-    if (this.renderer) {
-      this.renderer.dispose();
-      this.renderer.domElement.remove();
-      this.renderer = null;
+    if (this.#renderer) {
+      this.#renderer.dispose();
+      this.#renderer.domElement.remove();
+      this.#renderer = null;
     }
     if (this.scene) {
       this.scene.traverse((obj) => {
@@ -82,24 +92,24 @@ export class SceneManager {
     const height = element.offsetHeight;
     this.scene = new three.Scene();
     this.camera = new three.PerspectiveCamera(15, width / height, 0.1, 100);
-    this.camera.position.z = 16;
+    this.camera.position.z = this.zoom;
     this.controls = new OrbitControls(this.camera, element);
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
     this.controls.update();
-    this.renderer = new three.WebGLRenderer({ antialias: true, alpha: true });
-    this.renderer.setSize(width, height);
-    this.renderer.setClearColor(0x000000, 0);
-    this.renderer.toneMapping = three.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1;
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = three.PCFSoftShadowMap;
-    this.renderer.domElement.style.position = "absolute";
-    this.renderer.domElement.style.top = "0";
-    this.renderer.domElement.style.left = "0";
-    element.appendChild(this.renderer.domElement);
-    const pmrem = new three.PMREMGenerator(this.renderer);
+    this.#renderer = new three.WebGLRenderer({ antialias: true, alpha: true });
+    this.#renderer.setSize(width, height);
+    this.#renderer.setClearColor(0x000000, 0);
+    this.#renderer.toneMapping = three.ACESFilmicToneMapping;
+    this.#renderer.toneMappingExposure = 1;
+    this.#renderer.setPixelRatio(window.devicePixelRatio);
+    this.#renderer.shadowMap.enabled = true;
+    this.#renderer.shadowMap.type = three.PCFSoftShadowMap;
+    this.#renderer.domElement.style.position = "absolute";
+    this.#renderer.domElement.style.top = "0";
+    this.#renderer.domElement.style.left = "0";
+    element.appendChild(this.#renderer.domElement);
+    const pmrem = new three.PMREMGenerator(this.#renderer);
     new HDRLoader().load("/public/qwantani_night_puresky_4k.hdr", (hdr) => {
       const envMap = pmrem.fromEquirectangular(hdr).texture;
       if (this.scene) {
@@ -125,8 +135,6 @@ export class SceneManager {
           colorBottom: string
         ): three.Texture {
           const canvas = document.createElement("canvas");
-          canvas.width = 1;
-          canvas.height = 256;
           const ctx = canvas.getContext("2d")!;
           const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
           gradient.addColorStop(0, colorTop);
@@ -205,18 +213,18 @@ export class SceneManager {
   }
 
   handleResize(element: HTMLElement) {
-    if (!this.camera || !this.renderer) return;
+    if (!this.camera || !this.#renderer) return;
     const width = element.offsetWidth;
     const height = element.offsetHeight;
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
+    this.#renderer.setSize(width, height);
   }
 
   private animate = () => {
-    if (!this.renderer || !this.scene || !this.camera) return;
+    if (!this.#renderer || !this.scene || !this.camera) return;
     this.animationId = requestAnimationFrame(this.animate);
-    this.renderer.render(this.scene, this.camera);
+    this.#renderer.render(this.scene, this.camera);
   };
 }
 
@@ -224,7 +232,7 @@ export function init3dScene(
   wrapper: HTMLDivElement,
   data: string
 ): [SceneManager, IntersectionObserver] {
-  const sceneManager = new SceneManager();
+  const sceneManager = new SceneManager(8);
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {

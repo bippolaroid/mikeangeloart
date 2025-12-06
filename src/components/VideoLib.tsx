@@ -45,11 +45,11 @@ export default function VideoLib({ videos }: { videos: Video[] }) {
         <Show when={videoArray()}>
             <section class="justify-center w-full flex flex-col lg:flex-row items-center gap-6">
                 <iframe src={video()} class="aspect-video w-full lg:w-2/3 lg:max-w-2xl rounded-xl"></iframe>
-                <div class="w-full lg:w-1/3 relative bg-neutral-100 dark:bg-neutral-900 overflow-hidden rounded-3xl border dark:border-t-white dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] border-black/5 dark:border-white/5 text-black dark:text-white">
+                <div class="w-full max-w-120 relative bg-neutral-100 dark:bg-neutral-900 overflow-hidden rounded-3xl border dark:border-t-white dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] border-black/5 dark:border-white/5 text-black dark:text-white">
                     <div class="p-6 border-b border-black/10 dark:border-white/10">
                         <H2>Videos</H2>
                     </div>
-                    <ul class="relative overflow-auto divide-y divide-black/5 dark:divide-white/5 h-full max-h-72 w-full" style="scrollbar-width:none;">
+                    <ul class="relative overflow-auto divide-y divide-black/5 dark:divide-white/5 h-full max-h-60 w-full pb-36">
                         <For each={videoArray()}>
                             {(listVideo) => {
                                 console.log(listVideo);
@@ -66,7 +66,7 @@ export default function VideoLib({ videos }: { videos: Video[] }) {
                                     <li ref={selector} class="cursor-pointer hover:bg-black/2 dark:hover:bg-white/2 p-3 flex items-center gap-3"
                                         onClick={() => {
                                             setVideo(listVideo[0]);
-                                        }}><img class="rounded-xl aspect-4/3 w-24" src={`${listVideo[1].thumbnail_url}`} />
+                                        }}><img class="rounded-xl aspect-video w-24" src={`${listVideo[1].thumbnail_url}`} />
                                         <div class="flex flex-col">
                                             <h6>{listVideo[1].title}</h6>
                                             <p class="text-xs text-black/50 dark:text-white/50">{listVideo[1].author_name}</p>

@@ -24,7 +24,6 @@ export default function Home() {
   let roleChanger!: HTMLSpanElement;
   let wrapper3d!: HTMLDivElement;
   let videoPanel!: HTMLVideoElement;
-  let aboutPanel!: HTMLDivElement;
   let main!: HTMLDivElement;
 
   onMount(() => {
@@ -79,8 +78,6 @@ export default function Home() {
       threshold: 0.5,
     });
 
-    introObserver.observe(introPanel);
-
     const scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const target = entry.target as HTMLElement;
@@ -88,9 +85,6 @@ export default function Home() {
       });
 
     }, observerOptions);
-
-
-    scrollObserver.observe(aboutPanel);
 
     const videoObserver = new IntersectionObserver(
       (entries) => {
@@ -105,9 +99,7 @@ export default function Home() {
       { threshold: 0.5 }
     );
 
-    videoObserver.observe(introPanel);
-
-    const sceneManager = new SceneManager();
+    const sceneManager = new SceneManager(10);
     let resizeHandler: () => void;
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -124,7 +116,11 @@ export default function Home() {
         }
       });
     }, { threshold: 0.5 });
+
     observer.observe(wrapper3d);
+    introObserver.observe(introPanel);
+    scrollObserver.observe(wrapper3d);
+    videoObserver.observe(introPanel);
 
     onCleanup(() => {
       sceneManager.dispose();
@@ -143,7 +139,7 @@ export default function Home() {
   });
 
   return (
-    <main class="w-full relative flex flex-col justify-center items-center px-3 lg:px-6 pb-12 mb-12">
+    <main class="w-full relative flex flex-col justify-center items-center pb-12 mb-12">
       <video
         ref={videoPanel}
         src="/Comp_3.mp4"
@@ -154,7 +150,7 @@ export default function Home() {
         loop
         playsinline
       ></video>
-      <section class="mx-auto max-w-7xl overflow-hidden perspective-normal mix-blend-difference h-screen relative lg:pb-36 w-full flex justify-center items-center lg:items-end">
+      <section class="mx-auto max-w-7xl overflow-hidden perspective-normal mix-blend-difference h-screen lg:pb-36 w-full flex justify-center items-center lg:items-end">
         <article
           ref={introPanel}
           class="intro-panel px-6 fixed w-fit flex flex-col justify-center items-center md:flex-row gap-6"
@@ -179,36 +175,18 @@ export default function Home() {
           </div>
         </article>
       </section>
-      <section
-        ref={aboutPanel}
-        class="who-i-am mb-[50vh] border border-t border-black/10 dark:border-white/5 dark:border-t-white lg:mb-72 rounded-3xl bg-white dark:bg-black/90 w-fit lg:w-full lg:max-w-3xl mx-auto flex flex-col-reverse lg:flex-row justify-center items-center"
-      >
-        <figure
-          ref={wrapper3d}
-          class="hover:scale-95 min-h-72 mx-auto w-full def__animate cursor-grab"
-        ></figure>
-        <article class="flex flex-col justify-center items-center lg:items-start max-w-md rounded-xl px-12 lg:px-0 mt-18 lg:mb-18 lg:mr-6">
-          <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1 mb-3">
-            <ContainerLabel>What I Do</ContainerLabel>
-          </div>
-          <H2>
-            I like to make things look great, work well, and deliver results.
-          </H2>
-          <br />
-          <p class="text-lg dark:text-white text-black max-w-3xl lg:max-w-full">
-            Currently, I work with clients to create high-quality creative assets, engaging videos and social media content, and captivating website experiences.
-          </p>
-        </article>
-
-      </section>
-      <div ref={main} class="work-panel rounded-tl-3xl rounded-tr-3xl w-full flex flex-col border border-black/10 dark:border-white/5 dark:border-t-white bg-white dark:bg-black/90">
-        <section class="max-w-3xl mx-auto flex items-start text-black dark:text-white flex-col gap-3 py-18 lg:py-36 px-6">
-          <H1>Check out some of my work.</H1>
-          <p class="text-lg text-black dark:text-white">
+      <figure
+        ref={wrapper3d}
+        class="w-full h-full min-w-96 min-h-96 mb-72"
+      ></figure>
+      <div ref={main} class="work-panel w-full flex flex-col items-center border border-black/10 dark:border-white/5 bg-white dark:bg-neutral-950/90">
+        <section class="flex flex-col lg:flex-row justify-center items-center text-black dark:text-white gap-9 py-18 lg:py-36 px-18">
+          <H1>I make things <u>look good.</u></H1>
+          <p class="text-black dark:text-white max-w-xl mr-auto">
             I've worked on a variety of projects and campaigns that include digital display banners, paid social media advertising, social media content, editing and motion graphics work, and web design and development.
           </p>
         </section>
-        <div class="flex flex-col gap-36">
+        <div class="flex flex-col gap-36 pb-18 lg:pb-36 px-6 w-full">
           <MainKeypoint
             data={collectionData[0]}
             standalone={true}
@@ -228,7 +206,7 @@ export default function Home() {
           <Collection data={collectionData} />
         </div>
         <div class="border pb-18 lg:border border-black/5 dark:border-white/5 w-full rounded-bl-3xl rounded-br-3xl">
-          <section class="flex flex-col lg:flex-row gap-36 lg:gap-12 items-center px-3 md:px-12 lg:py-18 mx-auto lg:max-w-7xl w-full">
+          <section class="flex flex-col lg:flex-row gap-36 lg:gap-12 items-center px-3 md:px-12 lg:pt-18 mx-auto lg:max-w-7xl w-full">
             <div class="flex flex-col gap-6 lg:max-w-md px-9 md:px-6">
               <H1>Drop a line.</H1>
               <p class="text-black dark:text-white">
