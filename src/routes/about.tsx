@@ -224,13 +224,13 @@ export default function About() {
   onMount(() => {
 
     setWindows(prev => [...prev, {
-      label: "Logo", window: <Moveable label="Logo" noMobile={true} options={{ x: 1.4, y: 1.7 }}>
+      label: "Logo", window: <Moveable label="Logo" noMobile={true} options={{ x: 1.65, y: 4 }}>
         <div ref={wrapper3D} class="w-36 h-36 pointer-events-none"></div>
       </Moveable>
     }]);
 
     setWindows(prev => [...prev, {
-      label: "Identification", window: <Moveable label="Identification" options={{ x: 6, y: 8 }}>
+      label: "Identification", window: <Moveable label="Identification" options={{ x: 1.325, y: 2 }}>
         <img
           src={githubAvatar}
           class="w-18 h-18 rounded-3xl pointer-events-none object-cover"
@@ -239,16 +239,31 @@ export default function About() {
     }]);
 
     setWindows(prev => [...prev, {
-      label: "Profile Summary", window: <Moveable label="Profile Summary" options={{ x: 4, y: 6 }}>
+      label: "Profile Summary", window: <Moveable label="Profile Summary" options={{ x: 6, y: 8 }}>
         <Box>
-          <div class="flex flex-col gap-12 py-6">
-            <H1>Who Am I?</H1>
-            <div class="flex flex-col gap-6 border-t border-b border-black/10 dark:border-white/10 pt-6 max-h-[40vh] overflow-y-auto pr-6 mx-6 pb-12">
-              <p><strong class="text-2xl">I like </strong></p>
-              <div class="py-6 gap-6 w-full flex flex-col lg:flex-row justify-start items-start lg:items-center"><p>This is me building </p><img class="ring-2 ring-black/10 dark:ring-white/10 md:max-w-1/3 rounded-lg" src="/edited pc guitar me.jpg" /></div>
-              <p><strong class="text-2xl">I realized my passion wasn't just a hobby.</strong></p>
-              <p>Fast forward to today, and I’m still that kid. The motivation hasn't changed, but the love has deepened. Now, the fun is in the partnership: bringing people’s unique ideas to life.</p>
-              <p>I take pride in building and developing brands and campaigns from the ground up, delivering high-quality work that doesn't just look good, but leaves a lasting, measurable mark.</p>
+          <div class="flex flex-col gap-8">
+            <H1>About Me</H1>
+            <div class="flex flex-col gap-6 border-t border-b border-black/10 dark:border-white/10 pt-6 max-h-[40vh] overflow-y-auto pr-6 pb-6 mb-6">
+              <div class="py-6 gap-6 w-full flex flex-col lg:flex-row-reverse justify-start items-start lg:items-center">
+                <div class="flex flex-col gap-3">
+                  <p><strong class="text-2xl">How It Started</strong></p>
+                  <p>Immediately after my dad purchased our first family computer, I took it apart and broke it. It was so awesome. I got to see a processor, and I learned what "diskpart" did the hard way.</p>
+                </div>
+                <img class="ring-2 ring-black/10 dark:ring-white/10 md:max-w-1/3 rounded-lg" src="/edited pc guitar me.jpg" />
+              </div>
+              <div class="py-6 gap-6 w-full flex flex-col lg:flex-row justify-start items-start lg:items-center">
+                <div class="flex flex-col gap-3">
+                  <p><strong class="text-2xl">How It's Going</strong></p>
+                  <p>That same curiosity and persistance still exists today in a refined way - preferably without breaking things. I developed a passion for<strong> turning ideas into tangible, functional, and beautiful digital experiences.</strong></p>
+                </div>
+              </div>
+              <div class="py-6 gap-6 w-full flex flex-col lg:flex-row justify-start items-start lg:items-center">
+                <div class="flex flex-col gap-3">
+                  <p><strong class="text-2xl">Etc.</strong></p>
+                  <p>Away from screens (rare), I play a bit of guitar, attempt to skateboard, and stay endlessly fascinated by science, engineering, philosophy, and space.</p>
+                </div>
+                <img class="ring-2 ring-black/10 dark:ring-white/10 md:max-w-1/3 rounded-lg" src="/edited pc guitar me.jpg" />
+              </div>
             </div>
           </div>
         </Box>
@@ -256,7 +271,7 @@ export default function About() {
     }]);
 
     setWindows(prev => [...prev, {
-      label: "Alert", window: <Moveable label="Alert" options={{ x: 1.5, y: 5 }}>
+      label: "Alert", window: <Moveable label="Alert" options={{ x: 2, y: 1.5 }}>
         <Box>
           <div class="flex flex-col items-center gap-6">
             <p class="text-sm opacity-20">A resume has been detected.</p>

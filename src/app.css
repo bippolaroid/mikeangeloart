@@ -41,6 +41,7 @@
      outline: 3px solid rgba(25, 25, 25, 1);
      border: 1px solid #202020;
    }
+
  }
 
  @media (prefers-color-scheme: dark) {
@@ -102,4 +103,22 @@
 
  video {
    transition: opacity 500ms ease-out;
+ }
+
+ .look-good::before {
+   content: "look good.";
+   color: transparent;
+   position: absolute;
+   transform: translateY(-4px) translateX(-12px);
+   border-top: 2px solid var(--color-neutral-300);
+   border-radius: 18px;
+   padding: 6px 12px;
+   transition: all 150ms ease-out;
+   z-index: 0;
+   --tw-shadow: 0px -3px 12px -6px var(--tw-shadow-color, #a0a0a0);
+   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+ }
+
+ .dark .look-good::before {
+   border-top: 1px solid var(--color-neutral-50);
  }

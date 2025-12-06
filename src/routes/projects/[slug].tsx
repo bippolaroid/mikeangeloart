@@ -34,7 +34,7 @@ export function MainKeypoint(props: {
           <ContainerLabel>Project Highlight</ContainerLabel>
         </div>
         <Show when={props.standalone}>
-          <div class="flex flex-col lg:flex-row py-18 gap-18 justify-center items-center w-full max-w-7xl mx-auto">
+          <div class="flex flex-col lg:flex-row py-18 gap-18 justify-center items-center w-full max-w-5xl mx-auto">
             <div class="flex flex-col w-full">
               <A
                 href={`/projects?client=${slugify(props.data.clientName)}`}
@@ -53,7 +53,7 @@ export function MainKeypoint(props: {
                 <H1>{props.data.title}</H1>
               </A>
             </div>
-            <div class="group max-w-xl flex flex-col gap-3 text-black dark:text-white w-full border p-6 rounded-3xl dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] bg-neutral-100 dark:bg-neutral-900 border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+            <div class="group max-w-md flex flex-col gap-3 text-black dark:text-white w-full border p-6 rounded-3xl dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] bg-neutral-100 dark:bg-neutral-900 border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
               <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
                 <ContainerLabel>Objective</ContainerLabel>
               </div>

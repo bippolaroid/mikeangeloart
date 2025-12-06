@@ -143,7 +143,7 @@ export default function Home() {
       <video
         ref={videoPanel}
         src="/Comp_3.mp4"
-        class="w-full dark:-hue-rotate-90 not-dark:hue-rotate-45 not-dark:invert not-dark:brightness-200 -z-1 aspect-video object-cover h-screen mx-auto fixed top-0"
+        class="w-full dark:-hue-rotate-90 not-dark:hue-rotate-45 not-dark:invert not-dark:brightness-200 -z-10 aspect-video object-cover h-screen mx-auto fixed top-0"
         preload="metadata"
         muted
         autoplay
@@ -180,8 +180,8 @@ export default function Home() {
         class="w-full h-full min-w-96 min-h-96 mb-72"
       ></figure>
       <div ref={main} class="work-panel w-full flex flex-col items-center border border-black/10 dark:border-white/5 bg-white dark:bg-neutral-950/90">
-        <section class="flex flex-col lg:flex-row justify-center items-center text-black dark:text-white gap-9 py-18 lg:py-36 px-18">
-          <H1>I make things <u>look good.</u></H1>
+        <section class="flex flex-col lg:flex-row justify-center items-center text-black dark:text-white gap-18 py-18 lg:py-36 px-18">
+          <H1><span class="font-normal">I like to make things <span class="look-good font-semibold select-none px-3">look good.</span></span></H1>
           <p class="text-black dark:text-white max-w-xl mr-auto">
             I've worked on a variety of projects and campaigns that include digital display banners, paid social media advertising, social media content, editing and motion graphics work, and web design and development.
           </p>
