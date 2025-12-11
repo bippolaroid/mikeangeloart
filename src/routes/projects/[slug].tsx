@@ -16,102 +16,9 @@ import data from "../../db.json";
 import Collection, { PortfolioCollection } from "~/components/Collection";
 import VideoLib from "~/components/VideoLib";
 import VideoPlayer from "~/components/VideoPlayer";
+import { MainKeypoint } from "~/components/MainKeypoint";
 
 const collectionData: PortfolioCollection[] = data;
-
-export function MainKeypoint(props: {
-  data: PortfolioCollection;
-  standalone?: boolean;
-  reverse?: boolean;
-}) {
-  return (
-    <section class="z-1 w-full max-w-7xl mx-auto">
-      <header class="w-full z-1 text-black dark:text-white">
-        <div
-          class={`text-black/5 w-full dark:text-white/5 h-fit border-b border-b-black/5 dark:border-b-white/5 pb-1${!props.standalone ? " mb-6" : ""
-            }`}
-        >
-          <ContainerLabel>Project Highlight</ContainerLabel>
-        </div>
-        <Show when={props.standalone}>
-          <div class="flex flex-col py-18 gap-18 justify-center items-center w-full max-w-5xl mx-auto">
-            <div class="flex flex-col justify-center items-center w-full">
-              <div
-                class="w-full def__animate"
-              >
-                <img
-                  src={props.data.clientLogo}
-                  class="mx-auto not-dark:invert opacity-20 max-h-24 max-w-24"
-                  loading="lazy"
-                />
-              </div>
-              <A
-                href={`/projects/${props.data.slug}`}
-                class="w-full hover:opacity-50 def__animate text-center"
-              >
-                <H1>{props.data.title}</H1>
-              </A>
-            </div>
-            <div class="group max-w-3xl flex flex-col gap-3 text-black dark:text-white w-full border p-6 rounded-3xl dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] bg-neutral-100 dark:bg-neutral-900 border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
-              <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
-                <ContainerLabel>Objective</ContainerLabel>
-              </div>
-              <p class="text-left text-black dark:text-white">
-                {props.data.projectObjective}
-              </p>
-              <div
-                class="opacity-50 group-hover:opacity-100 flex gap-1 justify-start items-center w-full overflow-x-auto scroll-smooth def__animate"
-                style="scrollbar-width: none;"
-              >
-                <For each={props.data.tags}>
-                  {(tag) => {
-                    return (
-                      <Tag href={`/projects?tags=${tag.replace(" ", "+")}`}>
-                        {tag}
-                      </Tag>
-                    );
-                  }}
-                </For>
-              </div>
-            </div>
-          </div>
-        </Show>
-      </header>
-      <div
-        class={`z-1 w-full flex flex-col gap-18 justify-center items-center`}
-      >
-        <div class="w-full max-w-5xl rounded-xl overflow-hidden ring ring-neutral-200 dark:ring-neutral-900">
-          <VideoPlayer url={props.data.mainKeypointMedia} />
-        </div>
-        <article class="max-w-5xl text-black dark:text-white w-fit dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] mx-auto rounded-3xl p-6 items-center flex gap-6 flex-col-reverse lg:flex-row bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5">
-          <div class="flex flex-col w-full lg:w-fit min-w-72 justify-center gap-3 border border-neutral-200 bg-neutral-50 dark:bg-neutral-800 dark:border-neutral-700 p-3 rounded-xl dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)]">
-            <Metric icon="/MA_Icons25_Lightbulb.svg">
-              {props.data.mainKeypointMetricOne}
-            </Metric>
-            <Metric icon="/MA_Icons25_Lightbulb.svg">
-              {props.data.mainKeypointMetricTwo}
-            </Metric>
-          </div>
-          <div class="flex flex-col gap-3 justify-center">
-            <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
-              <ContainerLabel>Strategy</ContainerLabel>
-            </div>
-            <p class="text-left text-black dark:text-white">
-              {props.data.mainKeypointDescription}
-            </p>
-            <Show when={props.standalone}>
-              <div class="w-fit py-3">
-                <LinkButton href={`/projects/${props.data.slug}`}>
-                  See Project
-                </LinkButton>
-              </div>
-            </Show>
-          </div>
-        </article>
-      </div>
-    </section>
-  );
-}
 
 export default function ProjectPage() {
   const params = useParams();
@@ -181,7 +88,9 @@ export default function ProjectPage() {
               </p>
             </div>
             <section class="pb-18 lg:pt-18 lg:pb-36">
-              <MainKeypoint data={project()!} />
+              <Show when={project()} keyed>
+                {(p) => <MainKeypoint data={p} />}
+              </Show>
             </section>
             <section class="flex flex-col gap-6 lg:gap-18 border-t border-black/10 dark:border-white/10 py-18 lg:py-36">
               <For each={project()?.projectKeypoints}>
@@ -271,19 +180,6 @@ export default function ProjectPage() {
     </>
   );
 }
-
-const Metric = ({ children, icon }: { children: string; icon: string }) => {
-  return (
-    <article class="flex items-center gap-3">
-      <div class="border border-black/50 dark:border-white/50 p-1 rounded-lg opacity-20">
-        <img src={icon} loading="eager" class="w-8 h-8 dark:invert" />
-      </div>
-      <span class="uppercase text-xs font-bold tracking-widest text-black/20 dark:text-white/20">
-        {children}
-      </span>
-    </article>
-  );
-};
 
 const Lightbox = ({
   src,

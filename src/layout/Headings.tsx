@@ -8,6 +8,6 @@ export const H1 = (props: { children: JSX.Element }) => {
   );
 };
 
-export const H2 = ({ children }: { children: string }) => {
-  return <h2 class="font-semibold text-2xl text-black dark:text-white">{children}</h2>;
+export const H2 = (props: {children: JSX.Element }) => {
+  return <h2 class="font-semibold text-2xl text-black dark:text-white">{props.children}</h2>;
 };

@@ -5,7 +5,7 @@ import data from "../db.json";
 import Collection from "~/components/Collection";
 import { H1, H2 } from "~/layout/Headings";
 import { Button, ContainerLabel } from "~/layout/Cards";
-import { MainKeypoint } from "./projects/[slug]";
+import { MainKeypoint } from "~/components/MainKeypoint";
 
 const collectionData: PortfolioCollection[] = data;
 
@@ -134,20 +134,20 @@ export default function Home() {
           <div class="text-white/20 h-fit not-md:border-b md:border-r md:pr-2 pb-1">
             <ContainerLabel>Intro</ContainerLabel>
           </div>
-          <div class="flex flex-col gap-2 py-4 justify-center text-center md:text-left w-full max-w-3xl">
+          <div class="flex flex-col gap-6 py-4 justify-center text-center md:text-left w-full max-w-3xl">
             <span class="not-dark:invert">
               <H1>Hey! My name's Mike.</H1>
             </span>
-            <p class="lg:pb-3 invert text-4xl md:text-5xl tracking-tighter">
+            <H2>
               I'm{" "}
               <span
                 ref={roleChanger}
-                class="italic transition-opacity duration-100 ease-out"
+                class="font-normal italic transition-opacity duration-100 ease-out"
               >
                 an art director <br class="block md:hidden" />& web developer
               </span>
               .
-            </p>
+            </H2>
           </div>
         </article>
       </section>
@@ -184,7 +184,7 @@ export default function Home() {
           <Collection data={collectionData} />
         </div>
         <div class="pt-18 pb-36 lg:border-t lg:border-b border-t-neutral-200 dark:border-t-neutral-900 border-b-neutral-200 dark:border-b-neutral-900 w-full dark:bg-neutral-950">
-          <section class="flex flex-col lg:flex-row gap-18 items-center px-3 md:px-12 pt-18 mx-auto lg:max-w-7xl w-full">
+          <section class="flex flex-col lg:flex-row gap-18 items-center px-6 md:px-12 pt-18 mx-auto lg:max-w-7xl w-full">
             <div class="flex flex-col gap-6 lg:max-w-md px-6">
               <H1>Drop a line.</H1>
               <p class="text-black dark:text-white">

@@ -1,57 +1,62 @@
-# Project Overview
+# GEMINI.md
 
-This is a portfolio website for a design technologist named Mike. It showcases his projects and skills in a visually appealing and interactive way.
+## Project Overview
 
-## Technologies Used
+This is a portfolio website built with [SolidStart](https://start.solidjs.com/), a framework for the [SolidJS](https://www.solidjs.com/) UI library. The project uses [Tailwind CSS](https://tailwindcss.com/) for styling and [three.js](https://threejs.org/) for 3D graphics. The application is configured to be deployed to [Cloudflare Workers](https://workers.cloudflare.com/).
 
-*   **Framework:** [SolidJS](https://www.solidjs.com/) with [SolidStart](https://start.solidjs.com/)
-*   **Bundler:** [Vinxi](https://vinxi.dev/)
-*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-*   **3D Graphics:** [Three.js](https://threejs.org/)
-*   **Deployment:** [Cloudflare Workers](https://workers.cloudflare.com/)
+The website features a 3D logo, a video background, and a portfolio section. The portfolio data is stored in `src/db.json`. The main page is `src/routes/index.tsx`, which includes a contact form that submits to `web3forms`.
 
-## Architecture
+## Building and Running
 
-The application is a single-page application (SPA) with file-based routing. The main application component is in `src/app.tsx`, and the routes are defined in the `src/routes` directory. The project data is stored in a JSON file at `src/db.json`. Individual project pages are dynamically generated using the `src/routes/projects/[slug].tsx` file.
+### Development
 
-# Building and Running
-
-## Development
-
-To run the project in development mode, use the following command:
+To start the development server, run:
 
 ```bash
-bun run dev
+npm run dev
 ```
 
-## Build
+This will start a development server on `localhost:3000`.
 
-To build the project for production, use the following command:
+### Building
+
+To build the project for production, run:
 
 ```bash
-bun run build
+npm run build
 ```
 
-## Preview
+This will create a production build in the `dist` directory.
 
-To preview the production build locally, use the following command:
+### Running
+
+To run the production build, run:
 
 ```bash
-bun run preview
+npm run start
 ```
 
-## Deployment
+### Cloudflare Workers
 
-To deploy the project to Cloudflare Workers, use the following command:
+The project can be previewed and deployed to Cloudflare Workers using the following commands:
+
+**Preview:**
 
 ```bash
-bun run deploy
+npm run preview
 ```
 
-# Development Conventions
+**Deploy:**
 
-*   The project uses TypeScript.
-*   The project uses file-based routing.
-*   The project data is stored in a JSON file.
-*   The project uses Tailwind CSS for styling.
-*   The project uses Three.js for 3D graphics.
+```bash
+npm run deploy
+```
+
+## Development Conventions
+
+*   **File-based Routing:** The project uses file-based routing, with routes defined in the `src/routes` directory.
+*   **Components:** Reusable components are located in the `src/components` directory.
+*   **Layout:** The main layout is defined in `src/app.tsx`, with layout components in `src/layout`.
+*   **Styling:** The project uses Tailwind CSS for styling. Utility classes are used directly in the JSX.
+*   **3D:** 3D scenes are managed by the `SceneManager` class in `src/components/Panel3d.tsx`.
+*   **Data:** Portfolio data is stored in `src/db.json`.
