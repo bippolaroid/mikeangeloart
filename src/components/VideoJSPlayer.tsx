@@ -1,14 +1,11 @@
 import { onMount } from "solid-js";
 import videojs from "video.js";
 import 'video.js/dist/video-js.css';
+import { Video } from "./Collection";
 
-
-interface VideoJSPlayerProps {
-    url: string;
-}
-
-export default function VideoJSPlayer(props: VideoJSPlayerProps) {
+export default function VideoJSPlayer(props: {video: Video}) {
     let playerRef!: HTMLDivElement;
+
     onMount(() => {
         const videoEle = document.createElement("video-js");
         videoEle.classList.add('vjs-big-play-centered');
@@ -19,11 +16,20 @@ export default function VideoJSPlayer(props: VideoJSPlayerProps) {
             responsive: true,
             fluid: true,
             sources: [{
-                src: props.url,
+                src: props.video.url,
             }]
         };
-        videojs(videoEle, videoJsOptions);
-    })
+        if (!props.video.thumbnail) {
+            const thumbUrl = props.video.url.split("/").map((val, idx) => {
+                if (idx < 5) {
+                    return val;
+                }
+            }).join("/") + "/thumbnail-1-0.png";
+            props.video.thumbnail = thumbUrl
+        }
+        const player = videojs(videoEle, videoJsOptions);
+        player.poster(props.video.thumbnail);
+    });
     return (
         <div data-vjs-player>
             <div

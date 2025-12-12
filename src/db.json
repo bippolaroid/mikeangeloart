@@ -5,7 +5,7 @@
     "author": "Mike Angelo",
     "title": "Drone Drop Pop-up",
     "slug": "bahlsen-drone-drop-pop-up",
-    "cover": "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg",
+    "cover": "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/cover.jpg",
     "tags": [
       "Art Direction",
       "Experiential Marketing",
@@ -58,7 +58,8 @@
       {
         "title": "Drone Drop Recap",
         "client": "Bahlsen",
-        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69361d707d19d07028493efa/main.m3u8"
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69361d707d19d07028493efa/main.m3u8",
+        "thumbnail": "https://video.gumlet.io/693618f203bcee22ddeecad9/693622dc7d19d07028497caa/thumbnail-1-0.png?v=1765155603185"
       }
     ]
   },
@@ -112,23 +113,7 @@
         ]
       }
     ],
-    "projectVideos": [
-      {
-        "title": "Drone Drop Recap",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081725997"
-      },
-      {
-        "title": "Choco Leibniz Commercial",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081724183"
-      },
-      {
-        "title": "Pop-up Event Footage",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1084814449"
-      }
-    ]
+    "projectVideos": []
   },
   {
     "uuid": "2",
@@ -178,23 +163,7 @@
         ]
       }
     ],
-    "projectVideos": [
-      {
-        "title": "Drone Drop Recap",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081725997"
-      },
-      {
-        "title": "Choco Leibniz Commercial",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081724183"
-      },
-      {
-        "title": "Pop-up Event Footage",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1084814449"
-      }
-    ]
+    "projectVideos": []
   },
   {
     "uuid": "3",
@@ -245,23 +214,7 @@
         ]
       }
     ],
-    "projectVideos": [
-      {
-        "title": "Drone Drop Recap",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081725997"
-      },
-      {
-        "title": "Choco Leibniz Commercial",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081724183"
-      },
-      {
-        "title": "Pop-up Event Footage",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1084814449"
-      }
-    ]
+    "projectVideos": []
   },
   {
     "uuid": "4",
@@ -309,23 +262,7 @@
         ]
       }
     ],
-    "projectVideos": [
-      {
-        "title": "Drone Drop Recap",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081725997"
-      },
-      {
-        "title": "Choco Leibniz Commercial",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081724183"
-      },
-      {
-        "title": "Pop-up Event Footage",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1084814449"
-      }
-    ]
+    "projectVideos": []
   },
   {
     "uuid": "5",
@@ -372,23 +309,7 @@
         ]
       }
     ],
-    "projectVideos": [
-      {
-        "title": "Drone Drop Recap",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081725997"
-      },
-      {
-        "title": "Choco Leibniz Commercial",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081724183"
-      },
-      {
-        "title": "Pop-up Event Footage",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1084814449"
-      }
-    ]
+    "projectVideos": []
   },
   {
     "uuid": "6",
@@ -436,23 +357,7 @@
         ]
       }
     ],
-    "projectVideos": [
-      {
-        "title": "Drone Drop Recap",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081725997"
-      },
-      {
-        "title": "Choco Leibniz Commercial",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081724183"
-      },
-      {
-        "title": "Pop-up Event Footage",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1084814449"
-      }
-    ]
+    "projectVideos": []
   },
   {
     "uuid": "7",
@@ -500,22 +405,6 @@
         ]
       }
     ],
-    "projectVideos": [
-      {
-        "title": "Drone Drop Recap",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081725997"
-      },
-      {
-        "title": "Choco Leibniz Commercial",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1081724183"
-      },
-      {
-        "title": "Pop-up Event Footage",
-        "client": "Bahlsen",
-        "url": "https://player.vimeo.com/video/1084814449"
-      }
-    ]
+    "projectVideos": []
   }
 ]

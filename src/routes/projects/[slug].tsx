@@ -1,4 +1,4 @@
-import { A, useNavigate, useParams } from "@solidjs/router";
+import { useNavigate, useParams } from "@solidjs/router";
 import {
   Accessor,
   createEffect,
@@ -10,12 +10,11 @@ import {
   Setter,
   Show,
 } from "solid-js";
-import { Button, ContainerLabel, LinkButton, Tag } from "~/layout/Cards";
+import { Button, ContainerLabel, Tag } from "~/layout/Cards";
 import { H1, H2 } from "~/layout/Headings";
 import data from "../../db.json";
 import Collection, { PortfolioCollection } from "~/components/Collection";
 import VideoLib from "~/components/VideoLib";
-import VideoPlayer from "~/components/VideoPlayer";
 import { MainKeypoint } from "~/components/MainKeypoint";
 
 const collectionData: PortfolioCollection[] = data;
@@ -40,6 +39,15 @@ export default function ProjectPage() {
     }
   });
 
+  const [coverWebP, setCoverWebP] = createSignal<string>();
+
+  createEffect(() => {
+    if (project()?.cover.includes(".jpg")) {
+      const rawString = `${project()?.cover.split(".jpg")[0]}.webp`;
+      setCoverWebP(rawString);
+    }
+  })
+
   return (
     <>
       <main class="w-full">
@@ -47,11 +55,14 @@ export default function ProjectPage() {
           <Show when={lightboxImg()}>
             <Lightbox src={{ get: lightboxImg, set: setLighboxImg }} />
           </Show>
-          <img
-            src={project()?.cover}
-            class="-z-1 w-full object-cover scale-120 h-full fixed top-0 blur-xl"
-            loading="eager"
-          />
+          <picture>
+            <source srcset={coverWebP()} type="image/webp" />
+            <img
+              src={project()?.cover}
+              class="-z-1 w-full object-cover scale-120 h-full fixed top-0 blur-xl"
+              loading="eager"
+            />
+          </picture>
           <div class="-z-1 w-full fixed h-screen dark:backdrop-saturate-100 backdrop-saturate-200 dark:bg-neutral-950 mix-blend-overlay"></div>
           <section class="h-full flex items-center bg-white/50 dark:bg-neutral-950/90">
             <article class="flex flex-col items-center w-full px-6">
@@ -95,10 +106,31 @@ export default function ProjectPage() {
             <section class="flex flex-col gap-6 lg:gap-18 border-t border-black/10 dark:border-white/10 py-18 lg:py-36">
               <For each={project()?.projectKeypoints}>
                 {(keypoint) => {
+                  let boxRef!: HTMLDivElement;
+
+                  onMount(() => {
+                    if (!boxRef) return;
+
+                    const observer = new IntersectionObserver(
+                      ([entry], observer) => {
+                        boxRef.classList.toggle("scrolled", !entry.isIntersecting);
+                        if (entry.isIntersecting) observer.disconnect();
+                      },
+                      {
+                        root: null,
+                        rootMargin: "0px",
+                        threshold: 0.5
+                      }
+                    );
+
+                    observer.observe(boxRef);
+
+                    onCleanup(() => observer.disconnect());
+                  });
                   return (
                     <div class="w-full flex flex-col lg:flex-row gap-6 justify-between max-w-[1440px] mx-auto">
                       <div class="w-full flex items-start justify-center md:justify-start">
-                        <div class="max-w-lg dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] rounded-3xl p-6 flex flex-col gap-6 bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
+                        <div ref={boxRef} class="transition duration-500 max-w-lg dark:shadow-[0px_9px_18px_0px_rgb(0,0,0,0.25)] rounded-3xl p-6 flex flex-col gap-6 bg-neutral-100 dark:bg-neutral-900 border border-black/10 dark:border-white/5 dark:border-t dark:border-t-white">
                           <H2>{keypoint.title}</H2>
                           <p class="dark:text-white">{keypoint.description}</p>
                         </div>

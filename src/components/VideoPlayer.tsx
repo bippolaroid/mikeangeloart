@@ -1,26 +1,23 @@
+import { Video } from "./Collection";
 import VideoJSPlayer from "./VideoJSPlayer";
 
-interface VideoPlayerProps {
-    url: string;
-}
-
-export default function VideoPlayer(props: VideoPlayerProps) {
-    if (props.url.includes("vimeo")) {
+export default function VideoPlayer(props: { video: Video }) {
+    if (props.video.url.includes("vimeo")) {
         return (
             <iframe
-                src={props.url}
+                src={props.video.url}
                 class="aspect-video w-full"
                 allow="fullscreen"
             ></iframe>
         )
-    } else if (props.url.includes("gumlet")) {
+    } else if (props.video.url.includes("gumlet")) {
         return (
-            <VideoJSPlayer url={props.url} />
+            <VideoJSPlayer video={props.video} />
         )
     } else {
         return (
             <img
-                src={props.url}
+                src={props.video.url}
                 class="object-cover w-full"
             />
         )

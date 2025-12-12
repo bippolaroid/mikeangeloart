@@ -45,6 +45,7 @@ export interface Video {
   title: string;
   client: string;
   url: string;
+  thumbnail: string;
 }
 
 function CollectionRow({ children }: { children: JSXElement }) {

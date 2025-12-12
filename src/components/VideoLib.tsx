@@ -3,7 +3,7 @@ import { Video } from "./Collection";
 import { H2 } from "~/layout/Headings";
 import VideoPlayer from "./VideoPlayer";
 
-interface VimeoOEmbedVideo {
+export interface VimeoOEmbedVideo {
     type: 'video';
     version: '1.0';
     provider_name: string;
@@ -33,7 +33,7 @@ interface VideoLibProps {
 
 export default function VideoLib(props: VideoLibProps) {
     const [videoArray, { refetch }] = createResource(getVideoInfo);
-    const [video, setVideo] = createSignal(props.videos[0].url);
+    const [video, setVideo] = createSignal(props.videos[0]);
 
     async function getVideoInfo() {
         const results = await Promise.all(
@@ -57,12 +57,8 @@ export default function VideoLib(props: VideoLibProps) {
 
     return (
         <Show when={videoArray()}>
-            <section class="justify-center w-full flex flex-col lg:flex-row items-center gap-6 pb-36 pt-18 md:pt-0">
-                <div class="w-full lg:w-2/3 lg:max-w-2xl rounded-xl overflow-hidden">
-                    <Show when={video()} keyed>
-                        <VideoPlayer url={video()} />
-                    </Show>
-                </div>
+            <section class="justify-center w-full flex flex-col-reverse lg:flex-row items-center gap-6 pb-36 pt-18 md:pt-0">
+
                 <div class="w-full max-w-120 relative bg-neutral-100 dark:bg-neutral-900 overflow-hidden rounded-3xl border dark:border-t-white dark:shadow-[0px_-18px_18px_-18px_rgba(255,255,255,0.5)] border-black/5 dark:border-white/5 text-black dark:text-white">
                     <div class="p-6 border-b border-black/10 dark:border-white/10">
                         <H2>Videos</H2>
@@ -73,7 +69,7 @@ export default function VideoLib(props: VideoLibProps) {
                                 let selector!: HTMLLIElement;
                                 createEffect(() => {
 
-                                    if (video() === listVideo.url) {
+                                    if (video().url === listVideo.url) {
                                         selector.classList.add("bg-black/5", "dark:bg-white/5")
                                     } else {
                                         selector.classList.remove("bg-black/5", "dark:bg-white/5")
@@ -82,7 +78,7 @@ export default function VideoLib(props: VideoLibProps) {
                                 return (
                                     <li ref={selector} class="cursor-pointer hover:bg-black/2 dark:hover:bg-white/2 p-3 flex items-center gap-3"
                                         onClick={() => {
-                                            setVideo(listVideo.url);
+                                            setVideo(listVideo);
                                         }}><img class="rounded-xl aspect-video w-24" src={`${listVideo.thumbnail}`} />
                                         <div class="flex flex-col">
                                             <h6>{listVideo.title}</h6>
@@ -94,6 +90,11 @@ export default function VideoLib(props: VideoLibProps) {
                         </For>
                     </ul>
                     <div class="pointer-events-none absolute inset-0 rounded-3xl bg-linear-to-b from-transparent from-50% to-black/10 dark:to-black" />
+                </div>
+                <div class="w-full lg:w-2/3 lg:max-w-2xl rounded-xl overflow-hidden">
+                    <Show when={video()} keyed>
+                        <VideoPlayer video={video()} />
+                    </Show>
                 </div>
             </section>
         </Show>
