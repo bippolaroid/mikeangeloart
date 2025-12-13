@@ -3,7 +3,7 @@ import videojs from "video.js";
 import 'video.js/dist/video-js.css';
 import { Video } from "./Collection";
 
-export default function VideoJSPlayer(props: {video: Video}) {
+export default function VideoJSPlayer(props: { video: Video }) {
     let playerRef!: HTMLDivElement;
 
     onMount(() => {

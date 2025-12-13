@@ -54,14 +54,7 @@
         ]
       }
     ],
-    "projectVideos": [
-      {
-        "title": "Drone Drop Recap",
-        "client": "Bahlsen",
-        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69361d707d19d07028493efa/main.m3u8",
-        "thumbnail": "https://video.gumlet.io/693618f203bcee22ddeecad9/693622dc7d19d07028497caa/thumbnail-1-0.png?v=1765155603185"
-      }
-    ]
+    "projectVideos": []
   },
   {
     "uuid": "1",
@@ -69,7 +62,7 @@
     "author": "Mike Angelo",
     "title": "Loopwell: The Space for Well-being",
     "slug": "loopwell-the-space-for-well-being",
-    "cover": "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg",
+    "cover": "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/cover.webp",
     "tags": [
       "Art Direction",
       "Brand Development",
@@ -121,7 +114,7 @@
     "author": "Mike Angelo",
     "title": "Mercedes-Benz Marketing",
     "slug": "benzel-busch-mercedes-benz-marketing",
-    "cover": "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg",
+    "cover": "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/benzel-busch-mercedes-benz-marketing/cover.jpg",
     "tags": [
       "Art Direction",
       "Website Development",
@@ -136,7 +129,7 @@
     "clientName": "Benzel-Busch",
     "clientLogo": "https://cdn.mikeangelo.art/client-logos/MA_25-26-Website_ClientIcons_250x250_Bahlsen_white.png",
     "projectObjective": "Benzel-Busch is the premier Mercedes-Benz and Genesis dealer in North Jersey. Known for their exceptional customer service and unique marketing incentives, they naturally needed automotive advertising that stood out from the noise.",
-    "mainKeypointMedia": "https://player.vimeo.com/video/1081725997",
+    "mainKeypointMedia": "https://video.gumlet.io/693618f203bcee22ddeecad9/693cb2927ada4a2333072e24/main.m3u8",
     "mainKeypointMetricOne": "+20% Website Visits YoY",
     "mainKeypointMetricTwo": "+60% Increase in Sales",
     "mainKeypointDescription": "We delivered numerous award-winning campaigns, commercials, and marketing materials that leveraged Benzel-Busch's outstanding service and unique sales experience, continuing to drive traffic both online and in-store.",
@@ -163,7 +156,26 @@
         ]
       }
     ],
-    "projectVideos": []
+    "projectVideos": [
+      {
+        "title": "Sales",
+        "client": "Benzel-Busch",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/693cb2927ada4a2333072e2a/main.m3u8",
+        "thumbnail": ""
+      },
+      {
+        "title": "Valet",
+        "client": "Benzel-Busch",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/693cb2923cf0cd39b966164f/main.m3u8",
+        "thumbnail": ""
+      },
+      {
+        "title": "Service",
+        "client": "Benzel-Busch",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/693cb2923cf0cd39b9661649/main.m3u8",
+        "thumbnail": ""
+      }
+    ]
   },
   {
     "uuid": "3",

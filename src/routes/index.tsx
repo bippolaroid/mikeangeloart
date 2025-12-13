@@ -21,10 +21,8 @@ function scrollHandler(target: HTMLElement) {
 
 export default function Home() {
   let introPanel!: HTMLDivElement;
-  let roleChanger!: HTMLSpanElement;
   let wrapper3d!: HTMLDivElement;
   let videoPanel!: HTMLVideoElement;
-  let main!: HTMLDivElement;
 
   onMount(() => {
     const observerOptions = {
@@ -134,24 +132,20 @@ export default function Home() {
           <div class="text-white/20 h-fit not-md:border-b md:border-r md:pr-2 pb-1">
             <ContainerLabel>Intro</ContainerLabel>
           </div>
-          <div class="flex flex-col gap-6 py-4 justify-center text-center md:text-left w-full max-w-3xl">
-            <span class="not-dark:invert">
-              <H1>Hey! My name's Mike.</H1>
-            </span>
+          <div class="not-dark:invert flex flex-col gap-6 py-4 justify-center text-center md:text-left w-full max-w-3xl">
+            <H1>Hey! My name's Mike.</H1>
             <H2>
-              I'm{" "}
               <span
-                ref={roleChanger}
                 class="font-normal italic transition-opacity duration-100 ease-out"
               >
-                an art director <br class="block md:hidden" />& web developer
+                I'm an art director <br class="block md:hidden" />& web developer
               </span>
               .
             </H2>
           </div>
         </article>
       </section>
-      <div ref={main} class="work-panel w-full flex flex-col items-center border-t border-b border-neutral-200 dark:border-neutral-900 bg-white/95 dark:bg-black/80 backdrop-blur-3xl">
+      <div class="work-panel w-full flex flex-col items-center border-t border-b border-neutral-200 dark:border-neutral-900 bg-white/95 dark:bg-black/80 backdrop-blur-3xl">
         <section class="flex flex-col justify-center items-center text-black dark:text-white pt-18 pb-36 px-12 max-w-7xl">
           <div class="flex flex-col justify-center items-center">
             <figure

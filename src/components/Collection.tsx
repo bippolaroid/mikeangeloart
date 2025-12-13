@@ -92,14 +92,14 @@ function CollectionCell({
         />
       </A>
       <div
-        class="group-hover/card:opacity-100 opacity-0 z-1 p-1 top-0 rounded-xl def__animate w-12 h-12 flex justify-center items-center m-6 absolute backdrop-blur backdrop-brightness-150 dark:backdrop-brightness-25 pointer-events-none"
+        class="group-hover/card:opacity-100 opacity-0 z-1 p-1 top-0 rounded-xl def__animate w-12 h-12 flex justify-center items-center m-6 absolute backdrop-blur bg-white/30 dark:bg-black/30 backdrop-brightness-150 dark:backdrop-brightness-25 pointer-events-none"
       >
         <img
           src={data.clientLogo}
           class="invert dark:invert-0 aspect-auto max-h-6"
         />
       </div>
-      <div class="min-h-30 lg:min-h-12 justify-center lg:rounded-3xl w-full lg:w-auto lg:inset-x-3 flex flex-col gap-2 def__animate group/tag group-hover/card:opacity-100 p-6 lg:opacity-0 absolute bottom-0 lg:bottom-3 z-1 mx-auto backdrop-blur-xl backdrop-brightness-140 dark:backdrop-brightness-25">
+      <div class="min-h-30 lg:min-h-12 justify-center lg:rounded-3xl w-full lg:w-auto lg:inset-x-3 flex flex-col gap-2 def__animate group/tag group-hover/card:opacity-100 p-6 lg:opacity-0 absolute bottom-0 lg:bottom-3 z-1 bg-white/50 dark:bg-black/30 mx-auto backdrop-blur-xl backdrop-brightness-140 dark:backdrop-brightness-25">
         <header class="flex flex-col">
           <A
             href={`/projects?client=${data.clientName}`}
@@ -237,7 +237,7 @@ export default function Collection({
   return (
     <section class="z-1 py-18 mx-auto">
       <Show when={enableSearch}>
-        <div class="bg-white dark:bg-black/90 border border-black/10 dark:border-white/10 z-2 mt-6 lg:mt-9 p-3 md:rounded-xl flex items-center justify-between fixed not-md:w-full md:inset-x-[5vw] xl:inset-x-[15vw] 2xl:inset-x-[25vw]">
+        <div class="bg-neutral-100 dark:bg-neutral-900 border-t border-b md:border border-neutral-200 dark:border-neutral-950 z-2 mt-6 lg:mt-9 p-1 md:rounded-xl flex items-center justify-between fixed not-md:w-full md:inset-x-[5vw] xl:inset-x-[15vw] 2xl:inset-x-[25vw]">
           <div class="flex gap-3 items-center justify-between w-full">
             <div class="flex relative pr-3 border-r border-r-black/10 dark:border-r-white/10">
               <button
@@ -260,7 +260,7 @@ export default function Collection({
                     {(tag) => {
                       return (
                         <span
-                          class="mx-3 px-3 rounded-lg py-1.5 hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer"
+                          class="mx-3 px-3 rounded-lg py-1 hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer"
                           onclick={() => {
                             if (!tagSort().includes(tag)) {
                               setTagSort([...tagSort(), tag]);
@@ -279,7 +279,7 @@ export default function Collection({
                 </div>
               </div>
             </div>
-            <div class="w-full items-center justify-start flex gap-3 overflow-x-auto" style="scrollbar-width: none;">
+            <div class="w-full items-center justify-start flex gap-1 overflow-x-auto" style="scrollbar-width: none;">
               <For each={tagSort()}>
                 {(tag) => (
                   <Tag

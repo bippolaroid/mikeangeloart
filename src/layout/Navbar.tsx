@@ -1,5 +1,6 @@
 import { A } from "@solidjs/router";
 import { createEffect, createSignal, For, onMount, Show } from "solid-js";
+import ThemeToggle from "~/components/ThemeToggle";
 
 let links = [
   {
@@ -18,37 +19,6 @@ export default function Navbar() {
   let desktopMenu!: HTMLDivElement;
   let mobileMenuIcon!: HTMLDivElement;
 
-  const [darkMode, setDarkMode] = createSignal(false);
-
-  function checkDarkMode() {
-    if (document.documentElement.classList.contains("dark")) {
-      setDarkMode(true);
-    } else {
-      setDarkMode(false);
-    }
-  }
-
-  const ThemeToggle = () => {
-    return (
-      <span
-        class="cursor-pointer select-none invert"
-        onClick={(e) => {
-          if (darkMode()) {
-            e.target.innerHTML = "☀️";
-            document.documentElement.classList.remove("dark");
-            setDarkMode(false);
-          } else {
-            e.target.innerHTML = "🌙";
-            document.documentElement.classList.add("dark");
-            setDarkMode(true);
-          }
-        }}
-      >
-        {darkMode() ? "🌙" : "☀️"}
-      </span>
-    )
-  }
-
   const [showMobileMenu, setShowMobileMenu] = createSignal(false);
 
   function toggleMobileMenu() {
@@ -56,20 +26,10 @@ export default function Navbar() {
   }
 
   createEffect(() => {
-    checkDarkMode();
-    if (showMobileMenu()) {
-      document.body.style.overflow = "hidden";
-      document.addEventListener("click", toggleMobileMenu)
-    } else {
-      document.body.style.overflow = "auto";
-      document.removeEventListener("click", toggleMobileMenu)
-
-    }
+    document.body.classList.toggle("overflow-hidden", showMobileMenu())
   })
 
   onMount(() => {
-    checkDarkMode();
-
     const classNamesOnScroll = [
       "backdrop-blur-xl",
       "backdrop-brightness-120",
@@ -95,20 +55,6 @@ export default function Navbar() {
       }
     });
 
-    function handleResize() {
-      const { innerWidth } = window;
-
-      if (innerWidth < 768) {
-        desktopMenu.style.display = "none";
-        mobileMenuIcon.style.display = "block";
-      } else {
-        desktopMenu.style.display = "flex";
-        mobileMenuIcon.style.display = "none";
-      }
-    }
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
   });
   return (
     <>
@@ -126,7 +72,7 @@ export default function Navbar() {
               Angelo
             </span>
           </A>
-          <div ref={desktopMenu} class="gap-6 items-center">
+          <div ref={desktopMenu} class="hidden lg:flex gap-6 items-center">
             <ul class="flex gap-6 items-center">
               <For each={links}>
                 {(link) => {
@@ -138,9 +84,11 @@ export default function Navbar() {
                 }}
               </For>
             </ul>
-            <ThemeToggle />
+            <ThemeToggle onClick={() => {
+              setShowMobileMenu(false);
+            }} />
           </div>
-          <div ref={mobileMenuIcon} class="bg-white rounded-lg cursor-pointer hover:scale-105 def__animate hidden text-3xl text-black pb-2 mb-1 px-3" onClick={() => {
+          <div ref={mobileMenuIcon} class="bg-white rounded-lg cursor-pointer hover:scale-105 def__animate lg:hidden text-3xl text-black pb-2 mb-1 px-3" onClick={() => {
             toggleMobileMenu();
           }}>
             ⩩
@@ -155,13 +103,19 @@ export default function Navbar() {
                 {(link) => {
                   return (
                     <li class="hover:brightness-50 text-4xl text-black dark:text-white def__animate">
-                      <A href={link.url}>{link.label}</A>
+                      <A href={link.url} onClick={() => {
+                        if (showMobileMenu()) {
+                          setShowMobileMenu(false);
+                        }
+                      }}>{link.label}</A>
                     </li>
                   );
                 }}
               </For>
             </ul>
-            <ThemeToggle />
+            <ThemeToggle onClick={() => {
+              setShowMobileMenu(false);
+            }} />
           </div></div>
       </Show>
     </>

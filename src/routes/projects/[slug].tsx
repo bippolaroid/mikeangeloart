@@ -42,28 +42,48 @@ export default function ProjectPage() {
   const [coverWebP, setCoverWebP] = createSignal<string>();
 
   createEffect(() => {
-    if (project()?.cover.includes(".jpg")) {
-      const rawString = `${project()?.cover.split(".jpg")[0]}.webp`;
-      setCoverWebP(rawString);
+    const p = project();
+    if (!p) return;
+
+    if (p.cover.endsWith(".jpg") || p.cover.endsWith(".jpeg")) {
+      const base = p.cover.replace(/\.(jpg|jpeg)$/i, "");
+      setCoverWebP(`${base}.webp`);
+    } else {
+      setCoverWebP("");
     }
-  })
+  });
+
+  const Media = (props: { jpeg: string; webp?: string }) => {
+    return (
+      <picture>
+        <Show when={props.webp}>
+          <source srcset={props.webp} type="image/webp" />
+        </Show>
+        <img
+          src={props.jpeg}
+          class="-z-1 w-full object-cover scale-120 h-full fixed top-0 blur-xl"
+          loading="eager"
+        />
+      </picture>
+    );
+  };
 
   return (
     <>
       <main class="w-full">
-        <Show when={project()} fallback={<div>Loading</div>}>
+        <Show when={project()} fallback={<div>Loading</div>} keyed>
           <Show when={lightboxImg()}>
             <Lightbox src={{ get: lightboxImg, set: setLighboxImg }} />
           </Show>
-          <picture>
-            <source srcset={coverWebP()} type="image/webp" />
-            <img
-              src={project()?.cover}
-              class="-z-1 w-full object-cover scale-120 h-full fixed top-0 blur-xl"
-              loading="eager"
-            />
-          </picture>
-          <div class="-z-1 w-full fixed h-screen dark:backdrop-saturate-100 backdrop-saturate-200 dark:bg-neutral-950 mix-blend-overlay"></div>
+          <Show when={project()?.cover} keyed>
+            {p => (
+              <Media
+                jpeg={p}
+                webp={coverWebP() || undefined}
+              />
+            )}
+          </Show>
+          <div class="-z-1 w-full fixed h-screen dark:backdrop-brightness-150 backdrop-saturate-200 bg-white mix-blend-soft-light"></div>
           <section class="h-full flex items-center bg-white/50 dark:bg-neutral-950/90">
             <article class="flex flex-col items-center w-full px-6">
               <div class="flex flex-col gap-6 items-center w-full py-36 max-w-3xl">
