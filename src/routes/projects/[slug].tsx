@@ -202,7 +202,7 @@ export default function ProjectPage() {
                                     setLighboxImg(`${filename()}.webp`);
                                   }} />
                                   <img
-                                    class="w-full h-auto aspect-auto rounded-xl max-w-xl hover:brightness-105 hover:saturate-125 def__animate cursor-pointer"
+                                    class="border border-neutral-100 dark:border-neutral-900 w-full h-auto aspect-auto rounded-xl max-w-xl hover:brightness-105 hover:saturate-125 def__animate cursor-pointer"
                                     onClick={() => {
                                       setLighboxImg(media);
                                     }}
@@ -240,10 +240,25 @@ const Lightbox = ({
 }) => {
   let imgRef!: HTMLImageElement;
 
+  function clickHandler(e: PointerEvent) {
+    const target = e.target;
+    if (target !== imgRef) {
+      src.set();
+    }
+  }
+
+  onMount(() => {
+    document.addEventListener("click", clickHandler)
+    onCleanup(() => {
+      document.removeEventListener("click", clickHandler)
+    })
+  }
+  )
+
   return (
-    <div class="z-10 fixed w-screen h-screen flex justify-center items-center dark:bg-black/98">
-      <div class="w-full max-w-3xl mx-auto pt-[5vh] flex flex-col items-center gap-3">
-        <img ref={imgRef} class="w-full" src={src.get()} />
+    <div class="z-10 fixed w-screen h-screen flex justify-center items-center bg-white/98 dark:bg-black/98">
+      <div class="w-full pt-[5vh] flex flex-col items-center gap-3">
+        <img ref={imgRef} class="max-h-[75dvh]" src={src.get()} />
         <Button
           type="button"
           onClick={() => {
