@@ -1,21 +1,20 @@
 import { useNavigate, useParams } from "@solidjs/router";
 import {
-  Accessor,
   createEffect,
   createResource,
   createSignal,
   For,
   onCleanup,
   onMount,
-  Setter,
   Show,
 } from "solid-js";
-import { Button, ContainerLabel, Tag } from "~/layout/Cards";
+import { ContainerLabel, Tag } from "~/layout/Cards";
 import { H1, H2 } from "~/layout/Headings";
 import data from "../../db.json";
 import Collection, { PortfolioCollection } from "~/components/Collection";
 import VideoLib from "~/components/VideoLib";
 import { MainKeypoint } from "~/components/MainKeypoint";
+import { Lightbox } from "~/components/Lightbox";
 
 const collectionData: PortfolioCollection[] = data;
 
@@ -29,7 +28,7 @@ export default function ProjectPage() {
     }
   }
 
-  const [project, { refetch }] = createResource(() => params.slug, findCollection);
+  const [project] = createResource(() => params.slug, findCollection);
 
   const [lightboxImg, setLighboxImg] = createSignal<string>();
 
@@ -52,6 +51,10 @@ export default function ProjectPage() {
       setCoverWebP("");
     }
   });
+
+  createEffect(() => {
+    document.body.classList.toggle("overflow-hidden", lightboxImg() ? true : false)
+  })
 
   const Media = (props: { jpeg: string; webp?: string }) => {
     return (
@@ -192,7 +195,9 @@ export default function ProjectPage() {
                             if (media.includes("mp4")) {
                               return (
                                 <>
-                                  <video ref={keypointMedia as HTMLVideoElement} src={media} autoplay muted loop class="border border-neutral-100 dark:border-neutral-900 rounded-xl aspect-auto" />
+                                  <video ref={keypointMedia as HTMLVideoElement} src={media} autoplay muted loop class="border border-neutral-100 dark:border-neutral-900 rounded-xl aspect-auto cursor-pointer" onClick={() => {
+                                    setLighboxImg(media);
+                                  }} />
                                 </>
                               )
                             } else {
@@ -233,41 +238,3 @@ export default function ProjectPage() {
   );
 }
 
-const Lightbox = ({
-  src,
-}: {
-  src: { get: Accessor<string | undefined>; set: Setter<string | undefined> };
-}) => {
-  let imgRef!: HTMLImageElement;
-
-  function clickHandler(e: PointerEvent) {
-    const target = e.target;
-    if (target !== imgRef) {
-      src.set();
-    }
-  }
-
-  onMount(() => {
-    document.addEventListener("click", clickHandler)
-    onCleanup(() => {
-      document.removeEventListener("click", clickHandler)
-    })
-  }
-  )
-
-  return (
-    <div class="z-10 fixed w-screen h-screen flex justify-center items-center bg-white/98 dark:bg-black/98">
-      <div class="w-full pt-[5vh] flex flex-col items-center gap-3">
-        <img ref={imgRef} class="max-h-[75dvh]" src={src.get()} />
-        <Button
-          type="button"
-          onClick={() => {
-            src.set();
-          }}
-        >
-          Close
-        </Button>
-      </div>
-    </div>
-  );
-};
