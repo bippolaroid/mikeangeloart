@@ -1,5 +1,6 @@
 import {
   createEffect,
+  createResource,
   createSignal,
   For,
   JSXElement,
@@ -13,7 +14,7 @@ import { H1, H2 } from "~/layout/Headings";
 import { fetchGithubAvatar } from ".";
 import { fetchGithubInfo, GitHubUser } from "~/hooks";
 
-const githubAvatar = await fetchGithubAvatar();
+const [githubAvatar] = createResource<string>(fetchGithubAvatar);
 
 const taskbarIcons = [
   {
@@ -268,7 +269,7 @@ export default function About() {
             options={{ x: 1.325, y: 2 }}
           >
             <img
-              src={githubAvatar}
+              src={githubAvatar()}
               class="w-18 h-18 rounded-3xl pointer-events-none object-cover"
             />
           </Moveable>
