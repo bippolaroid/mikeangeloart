@@ -110,7 +110,7 @@ export class SceneManager {
     this.#renderer.domElement.style.left = "0";
     element.appendChild(this.#renderer.domElement);
     const pmrem = new three.PMREMGenerator(this.#renderer);
-    new HDRLoader().load("/public/qwantani_night_puresky_4k.hdr", (hdr) => {
+    new HDRLoader().load("qwantani_night_puresky_4k.hdr", (hdr) => {
       const envMap = pmrem.fromEquirectangular(hdr).texture;
       if (this.scene) {
         this.scene.environment = envMap;
