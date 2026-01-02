@@ -195,7 +195,7 @@ export default function ProjectPage() {
                             if (media.includes("mp4")) {
                               return (
                                 <>
-                                  <video ref={keypointMedia as HTMLVideoElement} src={media} autoplay muted loop class="border border-neutral-100 dark:border-neutral-900 rounded-xl aspect-auto cursor-pointer" onClick={() => {
+                                  <video ref={keypointMedia as HTMLVideoElement} src={media} autoplay muted loop playsinline class="border border-neutral-100 dark:border-neutral-900 rounded-xl aspect-auto cursor-pointer" onClick={() => {
                                     setLighboxImg(media);
                                   }} />
                                 </>

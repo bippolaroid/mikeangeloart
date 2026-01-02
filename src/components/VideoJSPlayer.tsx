@@ -9,6 +9,7 @@ export default function VideoJSPlayer(props: { video: Video }) {
     onMount(() => {
         const videoEle = document.createElement("video-js");
         videoEle.classList.add('vjs-big-play-centered');
+        videoEle.setAttribute('playsinline', '');
         playerRef.appendChild(videoEle);
         const videoJsOptions = {
             autoplay: false,

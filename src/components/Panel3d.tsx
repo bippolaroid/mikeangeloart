@@ -5,7 +5,6 @@ import { onCleanup, onMount } from "solid-js";
 import { H2 } from "~/layout/Headings";
 
 export class SceneManager {
-
   #renderer: three.WebGLRenderer | null = null;
   private scene: three.Scene | null = null;
   private camera: three.PerspectiveCamera | null = null;
@@ -15,7 +14,9 @@ export class SceneManager {
   private scrollHandler: (() => void) | null = null;
   private resizeHandler: (() => void) | null = null;
   private placeholder: HTMLElement | null = null;
-  private container: HTMLElement | null = null;
+  container: HTMLElement | null = null;
+  private isRunning = false;
+  private initialized = false;
   _zoom: number;
 
   constructor(zoom: number = 16) {
@@ -27,13 +28,10 @@ export class SceneManager {
   }
 
   dispose() {
+    this.stopAnimation();
     if (this.placeholder) {
       this.placeholder.remove();
       this.placeholder = null;
-    }
-    if (this.animationId !== null) {
-      cancelAnimationFrame(this.animationId);
-      this.animationId = null;
     }
     if (this.scrollHandler) {
       window.removeEventListener("scroll", this.scrollHandler);
@@ -68,10 +66,32 @@ export class SceneManager {
     this.camera = null;
     this.model = null;
     this.container = null;
+    this.initialized = false;
   }
 
+  startAnimation() {
+    if (this.initialized && !this.isRunning) {
+      this.isRunning = true;
+      this.animate();
+    }
+  }
+
+  stopAnimation() {
+    this.isRunning = false;
+    if (this.animationId !== null) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = null;
+    }
+  }
+
+  private animate = () => {
+    if (!this.#renderer || !this.scene || !this.camera || !this.isRunning) return;
+    this.animationId = requestAnimationFrame(this.animate);
+    this.#renderer.render(this.scene, this.camera);
+  };
+
   init(element: HTMLElement, modelName: string) {
-    this.dispose();
+    if (this.initialized) return;
     this.container = element;
     this.placeholder = document.createElement("div");
     this.placeholder.className = "absolute top-0 left-0";
@@ -102,13 +122,14 @@ export class SceneManager {
     this.#renderer.setClearColor(0x000000, 0);
     this.#renderer.toneMapping = three.ACESFilmicToneMapping;
     this.#renderer.toneMappingExposure = 1;
-    this.#renderer.setPixelRatio(window.devicePixelRatio);
+    this.#renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.#renderer.shadowMap.enabled = true;
     this.#renderer.shadowMap.type = three.PCFSoftShadowMap;
     this.#renderer.domElement.style.position = "absolute";
     this.#renderer.domElement.style.top = "0";
     this.#renderer.domElement.style.left = "0";
     element.appendChild(this.#renderer.domElement);
+
     const pmrem = new three.PMREMGenerator(this.#renderer);
     new HDRLoader().load("qwantani_night_puresky_4k.hdr", (hdr) => {
       const envMap = pmrem.fromEquirectangular(hdr).texture;
@@ -130,74 +151,70 @@ export class SceneManager {
         this.model.rotation.y = 0.66;
         this.model.rotation.x = -0.33;
 
-        function createVerticalGradientTexture(
-          colorTop: string,
-          colorBottom: string
-        ): three.Texture {
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d")!;
-          const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-          gradient.addColorStop(0, colorTop);
-          gradient.addColorStop(1, colorBottom);
-          ctx.fillStyle = gradient;
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const canvas = document.createElement("canvas");
+        canvas.width = 2;
+        canvas.height = 256;
+        const ctx = canvas.getContext("2d")!;
+        const gradient = ctx.createLinearGradient(0, 0, 0, 256);
+        gradient.addColorStop(0, "#cdc2ffff");
+        gradient.addColorStop(1, "#9fffe0ff");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 2, 256);
 
-          const texture = new three.CanvasTexture(canvas);
-          texture.wrapS = three.ClampToEdgeWrapping;
-          texture.wrapT = three.ClampToEdgeWrapping;
-          texture.colorSpace = three.SRGBColorSpace;
-          texture.needsUpdate = true;
-          return texture;
-        }
+        const gradientTexture = new three.CanvasTexture(canvas);
+        gradientTexture.wrapS = three.ClampToEdgeWrapping;
+        gradientTexture.wrapT = three.ClampToEdgeWrapping;
+        gradientTexture.colorSpace = three.SRGBColorSpace;
+        gradientTexture.needsUpdate = true;
+
+        const defaultMaterial = new three.MeshPhysicalMaterial({
+          map: gradientTexture,
+          metalness: 0,
+          roughness: 0.4,
+          transmission: 1.25,
+          thickness: 1,
+          envMap: this.scene?.environment,
+          envMapIntensity: 1,
+          ior: 1.45,
+          clearcoat: 0.5,
+          clearcoatRoughness: 0,
+        });
+
+        const highlightMaterial = new three.MeshPhysicalMaterial({
+          color: 0x00dc88,
+          metalness: 0,
+          roughness: 0,
+          envMap: this.scene?.environment,
+          envMapIntensity: 1.5,
+        });
 
         this.model.traverse((child) => {
           if (!(child instanceof three.Mesh)) return;
           child.castShadow = true;
           child.receiveShadow = true;
-          const envMap = this.scene?.environment;
           switch (child.name) {
             case "Cube001":
             case "Cube002":
             case "Cube003":
-              child.material = new three.MeshPhysicalMaterial({
-                color: 0x00dc88,
-                metalness: 0,
-                roughness: 0,
-                envMap,
-                envMapIntensity: 1.5,
-              });
+              child.material = highlightMaterial;
               break;
             default:
-              const gradientTexture = createVerticalGradientTexture(
-                "#cdc2ffff",
-
-                "#9fffe0ff"
-              );
-              child.material = new three.MeshPhysicalMaterial({
-                map: gradientTexture,
-                metalness: 0,
-                roughness: 0.4,
-                transmission: 1.25,
-                thickness: 1,
-                envMap,
-                envMapIntensity: 1,
-                ior: 1.45,
-                clearcoat: 0.5,
-                clearcoatRoughness: 0,
-              });
+              child.material = defaultMaterial;
               break;
           }
         });
       });
     });
+
     const ambient = new three.AmbientLight(0xffffff, 0.5);
     this.scene.add(ambient);
     const dirLight = new three.DirectionalLight(0xffffff, 2);
     dirLight.position.set(10, 10, 10);
     dirLight.castShadow = true;
-    dirLight.shadow.mapSize.width = 2048;
-    dirLight.shadow.mapSize.height = 2048;
+    dirLight.shadow.mapSize.width = 1024;
+    dirLight.shadow.mapSize.height = 1024;
     this.scene.add(dirLight);
+
     const shadowPlaneGeo = new three.PlaneGeometry(50, 50);
     const shadowMat = new three.ShadowMaterial({ opacity: 0.3 });
     const shadowPlane = new three.Mesh(shadowPlaneGeo, shadowMat);
@@ -205,11 +222,14 @@ export class SceneManager {
     shadowPlane.position.y = -1;
     shadowPlane.receiveShadow = false;
     this.scene.add(shadowPlane);
+
     this.scrollHandler = () => {
       if (this.model) this.model.rotation.y += 0.075;
     };
     window.addEventListener("scroll", this.scrollHandler);
-    this.animate();
+    
+    this.initialized = true;
+    this.startAnimation();
   }
 
   handleResize(element: HTMLElement) {
@@ -220,12 +240,6 @@ export class SceneManager {
     this.camera.updateProjectionMatrix();
     this.#renderer.setSize(width, height);
   }
-
-  private animate = () => {
-    if (!this.#renderer || !this.scene || !this.camera) return;
-    this.animationId = requestAnimationFrame(this.animate);
-    this.#renderer.render(this.scene, this.camera);
-  };
 }
 
 export function init3dScene(
@@ -233,22 +247,21 @@ export function init3dScene(
   data: string
 ): [SceneManager, IntersectionObserver] {
   const sceneManager = new SceneManager(8);
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        requestAnimationFrame(() => {
+        if (sceneManager.container === null) {
           sceneManager.init(wrapper, data);
-          const resizeHandler = () => {
-            if (sceneManager) {
-              sceneManager.handleResize(wrapper);
-            }
-          };
+          const resizeHandler = () => sceneManager.handleResize(wrapper);
           window.addEventListener("resize", resizeHandler);
-        });
-        observer.unobserve(wrapper);
+        }
+        sceneManager.startAnimation();
+      } else {
+        sceneManager.stopAnimation();
       }
     });
-  });
+  }, { threshold: 0.1 });
+
   observer.observe(wrapper);
   return [sceneManager, observer];
 }

@@ -25,7 +25,7 @@ const Lightbox = ({
 
     const MediaLB = () => {
         if (src.get()?.includes("mp4")) {
-            return <video ref={mediaRef as HTMLVideoElement} src={src.get()} autoplay muted loop class="max-h-[75dvh] aspect-auto" />
+            return <video ref={mediaRef as HTMLVideoElement} src={src.get()} autoplay muted loop playsinline class="max-h-[75dvh] aspect-auto" />
         } else {
             return <img ref={mediaRef as HTMLImageElement} class="max-h-[75dvh]" src={src.get()} />
         }

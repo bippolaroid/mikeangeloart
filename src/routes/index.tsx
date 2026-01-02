@@ -16,16 +16,6 @@ const landingHighlights = () => {
   return temp;
 };
 
-const targetListenerMap = new Map<HTMLElement, EventListener>();
-
-function scrollHandler(target: HTMLElement) {
-  return () => {
-    const scrollY = window.scrollY;
-    const zValue = -scrollY * 0.5;
-    target.style.transform = `translateZ(${zValue}px)`;
-  };
-}
-
 export default function Home() {
   let introPanel!: HTMLDivElement;
   let wrapper3d!: HTMLDivElement;
@@ -38,26 +28,64 @@ export default function Home() {
       threshold: 0.5,
     };
 
-    const scrollObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const target = entry.target as HTMLElement;
-        if (entry.isIntersecting) {
-          if (!targetListenerMap.has(target)) {
-            const scrollHandlerListener = scrollHandler(
-              target
-            ) as EventListener;
-            targetListenerMap.set(target, scrollHandlerListener);
-            window.addEventListener("scroll", scrollHandlerListener);
+    // Enhanced mobile video autoplay handler
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    
+    const attemptAutoplay = async () => {
+      if (!videoPanel) return;
+      
+      // Ensure required attributes are set
+      videoPanel.muted = true;
+      videoPanel.loop = true;
+      videoPanel.controls = false;
+      videoPanel.playsInline = true;
+      
+      try {
+        await videoPanel.play();
+        console.log('Background video autoplay successful');
+      } catch (error) {
+        console.log('Autoplay prevented, will retry on user interaction:', error);
+        
+        // Set up user interaction listeners
+        const enableAutoplay = () => {
+          if (videoPanel && videoPanel.paused) {
+            videoPanel.play().catch(e => console.log('Play failed even with interaction:', e));
           }
-        } else {
-          const eventL = targetListenerMap.get(target);
-          if (eventL) {
-            window.removeEventListener("scroll", eventL);
-            targetListenerMap.delete(target);
+        };
+        
+        document.addEventListener('touchstart', enableAutoplay, { once: true });
+        document.addEventListener('click', enableAutoplay, { once: true });
+      }
+    };
+    
+    // iOS-specific: handle visibility changes
+    const handleVisibilityChange = () => {
+      if (!document.hidden && videoPanel && videoPanel.paused) {
+        attemptAutoplay();
+      }
+    };
+    
+    if (isIOS) {
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+    }
+    
+    // Try immediate autoplay
+    attemptAutoplay();
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (introPanel) {
+            introPanel.style.setProperty("--scroll-y", `${window.scrollY}px`);
           }
-        }
-      });
-    }, observerOptions);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
 
     const opacityObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -96,7 +124,7 @@ export default function Home() {
     }, observerOptions);
 
     threeJsObserver.observe(wrapper3d);
-    scrollObserver.observe(introPanel);
+    opacityObserver.observe(introPanel);
     opacityObserver.observe(wrapper3d);
     opacityObserver.observe(introPanel);
     videoObserver.observe(videoPanel);
@@ -106,14 +134,13 @@ export default function Home() {
       threeJsObserver.disconnect();
       opacityObserver.disconnect();
       videoObserver.disconnect();
-      scrollObserver.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      if (isIOS) {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      }
       if (resizeHandler) {
         window.removeEventListener("resize", resizeHandler);
       }
-      targetListenerMap.forEach((eventL) => {
-        window.removeEventListener("scroll", eventL);
-      });
-      targetListenerMap.clear();
     });
   });
 
@@ -123,15 +150,17 @@ export default function Home() {
         ref={videoPanel}
         src="/Comp_3.mp4"
         class="w-full dark:-hue-rotate-90 not-dark:hue-rotate-45 not-dark:invert not-dark:brightness-200 -z-10 aspect-video object-cover h-screen mx-auto fixed top-0"
-        preload="metadata"
+        preload="auto"
         muted
         autoplay
         loop
+        controls={false}
         playsinline
       ></video>
       <section class="mx-auto max-w-7xl overflow-hidden perspective-normal mix-blend-difference h-screen lg:pb-36 w-full flex justify-center items-center lg:items-end">
         <article
           ref={introPanel}
+          style={{ transform: "translateZ(calc(var(--scroll-y, 0px) * -0.5))" }}
           class="intro-panel px-6 fixed w-fit flex flex-col justify-center items-center md:flex-row gap-6"
         >
           <div class="text-white/20 h-fit not-md:border-b md:border-r md:pr-2 pb-1">

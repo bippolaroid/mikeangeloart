@@ -112,7 +112,7 @@ export function MainKeypoint(props: {
                                             if (media.includes("mp4")) {
                                                 return (
                                                     <A href={`/projects/${props.data.slug}`}>
-                                                        <video src={media} autoplay muted loop class="h-24 min-w-24 object-cover rounded-xl" />
+                                                        <video src={media} autoplay muted loop playsinline class="h-24 min-w-24 object-cover rounded-xl" />
                                                     </A>
                                                 )
                                             } else {
