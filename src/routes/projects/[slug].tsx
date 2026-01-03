@@ -56,7 +56,7 @@ export default function ProjectPage() {
     document.body.classList.toggle("overflow-hidden", lightboxImg() ? true : false)
   })
 
-  const Media = (props: { jpeg: string; webp?: string }) => {
+  const Image = (props: { jpeg: string; webp?: string }) => {
     return (
       <picture>
         <Show when={props.webp}>
@@ -80,7 +80,7 @@ export default function ProjectPage() {
           </Show>
           <Show when={project()?.cover} keyed>
             {p => (
-              <Media
+              <Image
                 jpeg={p}
                 webp={coverWebP() || undefined}
               />
@@ -95,7 +95,7 @@ export default function ProjectPage() {
                 >
                   <img
                     src={project()?.clientLogo}
-                    class="aspect-auto max-h-9 max-w-24 not-dark:invert opacity-20"
+                    class="aspect-auto max-w-24 brightness-0 dark:brightness-200 saturate-0 contrast-0 max-h-12"
                     loading="eager"
                   />
                 </div>

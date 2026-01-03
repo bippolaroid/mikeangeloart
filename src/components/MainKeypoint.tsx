@@ -54,13 +54,13 @@ export function MainKeypoint(props: {
                 </div>
                 <Show when={props.standalone}>
                     <div class="flex flex-col py-18 gap-18 justify-center items-center w-full max-w-5xl mx-auto">
-                        <div class="flex flex-col justify-center items-center w-full">
+                        <div class="flex flex-col gap-9 justify-center items-center w-full">
                             <div
                                 class="w-full def__animate"
                             >
                                 <img
                                     src={props.data.clientLogo}
-                                    class="mx-auto not-dark:invert opacity-20 max-h-24 max-w-24"
+                                    class="mx-auto brightness-0 dark:brightness-200 saturate-0 contrast-0 opacity-50 max-h-12 max-w-24"
                                     loading="lazy"
                                 />
                             </div>
@@ -143,7 +143,7 @@ export function MainKeypoint(props: {
                         </Metric>
                     </div>
                     */}
-                    <div class="flex flex-col gap-3 justify-center">
+                    <div class="max-w-3xl flex flex-col gap-3 justify-center">
                         <div class="text-black/20 w-fit dark:text-white/20 h-fit border-b border-b-black/10 dark:border-b-white/10 pb-1">
                             <ContainerLabel>Strategy</ContainerLabel>
                         </div>

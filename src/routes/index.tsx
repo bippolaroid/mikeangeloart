@@ -8,13 +8,7 @@ import { Button, ContainerLabel } from "~/layout/Cards";
 import { MainKeypoint } from "~/components/MainKeypoint";
 
 const collectionData: PortfolioCollection[] = data;
-const landingHighlights = () => {
-  const temp = [];
-  for (const collection of collectionData) {
-    temp.push(collection);
-  }
-  return temp;
-};
+const landingHighlightLength = 3;
 
 export default function Home() {
   let introPanel!: HTMLDivElement;
@@ -30,45 +24,45 @@ export default function Home() {
 
     // Enhanced mobile video autoplay handler
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    
+
     const attemptAutoplay = async () => {
       if (!videoPanel) return;
-      
+
       // Ensure required attributes are set
       videoPanel.muted = true;
       videoPanel.loop = true;
       videoPanel.controls = false;
       videoPanel.playsInline = true;
-      
+
       try {
         await videoPanel.play();
         console.log('Background video autoplay successful');
       } catch (error) {
         console.log('Autoplay prevented, will retry on user interaction:', error);
-        
+
         // Set up user interaction listeners
         const enableAutoplay = () => {
           if (videoPanel && videoPanel.paused) {
             videoPanel.play().catch(e => console.log('Play failed even with interaction:', e));
           }
         };
-        
+
         document.addEventListener('touchstart', enableAutoplay, { once: true });
         document.addEventListener('click', enableAutoplay, { once: true });
       }
     };
-    
+
     // iOS-specific: handle visibility changes
     const handleVisibilityChange = () => {
       if (!document.hidden && videoPanel && videoPanel.paused) {
         attemptAutoplay();
       }
     };
-    
+
     if (isIOS) {
       document.addEventListener('visibilitychange', handleVisibilityChange);
     }
-    
+
     // Try immediate autoplay
     attemptAutoplay();
 
@@ -178,18 +172,18 @@ export default function Home() {
           </div>
         </article>
       </section>
-      <div class="work-panel w-full flex flex-col items-center border-t border-b border-neutral-200 dark:border-neutral-900 bg-white/95 dark:bg-black/80 backdrop-blur-3xl">
+      <div class="work-panel w-full flex flex-col items-center border-t border-b border-neutral-200 dark:border-neutral-900 backdrop-blur-3xl">
         <section class="flex flex-col justify-center items-center text-black dark:text-white pt-18 pb-36 px-12 max-w-7xl">
           <div class="flex flex-col justify-center items-center">
             <figure
               ref={wrapper3d}
               class="min-w-72 min-h-72 not-dark:invert"
             ></figure>
-            <div class="p-6 max-w-3xl text-center flex flex-col gap-6 rounded-3xl">
-              <H2>
+            <div class="p-6 max-w-5xl text-center flex flex-col gap-6 rounded-3xl">
+              <H1>
                 I like to make things look good, function well, and deliver
                 results.
-              </H2>
+              </H1>
               <p class="pt-6 max-w-lg mx-auto border-t border-neutral-200 dark:border-neutral-800">
                 I've developed full ad campaigns, commercials, landing pages and
                 websites, and countless other digital and physical assets.
@@ -198,8 +192,8 @@ export default function Home() {
           </div>
         </section>
         <div class="flex flex-col gap-36 py-18 lg:py-36 px-6 w-full bg-white dark:bg-neutral-950 border-t border-t-neutral-200 dark:border-t-neutral-900">
-          <For each={landingHighlights()}>
-            {(collection) => (
+          <For each={collectionData}>
+            {(collection, idx) => idx() < landingHighlightLength && (
               <MainKeypoint data={collection} standalone={true} />
             )}
           </For>

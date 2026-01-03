@@ -1,68 +1,11 @@
 [
   {
     "uuid": "0",
-    "id": 0,
-    "author": "Mike Angelo",
-    "title": "Drone Drop Pop-up",
-    "slug": "bahlsen-drone-drop-pop-up",
-    "cover": "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/cover.jpg",
-    "tags": [
-      "Art Direction",
-      "Experiential Marketing",
-      "Rich Media",
-      "Digital Marketing",
-      "Event Production",
-      "Organic Social Media",
-      "Video Editing",
-      "Paid Social Media",
-      "Ad Campaign"
-    ],
-    "dateAdded": "2025-12-02",
-    "lastModified": "2025-12-02",
-    "clientName": "Bahlsen",
-    "clientLogo": "https://cdn.mikeangelo.art/client-logos/MA_25-26-Website_ClientIcons_250x250_Bahlsen_white.png",
-    "projectObjective": "Bahlsen asked us to execute an innovative marketing campaign to launch their new branding to promote brand recognition and drive consumers to stores.",
-    "mainKeypointMedia": "https://video.gumlet.io/693618f203bcee22ddeecad9/69361d707d19d07028493efa/main.m3u8",
-    "mainKeypointMetricOne": "+150% In-Store Traffic",
-    "mainKeypointMetricTwo": "+20% Online Orders",
-    "mainKeypointDescription": "We took over a popular shopping district in Montclair, NJ and filmed a fleet of drones delivering boxes of Bahlsen's products to unsuspecting people walking by. This generated a huge buzz in the region and successfully increased sales.",
-    "projectKeypoints": [
-      {
-        "title": "A Once-in-a-Lifetime Event",
-        "description": "My team and I worked on numerous different pre-production tasks. We hired drone operators, sketched a rough storyboard, coordinated with a camera crew, and captured a once-in-a-lifetime event.",
-        "media": [
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/keypoint-media/drone-1.png",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/keypoint-media/drone-2.png",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/keypoint-media/drone-3.png",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/keypoint-media/drone-4.jpg",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/keypoint-media/drone-5.jpg"
-        ]
-      },
-      {
-        "title": "Supplemental Digital Marketing",
-        "description": "We developed a rich media marketing campaign to target and retarget potential and repeat shoppers. This included animated and interactive web banners and pre-roll video.",
-        "media": [
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/keypoint-media/MA_Bahlsen_DroneHTMLMockup_Shop.mp4",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/keypoint-media/MA_Bahlsen_DroneHTMLMockup_Intro.mp4"
-        ]
-      },
-      {
-        "title": "Social Media Content",
-        "description": "We filmed all preparation before and during the event. Then we delivered numerous video edits and behind-the-scenes bits and ran them on both paid and organic social media channels.",
-        "media": [
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/bahlsen-drone-drop-pop-up/keypoint-media/MA_Bahlsen_Drones-Social-Mock.mp4"
-        ]
-      }
-    ],
-    "projectVideos": []
-  },
-  {
-    "uuid": "1",
     "id": 1,
     "author": "Mike Angelo",
     "title": "Loopwell: The Space for Well-being",
     "slug": "loopwell-the-space-for-well-being",
-    "cover": "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/cover.webp",
+    "cover": "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/cover.webp",
     "tags": [
       "Art Direction",
       "Brand Development",
@@ -77,7 +20,7 @@
     "dateAdded": "2025-12-02",
     "lastModified": "2025-12-02",
     "clientName": "Loopwell",
-    "clientLogo": "https://cdn.mikeangelo.art/client-logos/MA_25-26-Website_ClientIcons_250x250_Bahlsen_white.png",
+    "clientLogo": "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-logo.png",
     "projectObjective": "The founders of Loopwell set out to create a unique holistic well-being brand that operates as a wellness ecosystem as well as a production and event venue.",
     "mainKeypointMedia": "https://video.gumlet.io/693618f203bcee22ddeecad9/693622dc7d19d07028497caa/main.mp4",
     "mainKeypointMetricOne": "$0.20 Cost per Acquisition",
@@ -88,31 +31,210 @@
         "title": "Hit the Ground Running",
         "description": "While the building was being renovated, we went through a ton of different ideas trying to find the right branding to really carve out a place for us in the space.",
         "media": [
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-1.jpg",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-2.jpg",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-3.jpg",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-4.jpg",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-5.jpg"
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-1.jpg",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-2.jpg",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-3.jpg",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-4.jpg",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-5.jpg"
         ]
       },
       {
         "title": "Building a Powerful Site",
         "description": "We needed an intuitive website that managed events, attendees, memberships, and payments. I helped design and develop the website along with custom integrations and scripts that suited their needs.",
         "media": [
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-6.mp4",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-7.png",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-8.png",
-          "https://pub-7e6277505f684bb797c11b32d0e607c4.r2.dev/loopwell-the-space-for-well-being/keypoint-media/loopwell-9.mp4"
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-6.mp4",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-7.png",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-8.png",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/loopwell-9.mp4"
         ]
       },
       {
         "title": "Event Promotion & A/V Production",
         "description": "I worked with a team to film events, set up live streaming and other production necessities, and compile edits and marketing materials that could be used as promotion for both the event staff as well as the Loopwell brand.",
         "media": [
-          "https://cdn.mikeangelo.art/project-thumbnails/MA_25-26-Website_ProjectThumbnails_1024x768_BahlsenDrone.jpg"
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/corp%20gif.mp4",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/sofistafunk%20gif.mp4",
+          "https://cdn.mikeangelo.art/loopwell-the-space-for-well-being/keypoint-media/volvo-gif.mp4"
+        ]
+      }
+    ],
+    "projectVideos": [
+      {
+        "title": "Loopwell: Volvo",
+        "client": "Loopwell",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69595ec2f3928b38fc4f78a0/download.mp4",
+        "thumbnail": ""
+      },
+      {
+        "title": "Loopwell: Montclair Film Festival",
+        "client": "Loopwell",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69595ec2d73a53e69e7d3b8d/download.mp4",
+        "thumbnail": ""
+      },
+      {
+        "title": "Loopwell: HerMD",
+        "client": "Loopwell",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/695963e5d73a53e69e7daa85/download.mp4",
+        "thumbnail": ""
+      },
+      {
+        "title": "Loopwell: YPO",
+        "client": "Loopwell",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69595ec3f3928b38fc4f78af/download.mp4",
+        "thumbnail": ""
+      },
+      {
+        "title": "Loopwell: Wim Hof",
+        "client": "Loopwell",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69596fc8f3928b38fc509c20/download.mp4",
+        "thumbnail": ""
+      },
+      {
+        "title": "Loopwell: Water.org",
+        "client": "Loopwell",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69595ec2f3928b38fc4f78a2/download.mp4",
+        "thumbnail": ""
+      },
+      {
+        "title": "Loopwell: Hope for the Flowers - Trina Paulus",
+        "client": "Loopwell",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69595ec2d73a53e69e7d3b87/download.mp4",
+        "thumbnail": ""
+      }
+    ]
+  },
+  {
+    "uuid": "1",
+    "id": 0,
+    "author": "Mike Angelo",
+    "title": "Drone Drop Pop-up",
+    "slug": "bahlsen-drone-drop-pop-up",
+    "cover": "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/cover.jpg",
+    "tags": [
+      "Art Direction",
+      "Experiential Marketing",
+      "Rich Media",
+      "Digital Marketing",
+      "Event Production",
+      "Organic Social Media",
+      "Video Editing",
+      "Paid Social Media",
+      "Ad Campaign"
+    ],
+    "dateAdded": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "clientName": "Bahlsen",
+    "clientLogo": "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/Bahlsen%2BBlu.webp",
+    "projectObjective": "Bahlsen asked us to execute an innovative marketing campaign to launch their new branding to promote brand recognition and drive consumers to stores.",
+    "mainKeypointMedia": "https://video.gumlet.io/693618f203bcee22ddeecad9/69361d707d19d07028493efa/main.m3u8",
+    "mainKeypointMetricOne": "+150% In-Store Traffic",
+    "mainKeypointMetricTwo": "+20% Online Orders",
+    "mainKeypointDescription": "We took over a popular shopping district in Montclair, NJ and filmed a fleet of drones delivering boxes of Bahlsen's products to unsuspecting people walking by. This generated a huge buzz in the region and successfully increased sales.",
+    "projectKeypoints": [
+      {
+        "title": "A Once-in-a-Lifetime Event",
+        "description": "My team and I worked on numerous different pre-production tasks. We hired drone operators, sketched a rough storyboard, coordinated with a camera crew, and captured a once-in-a-lifetime event.",
+        "media": [
+          "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/keypoint-media/drone-1.png",
+          "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/keypoint-media/drone-2.png",
+          "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/keypoint-media/drone-3.png",
+          "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/keypoint-media/drone-4.jpg",
+          "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/keypoint-media/drone-5.jpg"
+        ]
+      },
+      {
+        "title": "Supplemental Digital Marketing",
+        "description": "We developed a rich media marketing campaign to target and retarget potential and repeat shoppers. This included animated and interactive web banners and pre-roll video.",
+        "media": [
+          "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/keypoint-media/MA_Bahlsen_DroneHTMLMockup_Shop.mp4",
+          "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/keypoint-media/MA_Bahlsen_DroneHTMLMockup_Intro.mp4"
+        ]
+      },
+      {
+        "title": "Social Media Content",
+        "description": "We filmed all preparation before and during the event. Then we delivered numerous video edits and behind-the-scenes bits and ran them on both paid and organic social media channels.",
+        "media": [
+          "https://cdn.mikeangelo.art/bahlsen-drone-drop-pop-up/keypoint-media/MA_Bahlsen_Drones-Social-Mock.mp4"
         ]
       }
     ],
     "projectVideos": []
+  },
+  {
+    "uuid": "2",
+    "id": 2,
+    "author": "Mike Angelo",
+    "title": "Mercedes-Benz Marketing",
+    "slug": "benzel-busch-mercedes-benz-marketing",
+    "cover": "https://cdn.mikeangelo.art/benzel-busch-mercedes-benz-marketing/cover.jpg",
+    "tags": [
+      "Art Direction",
+      "Website Development",
+      "Digital Banners",
+      "Rich Media",
+      "Video Editing",
+      "Paid Social Media",
+      "Organic Social Media"
+    ],
+    "dateAdded": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "clientName": "Benzel-Busch",
+    "clientLogo": "https://cdn.mikeangelo.art/benzel-busch-mercedes-benz-marketing/BB_CloverLogo_Color.png",
+    "projectObjective": "Benzel-Busch is the premier Mercedes-Benz and Genesis dealer in North Jersey. Known for their exceptional customer service and unique marketing incentives, they naturally needed automotive advertising that stood out from the noise.",
+    "mainKeypointMedia": "https://video.gumlet.io/693618f203bcee22ddeecad9/693cb2927ada4a2333072e24/main.m3u8",
+    "mainKeypointMetricOne": "+20% Website Visits YoY",
+    "mainKeypointMetricTwo": "+60% Increase in Sales",
+    "mainKeypointDescription": "We delivered numerous award-winning campaigns, commercials, and marketing materials that leveraged Benzel-Busch's outstanding service and unique sales experience, continuing to drive traffic both online and in-store.",
+    "projectKeypoints": [
+      {
+        "title": "Innovative & Unique Ad Campaigns",
+        "description": "We worked tirelessly to develop new and interesting campaigns that stood out from a sea of APR rates and lease terms. We leveraged Benzel-Busch's unique customer service incentives to get consumers to convert and stay loyal to the brand.",
+        "media": [
+          "https://cdn.mikeangelo.art/benzel-busch-mercedes-benz-marketing/keypoint-media/garage-doors.jpg",
+          "https://cdn.mikeangelo.art/benzel-busch-mercedes-benz-marketing/keypoint-media/g-wagon.jpg"
+        ]
+      },
+      {
+        "title": "Monthly Marketing Materials",
+        "description": "Every month we produced marketing materials for new vehicle specials and incentives including organic and paid social media, newsletters, rich media, and print advertising.",
+        "media": [
+          "https://cdn.mikeangelo.art/benzel-busch-mercedes-benz-marketing/keypoint-media/bb-banners.jpg"
+        ]
+      },
+      {
+        "title": "Website Management & Maintenance",
+        "description": "COVID created a surge in online car purchasing, so we had to adjust Benzel-Busch's website to match. We worked with a development team to build a brand new Wordpress site that delivers unmatched value to consumers looking to buy a new vehicle.",
+        "media": [
+          "https://cdn.mikeangelo.art/benzel-busch-mercedes-benz-marketing/keypoint-media/bb-site-gif.mp4",
+          "https://cdn.mikeangelo.art/benzel-busch-mercedes-benz-marketing/keypoint-media/bb-site-2.mp4"
+        ]
+      }
+    ],
+    "projectVideos": [
+      {
+        "title": "F1 Monaco Watch Party",
+        "client": "Benzel-Busch",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/69598c25d73a53e69e7ff654/main.m3u8",
+        "thumbnail": ""
+      },
+      {
+        "title": "Sales",
+        "client": "Benzel-Busch",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/693cb2927ada4a2333072e2a/main.m3u8",
+        "thumbnail": ""
+      },
+      {
+        "title": "Valet",
+        "client": "Benzel-Busch",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/693cb2923cf0cd39b966164f/main.m3u8",
+        "thumbnail": ""
+      },
+      {
+        "title": "Service",
+        "client": "Benzel-Busch",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/693cb2923cf0cd39b9661649/main.m3u8",
+        "thumbnail": ""
+      }
+    ]
   }
 ]

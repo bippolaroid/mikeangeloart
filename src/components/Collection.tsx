@@ -81,7 +81,7 @@ function CollectionCell({
           cell.classList.remove("saturate-0");
         }
       }}
-      class={`group/card cell-container relative overflow-hidden hover:brightness-115 hover:saturate-125 def__animate ${!enableFull ? `w-72 h-96 xl:h-108 md:w-100 xl:w-xl` : `w-full`
+      class={`group/card cell-container relative overflow-hidden hover:brightness-115 hover:saturate-125 def__animate ${!enableFull ? `w-72 h-96 xl:h-108 md:w-100 xl:w-xl` : `h-96 w-full`
         }`}
     >
       <A href={`/projects/${data.slug}`} class="h-full w-full">
@@ -96,10 +96,10 @@ function CollectionCell({
       >
         <img
           src={data.clientLogo}
-          class="invert dark:invert-0 aspect-auto max-h-6"
+          class="brightness-0 dark:brightness-200 saturate-0 contrast-0 aspect-auto max-h-6"
         />
       </div>
-      <div class="min-h-30 lg:min-h-12 justify-center lg:rounded-3xl w-full lg:w-auto lg:inset-x-3 flex flex-col gap-2 def__animate group/tag group-hover/card:opacity-100 p-6 lg:opacity-0 absolute bottom-0 lg:bottom-3 z-1 bg-white/50 dark:bg-black/30 mx-auto backdrop-blur-xl backdrop-brightness-140 dark:backdrop-brightness-25">
+      <div class="min-h-18 lg:min-h-12 justify-center lg:rounded-3xl w-full lg:w-auto lg:inset-x-3 flex flex-col gap-2 def__animate group/tag group-hover/card:opacity-100 p-6 lg:opacity-0 absolute bottom-0 lg:bottom-3 z-1 bg-white/50 dark:bg-black/30 mx-auto backdrop-blur-xl backdrop-brightness-140 dark:backdrop-brightness-25">
         <header class="flex flex-col">
           <A
             href={`/projects?client=${data.clientName}`}
@@ -313,7 +313,7 @@ export default function Collection({
         <Show
           when={!enableFull}
           fallback={
-            <div class="flex flex-col gap-3 lg:grid lg:grid-cols-2 lg:gap-1 w-full px-6 pt-24">
+            <div class="flex flex-col gap-3 lg:grid lg:grid-cols-2 lg:gap-1 w-full px-6 pt-6 lg:pt-18">
               <For each={sortedData()}>
                 {(item) => <CollectionCell enableFull={true} data={item} />}
               </For>
