@@ -236,5 +236,84 @@
         "thumbnail": ""
       }
     ]
+  },
+  {
+    "uuid": "3",
+    "id": 3,
+    "author": "Mike Angelo",
+    "title": "Your Home, Your Gym",
+    "slug": "gym-source-your-home-your-gym",
+    "cover": "https://cdn.mikeangelo.art/gym-source-your-home-your-gym/cover.webp",
+    "tags": [
+      "Art Direction",
+      "Website Development",
+      "Video Editing",
+      "Rich Media",
+      "Print Advertising",
+      "Organic Social Media",
+      "Paid Social Media",
+      "Digital Banners"
+    ],
+    "dateAdded": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "clientName": "Gym Source",
+    "clientLogo": "https://cdn.mikeangelo.art/gym-source-your-home-your-gym/keypoint-media/gs-logo.png",
+    "projectObjective": "There was a huge disturbance in the fitness equipment market after COVID. As a result, Gym Source was looking to pivot their brand from individual equipment sales to fully developed custom gyms.",
+    "mainKeypointMedia": "https://video.gumlet.io/693618f203bcee22ddeecad9/6959b626d73a53e69e826665/download.mp4",
+    "mainKeypointMetricOne": "+40% Page Visits",
+    "mainKeypointMetricTwo": "+30% Online Sales",
+    "mainKeypointDescription": "We explored and adjusted Gym Source's branding and messaging, designed and delivered a new website, rich media, commercials, and full-scope advertising campaigns, and reintroduced Gym Source into a new business-to-business market.",
+    "projectKeypoints": [
+      {
+        "title": "Renewed Website & Brand",
+        "description": "We designed a new website and worked with a development team to build a custom Wordpress site that could handle commercial gym consultations and wholesale equipment information.",
+        "media": [
+          "https://cdn.mikeangelo.art/gym-source-your-home-your-gym/keypoint-media/gs-vitamin.png",
+          "https://cdn.mikeangelo.art/gym-source-your-home-your-gym/keypoint-media/gs-website-1.mp4",
+          "https://cdn.mikeangelo.art/gym-source-your-home-your-gym/keypoint-media/gs-website-2.mp4"
+        ]
+      },
+      {
+        "title": "Hard-hitting Ad Campaigns",
+        "description": "We worked with a production team to develop numerous commercial spots that resonated with consumers and brought Gym Source back into the fitness scene.",
+        "media": [
+          "https://cdn.mikeangelo.art/gym-source-your-home-your-gym/keypoint-media/gs-banners.jpg"
+        ]
+      },
+      {
+        "title": "Influencer & Television Partnerships",
+        "description": "We partnered with NFL player George Kittle to promote his own Gym Source gym on social media. We also made an appearance on NBC's 'George to the Rescue' and sponsored a custom built unique gym for the show.",
+        "media": [
+          "https://cdn.mikeangelo.art/gym-source-your-home-your-gym/keypoint-media/g-kittle.jpg",
+          "https://cdn.mikeangelo.art/gym-source-your-home-your-gym/keypoint-media/YHYGC%20Winner.mp4"
+        ]
+      }
+    ],
+    "projectVideos": [
+      {
+        "title": "Your Home, Your Gym",
+        "client": "Gym Source",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/6959b7a715b21a591c6a4ff4/main.m3u8",
+        "thumbnail": ""
+      },
+      {
+        "title": "Dumbbell Ecstasy",
+        "client": "Gym Source",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/6959b62615b21a591c6a36d4/main.m3u8",
+        "thumbnail": ""
+      },
+      {
+        "title": "Jacked Santa",
+        "client": "Gym Source",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/6959b626f3928b38fc54a2cd/main.m3u8",
+        "thumbnail": ""
+      },
+      {
+        "title": "Make A Plan",
+        "client": "Gym Source",
+        "url": "https://video.gumlet.io/693618f203bcee22ddeecad9/6959b626f3928b38fc54a2cf/main.m3u8",
+        "thumbnail": ""
+      }
+    ]
   }
 ]
