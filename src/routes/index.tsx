@@ -10,13 +10,10 @@ import {
 import { PortfolioCollection } from "~/types";
 import TeaserCollection from "~/components/TeaserCollection";
 import { H1, H2, SectionHeading } from "~/layout/Headings";
-import { ContainerLabel } from "~/layout/Cards";
 import SEO from "~/components/SEO";
 import { Web3Form } from "~/components/Web3Form";
 import { A, createAsync, query } from "@solidjs/router";
 import PreviewProject from "~/components/PreviewProject";
-import MediaCluster from "~/components/MediaCluster";
-import TagPills from "~/components/TagPills";
 import { useLenis } from "~/components/LenisProvider";
 
 const fetchPortfolio = query(async (): Promise<PortfolioCollection[]> => {
@@ -29,10 +26,8 @@ const landingHighlightLength = 3;
 
 export default function Home() {
   let introPanel!: HTMLDivElement;
-  let blurbDesc!: HTMLDivElement;
   let blurbContainer!: HTMLDivElement;
   let bgAnims!: HTMLDivElement;
-  let tagScroller!: HTMLDivElement;
   let tagInner!: HTMLDivElement;
   let moreContainer!: HTMLDivElement;
   let contactContainer!: HTMLDivElement;
@@ -83,7 +78,6 @@ export default function Home() {
       },
       { threshold: 0.1 }
     );
-    scrollerObserver.observe(tagScroller);
 
     function animate(_currentTime: number, delta: number) {
       if (isPaused() || !isVisible) return;
@@ -171,11 +165,8 @@ export default function Home() {
       });
     }, { threshold: 0.1 });
 
-    opacityObserver.observe(blurbDesc);
     opacityObserver.observe(moreContainer);
     opacityObserver.observe(contactContainer);
-    expandObserver.observe(blurbDesc);
-    blurbObserver.observe(blurbContainer);
 
     onCleanup(() => {
       unregisterLenis();
@@ -224,6 +215,9 @@ export default function Home() {
           ref={bgAnims}
         >
           <Suspense>
+            <div class="fade__animate h-screen w-full flex justify-center items-center">
+              <Panel3d model="https://cdn.mikeangelo.art/MA_Logo_3D.glb" />
+            </div>
             <BgGradient />
             <LottieAnim url="https://cdn.mikeangelo.art/anim.json" />
           </Suspense>
@@ -235,91 +229,17 @@ export default function Home() {
             style={{
               transform: "translateZ(calc(var(--scroll-y, 0px) * -0.5))",
             }}
-            class="def__animate w-full flex flex-col justify-center lg:items-center md:flex-row gap-4 md:gap-6 lg:gap-8"
+            class="def__animate w-full flex flex-col justify-start md:ml-36 lg:ml-72 lg:items-center md:flex-row gap-4 md:gap-6 lg:gap-8"
           >
-            <div class="text-white/20 h-fit w-fit not-md:border-b md:border-r md:pr-2 lg:pr-4 pb-1 text-sm md:text-base">
-              <ContainerLabel>Welcome</ContainerLabel>
-            </div>
-            <div class="md:whitespace-nowrap not-dark:invert flex flex-col justify-center text-left w-full max-w-3xl lg:max-w-4xl xl:max-w-5xl">
-              <H1>My name's Mike.</H1>
-              <H2>
-                <span class="font-normal italic transition-opacity duration-100 ease-out">
-                  I'm a Creative Technologist.
-                </span>
-              </H2>
+            <div class="not-dark:invert flex flex-col justify-center text-left w-full max-w-md">
+              <H1>Hi. I'm Mike.</H1>
+              <p class="dark:invert transition-opacity duration-100 ease-out">
+                I design high-quality creative assets for digital marketing, social media content, and web development.
+              </p>
             </div>
           </article>
         </section>
-        <section ref={blurbContainer} class="fade__animate bg-white/80 dark:bg-black/90 h-screen w-full flex flex-col justify-center items-center border-t border-black/10 dark:border-white/10 backdrop-brightness-125 backdrop-saturate-150">
-          <div class="relative flex flex-col justify-center items-center text-black dark:text-white px-6 sm:px-8 md:px-12 lg:px-16 w-full max-w-7xl">
-            <div class="w-full flex h-screen flex-col justify-center items-center">
-              <div class="fade__animate w-full flex flex-col gap-9">
-                <Suspense>
-                  <Panel3d model="https://cdn.mikeangelo.art/MA_Logo_3D.glb" />
-                </Suspense>
-                <div class="w-full max-w-4xl mx-auto flex flex-col gap-9 translate-y-18 lg:translate-y-0">
-                  <span class="dark:text-shadow-lg text-shadow-black/10 lg:text-center leading-loose">
-                    <H2>
-                      I bridge design and technology to turn 'what if' into
-                      high-performing digital experiences.
-                    </H2>
-                  </span>
-                  <Show when={portfolioCollection()}>
-                    <div
-                      ref={tagScroller}
-                      onMouseEnter={() => setIsPaused(true)}
-                      onMouseLeave={() => setIsPaused(false)}
-                      class="w-full mx-auto overflow-hidden fade__animate select-none"
-                      style="touch-action: pan-y;"
-                    >
-                      {/* Inner wrapper is what translateX moves */}
-                      <div
-                        ref={tagInner}
-                        class="flex gap-1 w-max will-change-transform"
-                      >
-                        <TagPills collections={portfolioCollection()} />
-                      </div>
-                    </div>
-                  </Show>
-                  <Show when={portfolioCollection()}>
-                    <div
-                      ref={blurbDesc}
-                      class="fade__animate flex flex-row justify-center lg:items-start gap-1 w-full"
-                    >
-                      <A href={`/projects/${portfolioCollection()![1].slug}`}>
-                        <MediaCluster
-                          class="hover:-translate-y-3 fade__animate w-full lg:aspect-square object-cover lg:max-w-54 h-96 lg:max-h-54 rounded-3xl border-6 border-neutral-200 dark:border-white/5 mt-6"
-                          src={
-                            portfolioCollection()![1].projectKeypoints[1].media[0]
-                              .url
-                          }
-                        />
-                      </A>
-                      <A href={`/projects/${portfolioCollection()![0].slug}`}>
-                        <MediaCluster
-                          class="hover:-translate-y-3 fade__animate w-full lg:aspect-video object-cover h-96 lg:max-h-54 rounded-3xl border-6 border-neutral-200 dark:border-white/5"
-                          src={
-                            portfolioCollection()![0].projectKeypoints[1].media[3]
-                              .url
-                          }
-                        />
-                      </A>
-                      <A href={`/projects/${portfolioCollection()![2].slug}`}>
-                        <MediaCluster
-                          class="hover:-translate-y-3 fade__animate w-full lg:aspect-square object-cover lg:max-w-54 h-96 lg:max-h-54 rounded-3xl border-6 border-neutral-200 dark:border-white/5 mt-6"
-                          src={
-                            portfolioCollection()![2].projectKeypoints[1].media[4]
-                              .url
-                          }
-                        />
-                      </A>
-                    </div>
-                  </Show>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
         <div class="z-2 w-full">
           <section class="bg-neutral-100 dark:bg-neutral-950 w-full">
             <SectionHeading>Project Highlights</SectionHeading>

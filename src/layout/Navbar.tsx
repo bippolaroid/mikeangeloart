@@ -92,7 +92,7 @@ export default function Navbar() {
         >
           <A
             href="/"
-            class="font-sans flex items-center gap-3 hover:brightness-50 def__animate"
+            class="group font-sans flex items-center gap-3"
           >
             <img
               src="https://cdn.mikeangelo.art/MA_Logo_SharpMA_White.svg"
@@ -102,7 +102,7 @@ export default function Navbar() {
               class="w-9 h-9"
               alt="Mike Angelo Logo"
             />
-            <span class="font-sans text-xs tracking-[2px] text-white uppercase">
+            <span class="font-sans text-xs tracking-[2px] opacity-0 group-hover:opacity-100 def__animate text-white uppercase">
               Mike Angelo
             </span>
           </A>
@@ -138,14 +138,14 @@ export default function Navbar() {
           </div>
           <button
             ref={mobileMenuIcon}
-            class="cursor-pointer bg-white rounded-lg hover:scale-105 active:scale-95 min-h-12 min-w-12 md:p-3 def__animate lg:hidden flex items-center justify-center"
+            class={`cursor-pointer ${!showMobileMenu() ? "border" : "border-t rotate-45"} border-white text-sm font-bold text-white hover:scale-105 active:scale-95 min-h-7 min-w-7 def__animate lg:hidden flex items-center justify-center`}
             onClick={() => {
               toggleMobileMenu(); 1
             }}
             aria-label="Toggle navigation menu"
             aria-expanded={showMobileMenu()}
           >
-            <Icon name="terminal" width={24} height={24} />
+            ⩱
           </button>
         </div>
       </nav>

@@ -27,7 +27,7 @@
   }
 
   p {
-    letter-spacing: 2%;
+    font-size: 1.4rem;
   }
 }
 
@@ -45,6 +45,7 @@
 :root {
   background-color: white;
   font-display: swap;
+  font-size: 18px;
 }
 
 .dark {
