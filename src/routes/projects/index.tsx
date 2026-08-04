@@ -7,7 +7,7 @@ import CollectionGrid from "~/components/Collection";
 const fetchPortfolio = cache(async (): Promise<PortfolioCollection[]> => {
   "use server";
   const res = await fetch("https://cdn.mikeangelo.art/db.json");
-  return await res.json() as PortfolioCollection[];
+  return (await res.json()) as PortfolioCollection[];
 }, "portfolio-projects");
 
 export default function ProjectPage() {
@@ -35,11 +35,11 @@ export default function ProjectPage() {
       <SEO
         title="Creative Portfolio of Mike Angelo | Creative Technologist in New Jersey and New York | Brand Design, Video Editing and Motion Design, and Web Design"
         description="Explore Mike Angelo's portfolio of art direction, web development, and advertising campaigns for clients big and small in New Jersey and New York."
-        canonical="https://mikeangeloart.com/projects"
+        canonical="https://mikeangelo.art/projects"
         ogImage="https://cdn.mikeangelo.art/og-default.png"
         breadcrumbs={[
-          { name: "Home", url: "https://mikeangeloart.com" },
-          { name: "Projects", url: "https://mikeangeloart.com/projects" },
+          { name: "Home", url: "https://mikeangelo.art" },
+          { name: "Projects", url: "https://mikeangelo.art/projects" },
         ]}
         localBusiness={true}
         organization={true}
@@ -49,7 +49,7 @@ export default function ProjectPage() {
           name: "Portfolio Projects",
           description:
             "A collection of art direction, web design, and advertising campaign projects by Mike Angelo.",
-          url: "https://mikeangeloart.com/projects",
+          url: "https://mikeangelo.art/projects",
           mainEntity: {
             "@type": "ItemList",
             numberOfItems: portfolioCollection()?.length,
@@ -58,7 +58,7 @@ export default function ProjectPage() {
               position: index + 1,
               name: project.title,
               description: project.projectObjective,
-              url: `https://mikeangeloart.com/projects/${project.slug}`,
+              url: `https://mikeangelo.art/projects/${project.slug}`,
             })),
           },
         }}

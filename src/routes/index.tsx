@@ -19,14 +19,13 @@ import { useLenis } from "~/components/LenisProvider";
 const fetchPortfolio = query(async (): Promise<PortfolioCollection[]> => {
   "use server";
   const res = await fetch("https://cdn.mikeangelo.art/db.json");
-  return await res.json() as PortfolioCollection[];
+  return (await res.json()) as PortfolioCollection[];
 }, "portfolio-home");
 
 const landingHighlightLength = 3;
 
 export default function Home() {
   let introPanel!: HTMLDivElement;
-  let blurbContainer!: HTMLDivElement;
   let bgAnims!: HTMLDivElement;
   let tagInner!: HTMLDivElement;
   let moreContainer!: HTMLDivElement;
@@ -76,7 +75,7 @@ export default function Home() {
       (entries) => {
         isVisible = entries[0]?.isIntersecting ?? true;
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     function animate(_currentTime: number, delta: number) {
@@ -129,41 +128,49 @@ export default function Home() {
     }, observerOptions);
 
     let hasTrackedBlurb = false;
-    const blurbObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasTrackedBlurb) {
-          hasTrackedBlurb = true;
-          blurbObserver.unobserve(entry.target);
+    const blurbObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasTrackedBlurb) {
+            hasTrackedBlurb = true;
+            blurbObserver.unobserve(entry.target);
 
-          const target = entry.target as HTMLDivElement;
-          const handleScroll = () => {
-            const { offsetHeight } = target;
-            const { scrollY } = window;
+            const target = entry.target as HTMLDivElement;
+            const handleScroll = () => {
+              const { offsetHeight } = target;
+              const { scrollY } = window;
 
-            if (scrollY >= offsetHeight - 96) {
-              target.style.position = "sticky";
-              target.style.top = "0px";
-              target.style.left = "0px";
-              //target.style.zIndex = "-2";
-            } else {
-              target.style.position = "";
-              target.style.top = "";
-              target.style.left = "";
-              target.style.zIndex = "";
-            }
+              if (scrollY >= offsetHeight - 96) {
+                target.style.position = "sticky";
+                target.style.top = "0px";
+                target.style.left = "0px";
+                //target.style.zIndex = "-2";
+              } else {
+                target.style.position = "";
+                target.style.top = "";
+                target.style.left = "";
+                target.style.zIndex = "";
+              }
 
-            target.classList.toggle("opacity-0", scrollY >= offsetHeight * 1.25);
-            target.classList.toggle("invisible", scrollY >= offsetHeight * 2);
-          };
+              target.classList.toggle(
+                "opacity-0",
+                scrollY >= offsetHeight * 1.25,
+              );
+              target.classList.toggle("invisible", scrollY >= offsetHeight * 2);
+            };
 
-          document.addEventListener("scroll", handleScroll, { passive: true });
+            document.addEventListener("scroll", handleScroll, {
+              passive: true,
+            });
 
-          onCleanup(() => {
-            document.removeEventListener("scroll", handleScroll);
-          });
-        }
-      });
-    }, { threshold: 0.1 });
+            onCleanup(() => {
+              document.removeEventListener("scroll", handleScroll);
+            });
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
     opacityObserver.observe(moreContainer);
     opacityObserver.observe(contactContainer);
@@ -183,7 +190,7 @@ export default function Home() {
       <SEO
         title="Creative Technologist in New Jersey and New York - Mike Angelo | Graphic and Motion Design, Web Development, and Advertising Campaigns"
         description="Mike Angelo is a Creative Technologist serving New Jersey and the greater New York area, specializing in advertising campaigns, web design and development, and comprehensive advertising campaigns."
-        canonical="https://mikeangeloart.com"
+        canonical="https://mikeangelo.art"
         ogImage="https://cdn.mikeangelo.art/og-default.png"
         localBusiness={true}
         organization={true}
@@ -194,7 +201,7 @@ export default function Home() {
           jobTitle: "Creative Technologist",
           description:
             "Creative Technologist serving New Jersey and the greater New York area",
-          url: "https://mikeangeloart.com",
+          url: "https://mikeangelo.art",
           address: {
             "@type": "PostalAddress",
             addressRegion: "NJ",
@@ -205,7 +212,7 @@ export default function Home() {
             "Web Design",
             "Advertising Campaigns",
             "Content Creation",
-            "Web Development"
+            "Web Development",
           ],
         }}
       />
@@ -234,7 +241,8 @@ export default function Home() {
             <div class="not-dark:invert flex flex-col justify-center text-left w-full max-w-md">
               <H1>Hi. I'm Mike.</H1>
               <p class="dark:invert transition-opacity duration-100 ease-out">
-                I design high-quality creative assets for digital marketing, social media content, and web development.
+                I design high-quality creative assets for digital marketing,
+                social media content, and web development.
               </p>
             </div>
           </article>
@@ -262,9 +270,15 @@ export default function Home() {
             <div class="bg-neutral-100 dark:bg-neutral-950 w-full">
               <SectionHeading>More Projects</SectionHeading>
             </div>
-            <div ref={moreContainer} class="fade__animate w-full flex flex-col gap-9 justify-center max-w-7xl mx-auto py-18 px-6">
+            <div
+              ref={moreContainer}
+              class="fade__animate w-full flex flex-col gap-9 justify-center max-w-7xl mx-auto py-18 px-6"
+            >
               <Show when={portfolioCollection()}>
-                <TeaserCollection data={portfolioCollection() as PortfolioCollection[]} limit={4} />
+                <TeaserCollection
+                  data={portfolioCollection() as PortfolioCollection[]}
+                  limit={4}
+                />
               </Show>
               <A
                 href="/projects"
@@ -275,7 +289,10 @@ export default function Home() {
             </div>
           </section>
           <section class="py-36 border-t border-black/10 dark:border-white/10 w-full bg-white dark:bg-black">
-            <div ref={contactContainer} class="fade__animate flex flex-col lg:flex-row gap-12 md:gap-16 lg:gap-18 xl:gap-24 items-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mx-auto lg:max-w-7xl w-full">
+            <div
+              ref={contactContainer}
+              class="fade__animate flex flex-col lg:flex-row gap-12 md:gap-16 lg:gap-18 xl:gap-24 items-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mx-auto lg:max-w-7xl w-full"
+            >
               <div class="flex flex-col gap-4 md:gap-6 lg:max-w-md xl:max-w-lg px-4 sm:px-6">
                 <span class="dark:text-shadow-lg text-shadow-black/10">
                   <H2>Drop me a line.</H2>

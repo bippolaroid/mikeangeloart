@@ -276,8 +276,12 @@ export default function About() {
         window: (
           <Moveable label="Profile Summary" options={{ x: 6.5, y: 8, z: 0 }}>
             <Box>
-              <div class="flex flex-col gap-8 max-w-3xl">
-                <div class="flex flex-col gap-6 border-t border-b border-black/10 dark:border-white/10 max-h-[40vh] lg:max-h-[60vh] overflow-y-auto pr-6">
+<div
+  class="flex flex-col gap-6 border-t border-b border-black/10 dark:border-white/10 max-h-[40vh] lg:max-h-[60vh] overflow-y-auto pr-6 cursor-auto select-text w-full max-w-3xl"
+  onMouseDown={(e) => e.stopPropagation()}
+  onTouchStart={(e) => e.stopPropagation()}
+  onWheel={(e) => e.stopPropagation()}
+>                <div class="flex flex-col gap-6 border-t border-b border-black/10 dark:border-white/10 max-h-[40vh] lg:max-h-[60vh] overflow-y-auto pr-6">
                   <div class="pb-6 gap-6 w-full flex flex-col justify-start items-center">
                     <div class="py-6 gap-6 w-full flex flex-col-reverse sm:flex-row items-center">
                       <img
@@ -357,11 +361,11 @@ export default function About() {
       <SEO
         title="About Mike Angelo | Creative Technologist in New Jersey and New York | Graphic and Motion Design, Web Development, and Advertising Campaigns"
         description="Learn more about Mike Angelo, a Creative Technologist in New Jersey specializing in creative design, comprehensive marketing campaigns, and web design and development."
-        canonical="https://mikeangeloart.com/about"
+        canonical="https://mikeangelo.art/about"
         ogImage="https://cdn.mikeangelo.art/og-default.png"
         breadcrumbs={[
-          { name: "Home", url: "https://mikeangeloart.com" },
-          { name: "About", url: "https://mikeangeloart.com/about" },
+          { name: "Home", url: "https://mikeangelo.art" },
+          { name: "About", url: "https://mikeangelo.art/about" },
         ]}
         localBusiness={true}
         organization={true}
@@ -372,7 +376,7 @@ export default function About() {
           jobTitle: "Creative Technologist",
           description:
             "Creative Technologist with a passion for turning ideas into tangible, functional, and beautiful digital experiences.",
-          url: "https://mikeangeloart.com/about",
+          url: "https://mikeangelo.art/about",
           knowsAbout: [
             "Art Direction",
             "Web Design",
